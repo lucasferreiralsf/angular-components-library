@@ -1,0 +1,84 @@
+
+
+  /*   WIDTHS   */
+  @for $width from 1 through 100 {
+    .w-#{$width}{
+        width: #{$width}#{"%"}#{" !important"};
+    }
+  }
+
+  /*   MARGINS   */
+  @for $margin from 1 through 100 {
+    .m-#{$margin}{
+        margin: #{$margin}#{"px"}#{" !important"};
+      }
+      @each $type in b, t, r, l {
+          .m#{$type}-#{$margin}{
+              @if $type == b {
+                  margin-bottom: #{$margin}#{"px"}#{" !important"};
+              }
+              @if $type == t {
+                  margin-top: #{$margin}#{"px"}#{" !important"};
+              }
+              @if $type == r {
+                  margin-right: #{$margin}#{"px"}#{" !important"};
+              }
+              @if $type == l {
+                  margin-left: #{$margin}#{"px"}#{" !important"};
+              }
+          }
+    }
+  }
+
+  /*   PADDING   */
+  @for $padding from 1 through 100 {
+    .p-#{$padding}{
+        margin: #{$padding}#{"px"}#{" !important"};
+      }
+      @each $type in b, t, r, l {
+          .p#{$type}-#{$padding}{
+              @if $type == b {
+                  margin-bottom: #{$padding}#{"px"}#{" !important"};
+              }
+              @if $type == t {
+                  margin-top: #{$padding}#{"px"}#{" !important"};
+              }
+              @if $type == r {
+                  margin-right: #{$padding}#{"px"}#{" !important"};
+              }
+              @if $type == l {
+                  margin-left: #{$padding}#{"px"}#{" !important"};
+              }
+          }
+    }
+  }
+
+  /*   FONT SIZE   */
+  @for $font-size from 1 through 50 {
+    .fs-#{$font-size}{
+        font-size: #{$font-size}#{"px"}#{" !important"};
+    }
+  }
+
+  /* BADGE STATUS COMPONENT COLOR */
+  @mixin badge-status($status, $text-color: $light-primary-text, $font-size: 10px, $width: 105px) {
+    .botao-grid-#{$status}{
+      color: $text-color;
+      background-color: map-get($color-status, #{$status});
+      font-size: $font-size;
+      width: $width;
+      display: inline-block;
+      padding: 2px;
+      border-radius: 25px;
+    }
+  }
+
+  /* OFICIAL COLORS */
+  @mixin oficial-color($colorName, $color) {
+    .color-#{$colorName}{
+      color: $color;
+    }
+    .background-color-#{$colorName}{
+        background-color: $color;
+    }
+  }

@@ -1,0 +1,15 @@
+<div fxLayout="row" fxLayoutAlign="flex-end center">
+	<button @flipInOut *ngIf="btnLimparOutsideShow == 'in'" id="btn-filter-limpar-outside" mat-button class="btn-filter"
+		(click)="limparFiltro();">Limpar Filtro</button>
+	<button mat-icon-button (click)="openFilterTableContentOverlay()" cdk-overlay-origin id="filter-table-button">
+		<mat-icon>filter_list</mat-icon>
+	</button>
+	<ng-template cdk-portal #overlayDropDownContentTemplate="cdkPortal">
+		<mat-card @flipInOut style="z-index: 1;" class="mat-elevation-z4">
+			<div fxLayout="row wrap" fxLayoutGap="20px grid" fxLayoutAlign="center">
+				<ng-content></ng-content>
+			</div>
+			<sb-filter-table-actions (limpar)="limparFiltro()" (pesquisa)="pesquisar()"></sb-filter-table-actions>
+		</mat-card>
+	</ng-template>
+</div>

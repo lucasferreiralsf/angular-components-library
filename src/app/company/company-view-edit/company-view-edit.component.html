@@ -1,0 +1,11 @@
+<ng-template #first>
+  Conteúdo da primeira aba!
+</ng-template>
+<ng-template #second>
+    Conteúdo da segunda aba!
+</ng-template>
+<ng-template #third>
+    Conteúdo da terceira aba!
+</ng-template>
+<sb-view-edit-container [templates]="[['primeiro', first], ['segundo', second], ['terceiro', third]]" (modalConfirmClick)="modalConfirmClick()">
+</sb-view-edit-container>

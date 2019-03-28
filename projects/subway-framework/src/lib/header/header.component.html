@@ -1,0 +1,22 @@
+<header>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout fxLayoutAlign="space-between center">
+      <div fxLayout fxLayoutAlign="center center">
+        <div fxLayout fxLayoutAlign="center center">
+          <img *ngIf="logoImgSrc" [src]="logoImgSrc" class="logo-principal" />
+          <div class="sb-mat-title-appbar">{{ appName }}</div>
+        </div>
+        <button
+          *ngIf="showMenuButton"
+          mat-icon-button
+          (click)="showMenuButtonClick()"
+        >
+          <mat-icon class="icons-toolbar">menu</mat-icon>
+        </button>
+      </div>
+      <div>
+        <ng-content></ng-content>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</header>

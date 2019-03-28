@@ -10,7 +10,7 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "sass"
+          "style": "scss"
         }
       },
       "architect": {
@@ -128,6 +128,50 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "subway-framework": {
+      "root": "projects/subway-framework",
+      "sourceRoot": "projects/subway-framework/src",
+      "projectType": "library",
+      "prefix": "sb",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/subway-framework/tsconfig.lib.json",
+            "project": "projects/subway-framework/ng-package.json"
+
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/subway-framework/src/test.ts",
+            "tsConfig": "projects/subway-framework/tsconfig.spec.json",
+            "karmaConfig": "projects/subway-framework/karma.conf.js",
+            "styles": [
+              "projects/subway-framework/src/styles.scss"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/subway-framework/tsconfig.lib.json",
+              "projects/subway-framework/tsconfig.spec.json"
+            ],
             "exclude": [
               "**/node_modules/**"
             ]

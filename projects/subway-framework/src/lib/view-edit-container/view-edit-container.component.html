@@ -1,0 +1,11 @@
+<sb-dialog (confirmClick)="confirmClick()">
+  <mat-tab-group>
+    <mat-tab #matTabTag *ngFor="let tab of templates; let index = index" [label]="tab[0]">
+      <ng-container *ngTemplateOutlet="tab[1]"></ng-container>
+    </mat-tab>
+  </mat-tab-group>
+</sb-dialog>
+
+<!-- <ng-content></ng-content> -->
+
+

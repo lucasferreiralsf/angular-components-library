@@ -1,0 +1,172 @@
+
+
+$sb-dark-primary-text:rgba(0, 0, 0, 0.65);
+$sb-dark-secondary-text: rgba(black, 0.54);
+$sb-dark-disabled-text: rgba(black, 0.38);
+$sb-dark-dividers: rgba(black, 0.12);
+$sb-dark-focused: rgba(black, 0.12);
+$sb-light-primary-text: white;
+$sb-light-secondary-text: rgba(white, 0.7);
+$sb-light-disabled-text: rgba(white, 0.5);
+$sb-light-dividers: rgba(white, 0.12);
+$sb-light-focused: rgba(white, 0.12);
+
+body{
+  color: $sb-dark-primary-text;
+}
+
+$mat-subway-green: (
+    50 : #e0f1e7,
+    100 : #b3dcc3,
+    200 : #80c49c,
+    300 : #4dac74,
+    400 : #269b56,
+    500 : #008938,
+    600 : #008132,
+    700 : #00762b,
+    800 : #006c24,
+    900 : #005917,
+    A100 : #8bff9e,
+    A200 : #58ff73,
+    A400 : #25ff48,
+    A700 : #0bff33,
+    contrast: (
+        50 : $sb-dark-primary-text,
+        100 : $sb-dark-primary-text,
+        200 : $sb-dark-primary-text,
+        300 : $sb-dark-primary-text,
+        400 : $sb-light-primary-text,
+        500 : $sb-light-primary-text,
+        600 : $sb-light-primary-text,
+        700 : $sb-light-primary-text,
+        800 : $sb-light-primary-text,
+        900 : $sb-light-primary-text,
+        A100 : $sb-dark-primary-text,
+        A200 : $sb-dark-primary-text,
+        A400 : $sb-dark-primary-text,
+        A700 : $sb-dark-primary-text,
+    )
+);
+
+$mat-subway-yellow: (
+  50: #fffde7,
+  100: #fff9c4,
+  200: #fff59d,
+  300: #fff176,
+  400: #ffee58,
+  500: #ffeb3b,
+  600: #fdd835,
+  700: #fbc02d,
+  800: #f9a825,
+  900: #f57f17,
+  A100: #ffff8d,
+  A200: #ffff00,
+  A400: #ffea00,
+  A700: #ffd600,
+  contrast: (
+    50 : #737373,
+        100 : #737373,
+        200 : #737373,
+        300 : #737373,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #737373,
+        A200 : #737373,
+        A400 : #737373,
+        A700 : #737373,
+  )
+);
+
+$mat-subway-red: (
+    50 : #fde0e0,
+    100 : #f9b3b3,
+    200 : #f58080,
+    300 : #f14d4d,
+    400 : #ee2626,
+    500 : #eb0000,
+    600 : #e90000,
+    700 : #e50000,
+    800 : #e20000,
+    900 : #dd0000,
+    A100 : #ffffff,
+    A200 : #ffd1d1,
+    A400 : #ff9e9e,
+    A700 : #ff8585,
+    contrast: (
+        50 : #737373,
+        100 : #737373,
+        200 : #737373,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #737373,
+        A200 : #737373,
+        A400 : #737373,
+        A700 : #737373,
+    )
+);
+
+$mat-subway: (
+  primary: map-get($mat-subway-green, 500),
+  primary-hover: map-get($mat-subway-green, 800),
+  yellow: map-get($mat-subway-yellow, 600),
+  yellow-hover: map-get($mat-subway-yellow, 800),
+  light-gray: #C2C2C2,
+  gray-100: #F5F5F5,
+  gray-300: #E6E6E6,
+  gray-600: #757575,
+  dark-gray: #373737,
+  red: map-get($mat-subway-red, 500),
+  red-hover: map-get($mat-subway-red, 900),
+  purple:  #650089,
+  blue: #0066FF,
+  white: #FFFFFF,
+  black: #161616,
+);
+
+$color-status: (
+  autorizado: map-get($mat-subway, primary),
+  ativo: map-get($mat-subway, primary),
+  inativo: map-get($mat-subway, gray-600),
+  cancelado: map-get($mat-subway, dark-gray),
+  denegado: map-get($mat-subway, purple),
+  contingencia: map-get($mat-subway, blue),
+  erro: map-get($mat-subway, red),
+  pendente: map-get($mat-subway,yellow),
+  emitida_nao_eletronica: map-get($mat-subway, primary),
+  cancelada_nao_eletronica: map-get($mat-subway, light-gray),
+  alterado: map-get($mat-subway,yellow),
+  nao_alterado: map-get($mat-subway, light-gray),
+  livro-cancelado: map-get($mat-subway, dark-gray),
+  nao_confirmado: map-get($mat-subway,yellow),
+  confirmado: map-get($mat-subway, primary),
+  notExistsNF: map-get($mat-subway, red),
+
+);
+
+@function sb-mat-light-theme-foreground($color) {
+    @return (
+        base:              $color,
+        divider:           $black-12-opacity,
+        dividers:          $black-12-opacity,
+        disabled:          rgba($color, 0.38),
+        disabled-button:   rgba($color, 0.38),
+        disabled-text:     rgba($color, 0.38),
+        hint-text:         rgba($color, 0.38),
+        secondary-text:    rgba($color, 0.54),
+        icon:              rgba($color, 0.54),
+        icons:             rgba($color, 0.54),
+        text:              rgba($color, 0.54),
+        slider-off:        rgba($color, 0.26),
+        slider-off-active: rgba($color, 0.38),
+        slider-min:        rgba($color, 0.38),
+    );
+};

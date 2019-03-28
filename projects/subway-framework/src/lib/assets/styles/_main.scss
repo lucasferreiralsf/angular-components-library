@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+html, body {
+  height: 100%;
+}
+
+.mat-expansion-panel-body mat-nav-list a .mat-list-item-content {
+  padding: 0 60px !important;
+}
+
+mat-nav-list .mat-nav-list-individual .mat-list-item-content {
+  padding: 0 24px !important;
+}
+
+.mat-expansion-panel-content .mat-expansion-panel-body {
+  padding: 0;
+}
+
+.sb-mat-h1 {
+  font: 400 28px/36px Roboto, "Helvetica Neue", sans-serif;
+  margin: 0 0 0px 8px;
+  color: white;
+}

@@ -1,0 +1,6 @@
+<mat-form-field [appearance]="appearence" fxFlex >
+  <mat-label>{{formName}}</mat-label>
+  <input  matInput placeholder="{{placeHolder ? placeHolder : formName}}" />
+  <mat-icon matSuffix>{{iconName}}</mat-icon>
+  <mat-hint *ngIf="showHint">{{hint}}</mat-hint>
+</mat-form-field>

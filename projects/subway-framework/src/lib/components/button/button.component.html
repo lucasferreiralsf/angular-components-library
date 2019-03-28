@@ -1,0 +1,114 @@
+<div [ngSwitch]="materialTypeButton">
+  <button
+    *ngSwitchCase="'mat-button'"
+    mat-button
+    color="{{ color }}"
+    [ngClass]="fullWidth ? 'button-full-width' : ''"
+    [type]="typeButton"
+    [ngStyle]="customStyles"
+    (click)="topButtonClick()"
+  >
+    <div *ngIf="actionName">
+      {{ actionName }}
+    </div>
+    <div *ngIf="!actionName || actionName == '' || actionName == null">
+      <ng-content></ng-content>
+    </div>
+  </button>
+  <button
+    *ngSwitchCase="'mat-raised-button'"
+    mat-raised-button
+    color="{{ color }}"
+    [ngClass]="fullWidth ? 'button-full-width' : ''"
+    [type]="typeButton"
+    [ngStyle]="customStyles"
+    (click)="topButtonClick()"
+  >
+    <div *ngIf="actionName">
+      {{ actionName }}
+    </div>
+    <div *ngIf="!actionName">
+      <ng-content></ng-content>
+    </div>
+  </button>
+  <button
+    *ngSwitchCase="'mat-icon-button'"
+    mat-icon-button
+    color="{{ color }}"
+    [ngClass]="fullWidth ? 'button-full-width' : ''"
+    [type]="typeButton"
+    [ngStyle]="customStyles"
+    (click)="topButtonClick()"
+  >
+    <div *ngIf="actionName">
+      {{ actionName }}
+    </div>
+    <div *ngIf="!actionName">
+      <ng-content></ng-content>
+    </div>
+  </button>
+  <button
+    *ngSwitchCase="'mat-fab'"
+    mat-fab
+    color="{{ color }}"
+    [ngClass]="fullWidth ? 'button-full-width' : ''"
+    [type]="typeButton"
+    [ngStyle]="customStyles"
+    (click)="topButtonClick()"
+  >
+    <div *ngIf="actionName">
+      {{ actionName }}
+    </div>
+    <div *ngIf="!actionName">
+      <ng-content></ng-content>
+    </div>
+  </button>
+  <button
+    *ngSwitchCase="'mat-mini-fab'"
+    mat-mini-fab
+    color="{{ color }}"
+    [ngClass]="fullWidth ? 'button-full-width' : ''"
+    [type]="typeButton"
+    [ngStyle]="customStyles"
+    (click)="topButtonClick()"
+  >
+    <div *ngIf="actionName">
+      {{ actionName }}
+    </div>
+    <div *ngIf="!actionName">
+      <ng-content></ng-content>
+    </div>
+  </button>
+  <button
+    *ngSwitchCase="'mat-stroked-button'"
+    mat-stroked-button
+    color="{{ color }}"
+    [ngClass]="fullWidth ? 'button-full-width' : ''"
+    [type]="typeButton"
+    [ngStyle]="customStyles"
+    (click)="topButtonClick()"
+  >
+    <div *ngIf="actionName">
+      {{ actionName }}
+    </div>
+    <div *ngIf="!actionName">
+      <ng-content></ng-content>
+    </div>
+  </button>
+  <button
+    *ngSwitchCase="'mat-flat-button'"
+    mat-flat-button
+    color="{{ color }}"
+    [ngClass]="fullWidth ? 'button-full-width' : ''"
+    [type]="typeButton"
+    [ngStyle]="customStyles"
+    (click)="topButtonClick()"
+  >
+    <div *ngIf="actionName">
+      {{ actionName }}
+    </div>
+    <div *ngIf="!actionName">
+      <ng-content></ng-content>
+    </div>
+  </button>
+</div>

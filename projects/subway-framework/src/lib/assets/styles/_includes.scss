@@ -1,0 +1,50 @@
+/* @import "~angular-tree-component/dist/angular-tree-component.css"; */
+@import "~@angular/material/theming";
+@include mat-core();
+
+@import "officialColors";
+//@import '@angular/material/prebuilt-themes/pink-bluegrey.css';
+
+$my-app-primary: mat-palette($mat-subway-green);
+$my-app-accent: mat-palette($mat-subway-yellow);
+$my-app-warn: mat-palette($mat-subway-red);
+
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+
+$my-foreground: sb-mat-light-theme-foreground(mat-color($my-app-primary, "A700-contrast"));
+$sb-app-theme-custom: map-merge(
+  $my-app-theme,
+  (
+    foreground: $my-foreground
+  )
+);
+
+@include angular-material-theme($sb-app-theme-custom);
+
+// DARK THEME
+$dark-primary: mat-palette($mat-blue-grey);
+$dark-accent: mat-palette($mat-amber, A200, A100, A400);
+$dark-warn: mat-palette($mat-deep-orange);
+$dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+$dark-foreground: sb-mat-light-theme-foreground(mat-color($dark-primary, "A700-contrast"));
+$dark-app-theme-custom: map-merge(
+  $dark-theme,
+  (
+    foreground: $dark-foreground
+  )
+);
+
+// Include the alternative theme styles inside of a block with a CSS class. You can make this
+// CSS class whatever you want. In this example, any component inside of an element with
+// `.unicorn-dark-theme` will be affected by this alternate dark theme instead of the default theme.
+.sb-dark-theme {
+  @include angular-material-theme($dark-theme);
+}
+
+// Custom styles
+@import "scrollbar";
+@import "~@angular/cdk/overlay-prebuilt.css";
+@import "mixins";
+@import "table";
+@import "main";

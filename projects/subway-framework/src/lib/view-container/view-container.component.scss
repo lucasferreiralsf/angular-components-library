@@ -1,0 +1,13 @@
+.view-container {
+  transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+  display: block;
+  position: relative;
+  padding: 16px 0;
+  margin: 5px;
+  border-radius: 4px;
+  background: #ffffff
+}
+
+.filter-container {
+  padding: 5px 16px;
+}

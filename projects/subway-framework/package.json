@@ -1,0 +1,24 @@
+{
+  "name": "@lucasferreiralsf/angular-frontend-framework",
+  "author": "Lucas Ferreira",
+  "version": "1.0.3",
+  "description": "This is a set of custom angular components to easy the development of any Subway frontend project.",
+  "keywords" :["Angular","Library", "Subway"],
+  "license" : "SEE LICENSE IN LICENSE",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/"
+  },
+  "homepage" :"https://medium.com/@palmer_todd/the-angular-library-series-publishing-ce24bb673275",
+  "peerDependencies": {
+    "@angular/animations": "^7.2.11",
+    "@angular/cdk": "^7.3.6",
+    "@angular/common": "^7.2.0",
+    "@angular/core": "^7.2.0",
+    "@angular/flex-layout": "^7.0.0-beta.24",
+    "@angular/material": "^7.3.6",
+    "ng-animate": "^0.3.4",
+    "ngx-perfect-scrollbar": "^7.2.1"
+  },
+  "devDependencies": {}
+}

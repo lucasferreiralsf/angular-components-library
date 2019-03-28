@@ -1,0 +1,20 @@
+<div fxLayout="row" fxLayoutAlign="flex-end center" fxLayoutGap="8px">
+  <button
+    id="btn-filter-limpar-inside"
+    mat-stroked-button
+    class="btn-filter"
+    (click)="limparFiltro()"
+  >
+    Limpar
+  </button>
+  <button
+    id="btn-filter-pesquisar"
+    mat-flat-button
+    color="primary"
+    class="btn-filter"
+    (click)="pesquisar()"
+  >
+    Pesquisar
+  </button>
+  <ng-content></ng-content>
+</div>

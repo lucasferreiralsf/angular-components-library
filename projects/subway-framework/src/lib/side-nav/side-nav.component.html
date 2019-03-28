@@ -1,0 +1,22 @@
+<mat-sidenav-container class="sb-sidenav-container" autosize>
+  <mat-sidenav
+    #sidenav
+    class="mat-elevation-z3 sb-sidenav"
+    [@openClose]="isHideToggle ? 'closed' : 'open'"
+    mode="side"
+    opened="true"
+    (mouseenter)="mouseenter()"
+    (mouseleave)="mouseleave()"
+  >
+    <perfect-scrollbar>
+      <ng-content select=".sb-sidenav-menus"></ng-content>
+    </perfect-scrollbar>
+  </mat-sidenav>
+
+  <!-- Main content -->
+  <mat-sidenav-content>
+    <perfect-scrollbar>
+      <ng-content select=".sb-sidenav-content"></ng-content>
+    </perfect-scrollbar>
+  </mat-sidenav-content>
+</mat-sidenav-container>

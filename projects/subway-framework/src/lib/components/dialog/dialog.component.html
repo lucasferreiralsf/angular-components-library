@@ -1,0 +1,18 @@
+<div mat-dialog-content>
+  <ng-content></ng-content>
+</div>
+<div mat-dialog-actions fxLayout fxLayoutAlign="flex-end center" fxLayoutGap="5px">
+  <sb-button actionName="Cancelar" typeButton="button" materialTypeButton="mat-stroked-button" (buttonClick)="onCancelClick()"></sb-button>
+  <sb-button actionName="Confirmar" typeButton="button" materialTypeButton="mat-flat-button" color="primary" (buttonClick)="onConfirmClick()"></sb-button>
+</div>
+<!-- <h1 mat-dialog-title>Hi {{data.name}}</h1>
+  <p>What's your favorite animal?</p>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data">
+  </mat-form-field>
+  <ng-content [select]="selectContentId"></ng-content>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div> -->
