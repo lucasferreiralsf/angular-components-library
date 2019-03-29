@@ -16,17 +16,17 @@ import { PopoverService } from './popover/popover.service';
 import { trigger, transition, useAnimation, state } from '@angular/animations';
 import { flipInX, flipOutX } from 'ng-animate';
 
-export class ColumnNamesInterface {
+export class DataTableColumnNamesInterface {
   columnNameApi: string;
   displayName: string;
 }
 
-export class InputData {
+export class DataTableInputDataInterface {
   id: number;
-  actions: ActionsInterface;
+  actions: DataTableActionsInterface;
 }
 
-export class ActionsInterface {
+export class DataTableActionsInterface {
   actionName: string;
   actionDescription: string;
   actionIcon: string;
@@ -36,7 +36,7 @@ export class ActionsInterface {
   isDeleteDescription?: string;
 }
 
-export class TopActionButtonInterface {
+export class DataTableTopActionButtonInterface {
   actionName: string;
   eventSlug: string;
   buttonType: string;
@@ -66,10 +66,10 @@ export class TopActionButtonInterface {
 })
 export class DataTableComponent implements OnInit {
   @Input() selectColumn = false;
-  @Input() columnNames: ColumnNamesInterface[] = [];
-  @Input() actions: ActionsInterface[] = [];
-  @Input() inputData: InputData[] = [];
-  @Input() topActionButtons: TopActionButtonInterface[] = [];
+  @Input() columnNames: DataTableColumnNamesInterface[] = [];
+  @Input() actions: DataTableActionsInterface[] = [];
+  @Input() inputData: DataTableInputDataInterface[] = [];
+  @Input() topActionButtons: DataTableTopActionButtonInterface[] = [];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
