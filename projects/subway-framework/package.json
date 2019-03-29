@@ -1,13 +1,13 @@
 {
   "name": "@lucasferreiralsf/angular-frontend-framework",
   "author": "Lucas Ferreira",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "This is a set of custom angular components to easy the development of any Subway frontend project.",
   "keywords" :["Angular","Library", "Subway"],
   "license" : "SEE LICENSE IN LICENSE",
   "repository": {
     "type" : "git",
-    "url" : "https://github.com/"
+    "url" : "https://subwaytechnology.visualstudio.com/SubwayBrazilFiscal/_git/SubwayAngularFramework"
   },
   "homepage" :"https://medium.com/@palmer_todd/the-angular-library-series-publishing-ce24bb673275",
   "peerDependencies": {

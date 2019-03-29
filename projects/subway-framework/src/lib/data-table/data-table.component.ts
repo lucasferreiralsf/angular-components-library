@@ -16,17 +16,17 @@ import { PopoverService } from './popover/popover.service';
 import { trigger, transition, useAnimation, state } from '@angular/animations';
 import { flipInX, flipOutX } from 'ng-animate';
 
-export interface ColumnNamesInterface {
+export class ColumnNamesInterface {
   columnNameApi: string;
   displayName: string;
 }
 
-export interface InputData {
+export class InputData {
   id: number;
   actions: ActionsInterface;
 }
 
-export interface ActionsInterface {
+export class ActionsInterface {
   actionName: string;
   actionDescription: string;
   actionIcon: string;
@@ -36,7 +36,7 @@ export interface ActionsInterface {
   isDeleteDescription?: string;
 }
 
-export interface TopActionButtonInterface {
+export class TopActionButtonInterface {
   actionName: string;
   eventSlug: string;
   buttonType: string;
