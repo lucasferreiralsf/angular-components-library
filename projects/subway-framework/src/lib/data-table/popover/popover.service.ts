@@ -1,12 +1,4 @@
-import { Injectable, EventEmitter, Input } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
-import {
-  OverlayRef,
-  OverlayConfig,
-  Overlay,
-  ConnectedPosition
-} from '@angular/cdk/overlay';
-import { PopoverComponent } from './popover.component';
+import { Injectable, EventEmitter } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'

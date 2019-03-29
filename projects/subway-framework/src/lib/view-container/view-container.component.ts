@@ -1,14 +1,14 @@
-import { ColumnNamesInterface, TopActionButtonInterface } from './../data-table/data-table.component';
 import {
   Component,
   OnInit,
-  Input,
-  ViewChild,
-  ViewChildren
+  Input
 } from '@angular/core';
-import { InputData, ActionsInterface } from '../data-table/data-table.component';
-
-
+import {
+  DataTableInputDataInterface,
+  DataTableActionsInterface,
+  DataTableColumnNamesInterface,
+  DataTableTopActionButtonInterface
+} from '../data-table/data-table.component';
 
 @Component({
   selector: 'sb-view-container',
@@ -17,13 +17,12 @@ import { InputData, ActionsInterface } from '../data-table/data-table.component'
 })
 export class ViewContainerComponent implements OnInit {
   @Input() tableSelectColumn: boolean;
-  @Input() columnNames: ColumnNamesInterface[] = [];
-  @Input() actions: ActionsInterface[] = [];
-  @Input() inputData: InputData[] = [];
-  @Input() topActionButtons: TopActionButtonInterface[] = [];
+  @Input() columnNames: DataTableColumnNamesInterface[] = [];
+  @Input() actions: DataTableActionsInterface[] = [];
+  @Input() inputData: DataTableInputDataInterface[] = [];
+  @Input() topActionButtons: DataTableTopActionButtonInterface[] = [];
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {}
 }

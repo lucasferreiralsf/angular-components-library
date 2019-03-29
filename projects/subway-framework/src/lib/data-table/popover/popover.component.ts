@@ -14,7 +14,7 @@ import {
   OverlayRef
 } from '@angular/cdk/overlay';
 import { TemplatePortalDirective } from '@angular/cdk/portal';
-import { trigger, transition, useAnimation, state } from '@angular/animations';
+import { trigger, transition, useAnimation } from '@angular/animations';
 import { fadeInUp, fadeOut } from 'ng-animate';
 import { PopoverService } from './popover.service';
 

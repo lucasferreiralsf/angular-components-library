@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter, HostListener, ViewChild, ViewContainerRef, AfterViewInit, ViewChildren, QueryList, ChangeDetectorRef } from '@angular/core';
-import { trigger, transition, useAnimation, state } from '@angular/animations';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ViewContainerRef, AfterViewInit } from '@angular/core';
+import { trigger, transition, useAnimation } from '@angular/animations';
 import { flipInX, flipOutX } from 'ng-animate';
 import {
   Overlay,
@@ -9,7 +9,6 @@ import {
   OverlayRef
 } from '@angular/cdk/overlay';
 import { TemplatePortalDirective } from '@angular/cdk/portal';
-import { MatFormField } from '@angular/material';
 
 @Component({
   selector: 'sb-filter-table',

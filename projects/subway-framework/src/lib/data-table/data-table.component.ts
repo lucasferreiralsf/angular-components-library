@@ -2,10 +2,7 @@ import {
   Component,
   OnInit,
   Input,
-  Output,
-  EventEmitter,
   ViewChild,
-  ElementRef,
   Renderer2
 } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -13,7 +10,7 @@ import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { DataTableService } from './data-table.service';
 import { map } from 'rxjs/operators';
 import { PopoverService } from './popover/popover.service';
-import { trigger, transition, useAnimation, state } from '@angular/animations';
+import { trigger, transition, useAnimation } from '@angular/animations';
 import { flipInX, flipOutX } from 'ng-animate';
 
 export class DataTableColumnNamesInterface {

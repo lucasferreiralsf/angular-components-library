@@ -1,6 +1,5 @@
-import { Injectable, EventEmitter, Input, OnInit } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { DialogComponent } from './dialog.component';
 
 @Injectable({
   providedIn: 'root'

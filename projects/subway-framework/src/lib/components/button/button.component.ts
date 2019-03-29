@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
 
 @Component({
   selector: 'sb-button',
