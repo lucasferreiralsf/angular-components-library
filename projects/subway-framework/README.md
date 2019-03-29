@@ -1,28 +1,28 @@
-# Subway Angular Framework
+# Subway Angular Components Library
 
 This is a set of custom Angular 7 components to easy the development of any Subway frontend project.
 
 ## Installation
 ### NPM
 
-Run `npm i @lucasferreiralsf/angular-frontend-framework`
+Run `npm i @lucasferreiralsf/angular-frontend-library`
 
 ### YARN
 
-Run `yarn add @lucasferreiralsf/angular-frontend-framework`
+Run `yarn add @lucasferreiralsf/angular-frontend-library`
 
 ## Usage
 
-### Import SubwayFrameworkModule in app.module
+### Import SubwayComponentsLibraryModule in app.module
 
 ```ts
-import { SubwayFrameworkModule } from '@lucasferreiralsf/angular-frontend-framework';
+import { SubwayComponentsLibraryModule } from '@lucasferreiralsf/angular-frontend-library';
 
 
 @NgModule({
   imports: [
     // ...
-    SubwayFrameworkModule
+    SubwayComponentsLibraryModule
   ]
 })
 ```
@@ -30,5 +30,5 @@ import { SubwayFrameworkModule } from '@lucasferreiralsf/angular-frontend-framew
 
 ```scss
 /* You can add global styles to this file, and also import other style files */
-@import '../node_modules/@lucasferreiralsf/angular-frontend-framework/assets/styles/includes';
+@import '../node_modules/@lucasferreiralsf/angular-frontend-library/assets/styles/includes';
 ```

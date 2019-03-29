@@ -4,7 +4,7 @@
 */
 
 /* MODULES */
-export * from './lib/subway-framework.module';
+export * from './lib/subway-components-library.module';
 
 /* SERVICES */
 export * from './lib/components/dialog/dialog.service';

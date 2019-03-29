@@ -13,17 +13,17 @@ import { PopoverService } from './popover/popover.service';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { flipInX, flipOutX } from 'ng-animate';
 
-export class DataTableColumnNamesInterface {
+export interface DataTableColumnNamesInterface {
   columnNameApi: string;
   displayName: string;
 }
 
-export class DataTableInputDataInterface {
+export interface DataTableInputDataInterface {
   id: number;
   actions: DataTableActionsInterface;
 }
 
-export class DataTableActionsInterface {
+export interface DataTableActionsInterface {
   actionName: string;
   actionDescription: string;
   actionIcon: string;
@@ -33,7 +33,7 @@ export class DataTableActionsInterface {
   isDeleteDescription?: string;
 }
 
-export class DataTableTopActionButtonInterface {
+export interface DataTableTopActionButtonInterface {
   actionName: string;
   eventSlug: string;
   buttonType: string;

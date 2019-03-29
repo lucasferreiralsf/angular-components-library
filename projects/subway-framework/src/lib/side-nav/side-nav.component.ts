@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { HeaderService } from '../header/header.service';
 import { SidenavService } from './sidenav.service';
@@ -31,6 +31,7 @@ export class SideNavComponent implements OnInit {
   isExpanded = true;
   isShowing = false;
   isHideToggle = !this.isExpanded;
+  @Input() isRenderSidenav: boolean;
 
   constructor(private headerService: HeaderService, private sidenavService: SidenavService) {}
 

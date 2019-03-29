@@ -15,6 +15,10 @@ export class SidenavService {
 
   constructor() { }
 
+  isExpandStatus() {
+    return this.isExpanded;
+  }
+
   expandEmit(e: boolean) {
     this.expandEmitter.emit(e);
   }

@@ -318,10 +318,10 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@lucasferreiralsf/angular-frontend-framework@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@lucasferreiralsf/angular-frontend-framework/-/angular-frontend-framework-1.0.4.tgz#8c6cf0bc94d73859734dc0bd923b60cf2fcc80c0"
-  integrity sha512-tibBZP8ht8B2+ht8FZY63SBAbJ3JAVAz1ba3KPSd86o6X0wUiDq6bMPnDQZU9OBpCkwdhPV/IcpgEDMTfNAlVA==
+"@lucasferreiralsf/angular-frontend-library@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@lucasferreiralsf/angular-frontend-library/-/angular-frontend-library-1.0.3.tgz#e1f766a67a1e47ee3d152a0d24492c4de45bbaf9"
+  integrity sha512-B627iZehMOpXj48DpNLZISCCf2YQtx2Lcd+zK618DOzVqPFjGkO5fGoTqy+NyNHjXNfD2O8zb0jLeorKYhYd4g==
   dependencies:
     tslib "^1.9.0"
 
