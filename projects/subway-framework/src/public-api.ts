@@ -20,6 +20,7 @@ export * from './lib/view-edit-container/view-edit-container.component';
 export * from './lib/components/dialog/dialog.component';
 export * from './lib/header/header.component';
 export * from './lib/side-nav/side-nav.component';
+export * from './lib/data-table/data-table.component';
 
 /* DIRECTIVES */
 export * from './lib/header/header.directive';

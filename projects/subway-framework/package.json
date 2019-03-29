@@ -1,7 +1,7 @@
 {
   "name": "@lucasferreiralsf/angular-frontend-framework",
   "author": "Lucas Ferreira",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "This is a set of custom angular components to easy the development of any Subway frontend project.",
   "keywords" :["Angular","Library", "Subway"],
   "license" : "SEE LICENSE IN LICENSE",
