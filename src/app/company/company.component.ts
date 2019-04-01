@@ -1,25 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { DialogService, DataTableService } from 'subway-framework';
+import { DataTableService } from 'projects/subway-framework/src/lib/data-table/data-table.service';
+import { DialogService } from 'projects/subway-framework/src/lib/components/dialog/dialog.service';
 import { CompanyViewEditComponent } from './company-view-edit/company-view-edit.component';
+import { CompanyService } from './company.service';
 
-const ELEMENT_DATA = [
-  { id: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { id: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { id: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { id: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { id: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { id: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { id: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { id: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { id: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { id: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' }
-];
+//const ELEMENT_DATA = [{"grupo":"grupo1","razaoSocial":"Empresa XPTO","emailResponsavel":"gomes_a@subway.com","dataCadastro":"2019-03-31T00:00:00","cnpj":"82748758000177","timeZone":"E. South America Standard Time","id":1},{"grupo":"grupo2","razaoSocial":"Empresa XPTO 2","emailResponsavel":"floresta_w@subway.com","dataCadastro":"2019-04-01T00:00:00","cnpj":"00138391000105","timeZone":"E. South America Standard Time","id":2}];
+
+import {MatPaginator, MatSort} from '@angular/material';
+import {merge, Observable, of as observableOf} from 'rxjs';
+import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 
 const namesColumn = [
-  { columnNameApi: 'id', displayName: 'Posição' },
-  { columnNameApi: 'name', displayName: 'Nome' },
-  { columnNameApi: 'weight', displayName: 'Tamanho' },
-  { columnNameApi: 'symbol', displayName: 'Símbolo' }
+  { columnNameApi: "id", displayName: "Id" },
+  { columnNameApi: "grupo", displayName: "Grupo" },
+  { columnNameApi: "cnpj", displayName: "CNPJ" },
+  { columnNameApi: "razaoSocial", displayName: "Razão Social" },
+  { columnNameApi: "dataCadastro", displayName: "Data Cadastro" },
+  { columnNameApi: "emailResponsavel", displayName: "E-Mail Responsável" },
+  { columnNameApi: "timeZone", displayName: "Fuso Horário" }
 ];
 
 const ACTIONS = [
@@ -52,50 +50,25 @@ const ACTIONS = [
   }
 ];
 
-const TOPACTIONSBUTTON = [
-  {
-    actionName: 'Ação 1 Teste',
-    eventSlug: 'acao1teste',
-    buttonType: 'mat-flat-button',
-    buttonColor: 'primary'
-  },
-  {
-    actionName: 'Ação 2 Teste',
-    eventSlug: 'acao2teste',
-    buttonType: 'mat-button',
-    buttonColor: 'accent'
-  },
-  { actionName: 'Ação 3 Teste', eventSlug: 'acao3teste', buttonType: 'mat-stroked-button' },
-  {
-    actionName: 'Ação 4 Teste',
-    eventSlug: 'acao4teste',
-    buttonType: 'mat-raised-button',
-    buttonColor: 'primary'
-  },
-  {
-    actionName: 'Ação 5 Teste',
-    eventSlug: 'acao5teste',
-    buttonType: 'mat-raised-button',
-    buttonColor: 'warn'
-  },
-  { actionName: 'Ação 6 Teste', eventSlug: 'acao6teste', buttonType: 'mat-raised-button' }
-];
+const TOPACTIONSBUTTON = [];
 
 @Component({
   selector: 'app-company',
   templateUrl: './company.component.html',
-  styleUrls: ['./company.component.scss']
+  styleUrls: ['./company.component.scss'],
+  providers: [CompanyService]
 })
 export class CompanyComponent implements OnInit {
-
   columnNames = namesColumn;
   actions = ACTIONS;
-  // inputData = [];
-  inputData = ELEMENT_DATA;
+  inputData = [];
+  //inputData = ELEMENT_DATA;
   topActions = TOPACTIONSBUTTON;
   dataTable;
 
-  constructor(private dataTableService: DataTableService, private dialogService: DialogService) {}
+  constructor(private _companyService: CompanyService,
+              private dataTableService: DataTableService,
+              private dialogService: DialogService) {}
 
   ngOnInit() {
     this.dataTableService.buttonRowEvent.subscribe(eventType => {
@@ -119,10 +92,14 @@ export class CompanyComponent implements OnInit {
     this.dataTableService.filterPesquisarEvent.subscribe(() => {
       console.log('Botão Pesquisar Filtro Clicado');
     });
+
+    this._companyService.get().subscribe(inputData => {
+      this.dataTableService.setInputData(inputData);
+    });
   }
 
   ngAfterViewInit() {
-    this.dataTable = this.dataTableService.getData();
+    //this.dataTable = this.dataTableService.getData();
   }
 
   removeRow(item) {

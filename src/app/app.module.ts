@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -16,7 +16,7 @@ import {
 import { AppRoutingModule } from './app-routing.module';
 import { CompanyComponent } from './company/company.component';
 import { CompanyViewEditComponent } from './company/company-view-edit/company-view-edit.component';
-import { SubwayFrameworkModule } from '@lucasferreiralsf/angular-frontend-framework';
+import { SubwayComponentsLibraryModule } from 'projects/subway-framework/src/lib/subway-components-library.module';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
 
@@ -28,8 +28,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
-    SubwayFrameworkModule,
+    SubwayComponentsLibraryModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,

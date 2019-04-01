@@ -3,7 +3,9 @@ import {
   OnInit,
   Input,
   ViewChild,
-  Renderer2
+  Renderer2,
+  AfterContentInit,
+  AfterViewInit
 } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
@@ -12,6 +14,7 @@ import { map } from 'rxjs/operators';
 import { PopoverService } from './popover/popover.service';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { flipInX, flipOutX } from 'ng-animate';
+import { CompanyService } from '../../../../../src/app/company/company.service';
 
 export interface DataTableColumnNamesInterface {
   columnNameApi: string;
@@ -59,8 +62,10 @@ export interface DataTableTopActionButtonInterface {
         })
       )
     ])
-  ]
+  ],
+  providers: [CompanyService]
 })
+
 export class DataTableComponent implements OnInit {
   @Input() selectColumn = false;
   @Input() columnNames: DataTableColumnNamesInterface[] = [];
@@ -85,19 +90,30 @@ export class DataTableComponent implements OnInit {
   constructor(
     private dataTableService: DataTableService,
     private popoverService: PopoverService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private _companyService: CompanyService
   ) {}
 
   ngOnInit() {
-    this.columnsNameApi = this.columnNames.map(e => e.columnNameApi);
     this.data = this.dataTableService.setDataSource(this.inputData);
-    this.noData = this.data.connect().pipe(map(data => data.length === 0));
-    this.data.paginator = this.paginator;
-    this.addActionsToData();
+    this.columnsNameApi = this.columnNames.map(e => e.columnNameApi);
     this.displayColumns();
-    this.popoverService.buttonClickEvent.subscribe(event => {
-      this.buttonRowClick(event.event, event.elementId);
+    this.dataTableService.inputDataEvent.subscribe(inputData => {
+      this.load(inputData);
     });
+  }
+
+  load(inputData) {
+      this.inputData = inputData;
+      this.columnsNameApi = this.columnNames.map(e => e.columnNameApi);
+      this.data = this.dataTableService.setDataSource(this.inputData);
+      this.noData = this.data.connect().pipe(map(data => data.length === 0));
+      this.data.paginator = this.paginator;
+      this.addActionsToData();
+      this.displayColumns();
+      this.popoverService.buttonClickEvent.subscribe(event => {
+        this.buttonRowClick(event.event, event.elementId);
+      });
   }
 
   filterLimparButtonClick() {

@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { SidenavService } from 'subway-framework';
+import { SidenavService } from 'projects/subway-framework/src/lib/side-nav/sidenav.service';
 
 @Component({
   selector: 'app-root',
