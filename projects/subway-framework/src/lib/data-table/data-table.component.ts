@@ -14,7 +14,6 @@ import { map } from 'rxjs/operators';
 import { PopoverService } from './popover/popover.service';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { flipInX, flipOutX } from 'ng-animate';
-import { CompanyService } from '../../../../../src/app/company/company.service';
 
 export interface DataTableColumnNamesInterface {
   columnNameApi: string;
@@ -62,10 +61,8 @@ export interface DataTableTopActionButtonInterface {
         })
       )
     ])
-  ],
-  providers: [CompanyService]
+  ]
 })
-
 export class DataTableComponent implements OnInit {
   @Input() selectColumn = false;
   @Input() columnNames: DataTableColumnNamesInterface[] = [];
@@ -90,8 +87,7 @@ export class DataTableComponent implements OnInit {
   constructor(
     private dataTableService: DataTableService,
     private popoverService: PopoverService,
-    private renderer: Renderer2,
-    private _companyService: CompanyService
+    private renderer: Renderer2
   ) {}
 
   ngOnInit() {
@@ -104,16 +100,16 @@ export class DataTableComponent implements OnInit {
   }
 
   load(inputData) {
-      this.inputData = inputData;
-      this.columnsNameApi = this.columnNames.map(e => e.columnNameApi);
-      this.data = this.dataTableService.setDataSource(this.inputData);
-      this.noData = this.data.connect().pipe(map(data => data.length === 0));
-      this.data.paginator = this.paginator;
-      this.addActionsToData();
-      this.displayColumns();
-      this.popoverService.buttonClickEvent.subscribe(event => {
-        this.buttonRowClick(event.event, event.elementId);
-      });
+    this.inputData = inputData;
+    this.columnsNameApi = this.columnNames.map(e => e.columnNameApi);
+    this.data = this.dataTableService.setDataSource(this.inputData);
+    this.noData = this.data.connect().pipe(map(data => data.length === 0));
+    this.data.paginator = this.paginator;
+    this.addActionsToData();
+    this.displayColumns();
+    this.popoverService.buttonClickEvent.subscribe(event => {
+      this.buttonRowClick(event.event, event.elementId);
+    });
   }
 
   filterLimparButtonClick() {

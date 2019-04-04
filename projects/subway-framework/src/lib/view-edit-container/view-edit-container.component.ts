@@ -7,6 +7,7 @@ import { Component, OnInit, Input, TemplateRef, EventEmitter, Output } from '@an
 })
 export class ViewEditContainerComponent implements OnInit {
   @Input() templates: TemplateRef<any>[];
+  @Input() typeButton: string;
   @Output() modalConfirmClick = new EventEmitter<any>();
 
   constructor() {

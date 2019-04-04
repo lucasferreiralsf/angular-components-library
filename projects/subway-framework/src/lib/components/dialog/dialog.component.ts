@@ -1,6 +1,5 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { DialogService } from './dialog.service';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'sb-dialog',
@@ -8,6 +7,8 @@ import { DialogService } from './dialog.service';
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent implements OnInit {
+
+  @Input() typeButton: string;
 
   @Output() confirmClick = new EventEmitter<any>();
   constructor(

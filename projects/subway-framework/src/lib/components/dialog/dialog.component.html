@@ -3,7 +3,7 @@
 </div>
 <div mat-dialog-actions fxLayout fxLayoutAlign="flex-end center" fxLayoutGap="5px">
   <sb-button actionName="Cancelar" typeButton="button" materialTypeButton="mat-stroked-button" (buttonClick)="onCancelClick()"></sb-button>
-  <sb-button actionName="Confirmar" typeButton="button" materialTypeButton="mat-flat-button" color="primary" (buttonClick)="onConfirmClick()"></sb-button>
+  <sb-button actionName="Confirmar" [typeButton]="typeButton" materialTypeButton="mat-flat-button" color="primary" (buttonClick)="onConfirmClick()"></sb-button>
 </div>
 <!-- <h1 mat-dialog-title>Hi {{data.name}}</h1>
   <p>What's your favorite animal?</p>

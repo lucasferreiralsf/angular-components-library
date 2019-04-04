@@ -4,20 +4,20 @@ import { DialogService } from 'projects/subway-framework/src/lib/components/dial
 import { CompanyViewEditComponent } from './company-view-edit/company-view-edit.component';
 import { CompanyService } from './company.service';
 
-//const ELEMENT_DATA = [{"grupo":"grupo1","razaoSocial":"Empresa XPTO","emailResponsavel":"gomes_a@subway.com","dataCadastro":"2019-03-31T00:00:00","cnpj":"82748758000177","timeZone":"E. South America Standard Time","id":1},{"grupo":"grupo2","razaoSocial":"Empresa XPTO 2","emailResponsavel":"floresta_w@subway.com","dataCadastro":"2019-04-01T00:00:00","cnpj":"00138391000105","timeZone":"E. South America Standard Time","id":2}];
+// const ELEMENT_DATA = [{"grupo":"grupo1","razaoSocial":"Empresa XPTO","emailResponsavel":"gomes_a@subway.com","dataCadastro":"2019-03-31T00:00:00","cnpj":"82748758000177","timeZone":"E. South America Standard Time","id":1},{"grupo":"grupo2","razaoSocial":"Empresa XPTO 2","emailResponsavel":"floresta_w@subway.com","dataCadastro":"2019-04-01T00:00:00","cnpj":"00138391000105","timeZone":"E. South America Standard Time","id":2}];
 
-import {MatPaginator, MatSort} from '@angular/material';
-import {merge, Observable, of as observableOf} from 'rxjs';
-import {catchError, map, startWith, switchMap} from 'rxjs/operators';
+import { MatPaginator, MatSort } from '@angular/material';
+import { merge, Observable, of as observableOf } from 'rxjs';
+import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 
 const namesColumn = [
-  { columnNameApi: "id", displayName: "Id" },
-  { columnNameApi: "grupo", displayName: "Grupo" },
-  { columnNameApi: "cnpj", displayName: "CNPJ" },
-  { columnNameApi: "razaoSocial", displayName: "Razão Social" },
-  { columnNameApi: "dataCadastro", displayName: "Data Cadastro" },
-  { columnNameApi: "emailResponsavel", displayName: "E-Mail Responsável" },
-  { columnNameApi: "timeZone", displayName: "Fuso Horário" }
+  { columnNameApi: 'id', displayName: 'Id' },
+  { columnNameApi: 'grupo', displayName: 'Grupo' },
+  { columnNameApi: 'cnpj', displayName: 'CNPJ' },
+  { columnNameApi: 'razaoSocial', displayName: 'Razão Social' },
+  { columnNameApi: 'dataCadastro', displayName: 'Data Cadastro' },
+  { columnNameApi: 'emailResponsavel', displayName: 'E-Mail Responsável' },
+  { columnNameApi: 'timeZone', displayName: 'Fuso Horário' }
 ];
 
 const ACTIONS = [
@@ -62,13 +62,15 @@ export class CompanyComponent implements OnInit {
   columnNames = namesColumn;
   actions = ACTIONS;
   inputData = [];
-  //inputData = ELEMENT_DATA;
+  // inputData = ELEMENT_DATA;
   topActions = TOPACTIONSBUTTON;
   dataTable;
 
-  constructor(private _companyService: CompanyService,
-              private dataTableService: DataTableService,
-              private dialogService: DialogService) {}
+  constructor(
+    private _companyService: CompanyService,
+    private dataTableService: DataTableService,
+    private dialogService: DialogService
+  ) {}
 
   ngOnInit() {
     this.dataTableService.buttonRowEvent.subscribe(eventType => {
@@ -77,7 +79,10 @@ export class CompanyComponent implements OnInit {
       }
 
       if (eventType.event === 'visualizar') {
-        this.dialogService.openDialog(CompanyViewEditComponent, { name: 'animal teste nome', animal: 'animal teste' });
+        this.dialogService.openDialog(CompanyViewEditComponent, {
+          name: 'animal teste nome',
+          animal: 'animal teste'
+        });
       }
     });
 
@@ -98,10 +103,6 @@ export class CompanyComponent implements OnInit {
     });
   }
 
-  ngAfterViewInit() {
-    //this.dataTable = this.dataTableService.getData();
-  }
-
   removeRow(item) {
     const idInputData = this.inputData.map(e => e.id);
     // tslint:disable-next-line: triple-equals
@@ -114,5 +115,4 @@ export class CompanyComponent implements OnInit {
       this.dataTableService.data.data = this.dataTableService.data.data;
     }
   }
-
 }
