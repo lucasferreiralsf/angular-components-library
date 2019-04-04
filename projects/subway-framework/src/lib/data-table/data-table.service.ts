@@ -1,6 +1,5 @@
 import { Injectable, EventEmitter, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
-import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,47 +12,37 @@ export class DataTableService implements OnInit {
   filterPesquisarEvent = new EventEmitter();
   data;
 
-// tslint:disable-next-line: variable-name
-  constructor(
-// tslint:disable-next-line: variable-name
-    private destroySubject: Subject<any>,
-  ) {
-    destroySubject = new Subject();
-  }
+  // tslint:disable-next-line: variable-name
+  constructor() {}
 
-ngOnInit() {}
+  ngOnInit() {}
 
-ngOnDestroy() {
-  this.destroySubject.next();
-  this.destroySubject.unsubscribe();
-}
-
-getData() {
+  getData() {
     return this.data;
   }
 
-setDataSource(element) {
+  setDataSource(element) {
     this.data = new MatTableDataSource(element);
     return this.data;
   }
 
-setInputData(element) {
+  setInputData(element) {
     this.inputDataEvent.emit(element);
   }
 
-buttonRowClick(event: string, index) {
+  buttonRowClick(event: string, index) {
     this.buttonRowEvent.emit({ event, index });
   }
 
-topButtonClick(eventSlug: string) {
+  topButtonClick(eventSlug: string) {
     this.topButtonEvent.emit(eventSlug);
   }
 
-filterLimparButtonClick() {
+  filterLimparButtonClick() {
     this.filterLimparEvent.emit();
   }
 
-filterPesquisarButtonClick() {
+  filterPesquisarButtonClick() {
     this.filterPesquisarEvent.emit();
   }
 }
