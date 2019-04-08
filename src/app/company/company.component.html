@@ -3,6 +3,11 @@
     [actions]="actions"
     [inputData]="inputData"
     [topActionButtons]="topActions"
+    [columnNameToDisplayOnDelete]="columnNameToDisplayOnDelete"
+    (getPagingEmit)="getPaging($event)"
+    pageSizeOptions="[5, 10, 25, 100]"
+    length="100"
+    pageSize="10"
   >
     <sb-mat-form-field
       formName="Teste"

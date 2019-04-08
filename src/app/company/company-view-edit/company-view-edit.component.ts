@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { DialogService } from 'projects/subway-framework/src/lib/components/dialog/dialog.service';
 
 @Component({
   selector: 'app-company-view-edit',
@@ -7,16 +8,26 @@ import { MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./company-view-edit.component.scss']
 })
 export class CompanyViewEditComponent implements OnInit {
+  dialogRef: MatDialogRef<any>;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data) {
-
-   }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data,
+    private dialogService: DialogService
+  ) {}
 
   ngOnInit() {
-  }
+    this.dialogService.dialogRefEmitter.subscribe(dialogRef => {
+      this.dialogRef = dialogRef;
+      this.dialogRef.afterClosed().subscribe(() => console.log('after closed'));
+    });
 
-  modalConfirmClick() {
-    console.log('Botão confirmar clicado!');
+    this.dialogService.confirmClick.subscribe(() => {
+      this.dialogRef.close();
+    });
+
+    this.dialogService.cancelClick.subscribe(() => {
+      this.dialogRef.close();
+    });
   }
 
 }

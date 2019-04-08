@@ -1,5 +1,16 @@
 <div class="view-container mat-elevation-z3">
-  <sb-data-table [selectColumn]="tableSelectColumn" [columnNames]="columnNames" [actions]="actions" [inputData]="inputData" [topActionButtons]="topActionButtons">
-      <ng-content select=".filters" class="sb-data-table-content"></ng-content>
+  <sb-data-table
+    [selectColumn]="tableSelectColumn"
+    [columnNames]="columnNames"
+    [actions]="actions"
+    [inputData]="inputData"
+    [topActionButtons]="topActionButtons"
+    [columnNameToDisplayOnDelete]="columnNameToDisplayOnDelete"
+    [pageSizeOptions]="pageSizeOptions"
+    [length]="length"
+    [pageSize]="pageSize"
+    (getPagingEmit)="getPaging($event)"
+  >
+    <ng-content select=".filters" class="sb-data-table-content"></ng-content>
   </sb-data-table>
 </div>

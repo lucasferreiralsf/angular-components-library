@@ -12,7 +12,7 @@ export class PopoverService {
     this.emitirCloseEvent.emit();
   }
 
-  buttonClickEmit(event, elementId) {
-    this.buttonClickEvent.emit({ event, elementId });
+  buttonClickEmit(event: any, element) {
+    this.buttonClickEvent.emit({ event, element });
   }
 }

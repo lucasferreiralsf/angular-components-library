@@ -4,11 +4,13 @@ import {
   Input,
   ViewChild,
   Renderer2,
+  EventEmitter,
   AfterContentInit,
-  AfterViewInit
+  AfterViewInit,
+  Output
 } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
-import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSnackBar, MatSnackBarConfig, PageEvent } from '@angular/material';
 import { DataTableService } from './data-table.service';
 import { map } from 'rxjs/operators';
 import { PopoverService } from './popover/popover.service';
@@ -69,7 +71,14 @@ export class DataTableComponent implements OnInit {
   @Input() actions: DataTableActionsInterface[] = [];
   @Input() inputData: DataTableInputDataInterface[] = [];
   @Input() topActionButtons: DataTableTopActionButtonInterface[] = [];
+  @Input() columnNameToDisplayOnDelete: string[];
+  @Input() snackBarAutoHideTime: number;
+  @Input() pageEvent: PageEvent;
+  @Input() pageSize;
+  @Input() length;
+  @Input() pageSizeOptions;
 
+  @Output() getPagingEmit = new EventEmitter();
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   data: MatTableDataSource<any>;
@@ -78,6 +87,8 @@ export class DataTableComponent implements OnInit {
   selection = new SelectionModel(true, []);
   columnsNameApi: string[] = [];
   noData;
+  buttonDismissClicked = false;
+
 
   topButtonStyle: {} = {
     height: '32px',
@@ -87,16 +98,24 @@ export class DataTableComponent implements OnInit {
   constructor(
     private dataTableService: DataTableService,
     private popoverService: PopoverService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
+    console.log('pageSizeOptions: ', this.pageSizeOptions);
+    console.log('pageSize: ', this.pageSize);
+    console.log('length: ', this.length);
     this.data = this.dataTableService.setDataSource(this.inputData);
     this.columnsNameApi = this.columnNames.map(e => e.columnNameApi);
     this.displayColumns();
     this.dataTableService.inputDataEvent.subscribe(inputData => {
       this.load(inputData);
     });
+  }
+
+  getPaging(paging) {
+    this.getPagingEmit.emit(paging);
   }
 
   load(inputData) {
@@ -108,7 +127,7 @@ export class DataTableComponent implements OnInit {
     this.addActionsToData();
     this.displayColumns();
     this.popoverService.buttonClickEvent.subscribe(event => {
-      this.buttonRowClick(event.event, event.elementId);
+      this.buttonRowClick(event.event, event.element);
     });
   }
 
@@ -124,9 +143,56 @@ export class DataTableComponent implements OnInit {
     this.dataTableService.topButtonClick(eventSlug);
   }
 
-  buttonRowClick(event: string, index) {
-    // console.log(`buttonRowClick: ${event.toLowerCase()}, ${index.toLowerCase()}`);
-    this.dataTableService.buttonRowClick(event.toLowerCase(), index);
+  getNameToDisplayOnDelete(element: string[]) {
+    const filtered = Object.keys(element)
+      .filter(key => this.columnNameToDisplayOnDelete.includes(key))
+      .reduce((obj, key) => {
+        const displayName = this.verifyNameColumn(key);
+        obj[key] = displayName + ': ' + element[key];
+        return obj;
+      }, {});
+
+    const teste = Object.values(filtered).join(' - ');
+    return teste;
+  }
+
+  buttonRowClick(event: string, element) {
+    // console.log('buttonRow event: ', event);
+    // console.log('buttonRow element: ', element);
+    if (event === 'confirmdelete') {
+      // console.log('confirmdelete');
+
+      const configSnackbar = new MatSnackBarConfig();
+      configSnackbar.duration = this.snackBarAutoHideTime ? this.snackBarAutoHideTime : 4000;
+      this.snackBar.open(`O item: ${this.getNameToDisplayOnDelete(element)} foi excluído.`, 'Desfazer', configSnackbar);
+      this.snackBar._openedSnackBarRef.afterDismissed().subscribe(() => {
+        if(this.buttonDismissClicked === false) {
+          this.dataTableService.removeRowEmit(element);
+        } else {
+          this.buttonDismissClicked = false;
+        }
+
+      });
+      this.snackBar._openedSnackBarRef.onAction().subscribe(() => {
+        this.buttonDismissClicked = true;
+        this.snackBar.dismiss();
+      });
+    } else {
+      this.dataTableService.buttonRowClick(event.toLowerCase(), element);
+    }
+  }
+
+  removeRow(item) {
+    const idInputData = this.inputData.map(e => e.id);
+    // tslint:disable-next-line: triple-equals
+    if (idInputData.find((element, index, array) => element == item) == item) {
+      this.dataTableService.data.data.splice(
+        // tslint:disable-next-line: triple-equals
+        idInputData.findIndex((element, index, array) => element == item),
+        1
+      );
+      this.dataTableService.data.data = this.dataTableService.data.data;
+    }
   }
 
   addActionsToData() {

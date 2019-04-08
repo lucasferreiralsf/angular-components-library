@@ -1,7 +1,9 @@
 import {
   Component,
   OnInit,
-  Input
+  Input,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import {
   DataTableInputDataInterface,
@@ -21,8 +23,18 @@ export class ViewContainerComponent implements OnInit {
   @Input() actions: DataTableActionsInterface[] = [];
   @Input() inputData: DataTableInputDataInterface[] = [];
   @Input() topActionButtons: DataTableTopActionButtonInterface[] = [];
+  @Input() columnNameToDisplayOnDelete;
+  @Input() pageSize;
+  @Input() length;
+  @Input() pageSizeOptions;
+
+  @Output() getPagingEmit = new EventEmitter();
 
   constructor() {}
 
   ngOnInit() {}
+
+  getPaging(element) {
+    this.getPagingEmit.emit(element);
+  }
 }

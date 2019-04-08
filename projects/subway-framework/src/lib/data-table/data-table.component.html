@@ -45,12 +45,12 @@
       <div *ngIf="column == 'actions'">
         <th mat-header-cell *matHeaderCellDef>Ações</th>
         <td mat-cell *matCellDef="let element">
-          <div fxLayout>
+          <div fxLayout fxLayoutAlign="center center">
             <div *ngFor="let buttonElement of (element.actions | keyvalue)">
               <button
                 mat-icon-button
                 *ngIf="!buttonElement.value.isDelete"
-                (click)="buttonRowClick(buttonElement.value.actionName, element.id)"
+                (click)="buttonRowClick(buttonElement.value.actionName, element)"
                 matTooltip="{{ buttonElement.value.actionDescription }}"
               >
                 <mat-icon>{{ buttonElement.value.actionIcon }}</mat-icon>
@@ -58,7 +58,7 @@
               <sb-popover
                 *ngIf="buttonElement.value.isDelete"
                 matTooltip="{{ buttonElement.value.actionDescription }}"
-                elementId="{{ element.id }}"
+                [element]="element"
                 popoverTitle="{{ buttonElement.value.isDeleteTitle }}"
                 popoverDescription="{{ buttonElement.value.isDeleteDescription }}"
               ></sb-popover>
@@ -79,5 +79,5 @@
     </p>
   </div>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" class="mt-10"></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]" [length]="length" pageSize="pageSize"  (page)="pageEvent = $event;getPaging(pageEvent);" class="mt-10"></mat-paginator>
 </div>

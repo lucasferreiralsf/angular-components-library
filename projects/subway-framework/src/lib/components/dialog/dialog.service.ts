@@ -1,35 +1,35 @@
-import { Injectable, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { Injectable, OnInit, EventEmitter } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DialogService implements OnInit {
-
-  animal: string;
-  name: string;
   widthDialog: string;
-  tabs: string[] = ['First', 'Second', 'Third'];
-  component;
+  dialogRefEmitter = new EventEmitter();
+  confirmClick = new EventEmitter<any>();
+  cancelClick = new EventEmitter<any>();
 
   constructor(public dialog: MatDialog) {}
 
-  ngOnInit() {
-  }
-
-  getTabs() {
-    return this.tabs;
-  }
+  ngOnInit() {}
 
   openDialog(dialogComponent, data): void {
-    const dialogRef = this.dialog.open(dialogComponent, {
+    this.dialog.open(dialogComponent, {
       width: this.widthDialog,
       data
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-
-    });
   }
 
+  emitDialogRef(dialogRef: MatDialogRef<any>) {
+    this.dialogRefEmitter.emit(dialogRef);
+  }
+
+  emitConfirmClick() {
+    this.confirmClick.emit();
+  }
+
+  emitCancelClick() {
+    this.cancelClick.emit();
+  }
 }

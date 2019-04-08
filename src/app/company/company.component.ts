@@ -4,9 +4,270 @@ import { DialogService } from 'projects/subway-framework/src/lib/components/dial
 import { CompanyViewEditComponent } from './company-view-edit/company-view-edit.component';
 import { CompanyService } from './company.service';
 
-// const ELEMENT_DATA = [{"grupo":"grupo1","razaoSocial":"Empresa XPTO","emailResponsavel":"gomes_a@subway.com","dataCadastro":"2019-03-31T00:00:00","cnpj":"82748758000177","timeZone":"E. South America Standard Time","id":1},{"grupo":"grupo2","razaoSocial":"Empresa XPTO 2","emailResponsavel":"floresta_w@subway.com","dataCadastro":"2019-04-01T00:00:00","cnpj":"00138391000105","timeZone":"E. South America Standard Time","id":2}];
+const ELEMENT_DATA = [
+  {
+    grupo: 'grupo1',
+    razaoSocial: 'Empresa XPTO',
+    emailResponsavel: 'gomes_a@subway.com',
+    dataCadastro: '2019-03-31T00:00:00',
+    cnpj: '82748758000177',
+    timeZone: 'E. South America Standard Time',
+    id: 1
+  },
+  {
+    grupo: 'grupo1',
+    razaoSocial: 'Empresa XPTO',
+    emailResponsavel: 'gomes_a@subway.com',
+    dataCadastro: '2019-03-31T00:00:00',
+    cnpj: '82748758000177',
+    timeZone: 'E. South America Standard Time',
+    id: 1
+  },
+  {
+    grupo: 'grupo1',
+    razaoSocial: 'Empresa XPTO',
+    emailResponsavel: 'gomes_a@subway.com',
+    dataCadastro: '2019-03-31T00:00:00',
+    cnpj: '82748758000177',
+    timeZone: 'E. South America Standard Time',
+    id: 1
+  },
+  {
+    grupo: 'grupo1',
+    razaoSocial: 'Empresa XPTO',
+    emailResponsavel: 'gomes_a@subway.com',
+    dataCadastro: '2019-03-31T00:00:00',
+    cnpj: '82748758000177',
+    timeZone: 'E. South America Standard Time',
+    id: 1
+  },
+  {
+    grupo: 'grupo1',
+    razaoSocial: 'Empresa XPTO',
+    emailResponsavel: 'gomes_a@subway.com',
+    dataCadastro: '2019-03-31T00:00:00',
+    cnpj: '82748758000177',
+    timeZone: 'E. South America Standard Time',
+    id: 1
+  },
+  {
+    grupo: 'grupo1',
+    razaoSocial: 'Empresa XPTO',
+    emailResponsavel: 'gomes_a@subway.com',
+    dataCadastro: '2019-03-31T00:00:00',
+    cnpj: '82748758000177',
+    timeZone: 'E. South America Standard Time',
+    id: 1
+  },
+  {
+    grupo: 'grupo1',
+    razaoSocial: 'Empresa XPTO',
+    emailResponsavel: 'gomes_a@subway.com',
+    dataCadastro: '2019-03-31T00:00:00',
+    cnpj: '82748758000177',
+    timeZone: 'E. South America Standard Time',
+    id: 1
+  },
+  {
+    grupo: 'grupo1',
+    razaoSocial: 'Empresa XPTO',
+    emailResponsavel: 'gomes_a@subway.com',
+    dataCadastro: '2019-03-31T00:00:00',
+    cnpj: '82748758000177',
+    timeZone: 'E. South America Standard Time',
+    id: 1
+  },
+  {
+    grupo: 'grupo1',
+    razaoSocial: 'Empresa XPTO',
+    emailResponsavel: 'gomes_a@subway.com',
+    dataCadastro: '2019-03-31T00:00:00',
+    cnpj: '82748758000177',
+    timeZone: 'E. South America Standard Time',
+    id: 1
+  },
+  {
+    grupo: 'grupo1',
+    razaoSocial: 'Empresa XPTO',
+    emailResponsavel: 'gomes_a@subway.com',
+    dataCadastro: '2019-03-31T00:00:00',
+    cnpj: '82748758000177',
+    timeZone: 'E. South America Standard Time',
+    id: 1
+  },
+  {
+    grupo: 'grupo1',
+    razaoSocial: 'Empresa XPTO',
+    emailResponsavel: 'gomes_a@subway.com',
+    dataCadastro: '2019-03-31T00:00:00',
+    cnpj: '82748758000177',
+    timeZone: 'E. South America Standard Time',
+    id: 1
+  },
+  {
+    grupo: 'grupo1',
+    razaoSocial: 'Empresa XPTO',
+    emailResponsavel: 'gomes_a@subway.com',
+    dataCadastro: '2019-03-31T00:00:00',
+    cnpj: '82748758000177',
+    timeZone: 'E. South America Standard Time',
+    id: 1
+  },
+  {
+    grupo: 'grupo1',
+    razaoSocial: 'Empresa XPTO',
+    emailResponsavel: 'gomes_a@subway.com',
+    dataCadastro: '2019-03-31T00:00:00',
+    cnpj: '82748758000177',
+    timeZone: 'E. South America Standard Time',
+    id: 1
+  },
+  {
+    grupo: 'grupo1',
+    razaoSocial: 'Empresa XPTO',
+    emailResponsavel: 'gomes_a@subway.com',
+    dataCadastro: '2019-03-31T00:00:00',
+    cnpj: '82748758000177',
+    timeZone: 'E. South America Standard Time',
+    id: 1
+  },
+  {
+    grupo: 'grupo1',
+    razaoSocial: 'Empresa XPTO',
+    emailResponsavel: 'gomes_a@subway.com',
+    dataCadastro: '2019-03-31T00:00:00',
+    cnpj: '82748758000177',
+    timeZone: 'E. South America Standard Time',
+    id: 1
+  },
+  {
+    grupo: 'grupo1',
+    razaoSocial: 'Empresa XPTO',
+    emailResponsavel: 'gomes_a@subway.com',
+    dataCadastro: '2019-03-31T00:00:00',
+    cnpj: '82748758000177',
+    timeZone: 'E. South America Standard Time',
+    id: 1
+  },
+  {
+    grupo: 'grupo1',
+    razaoSocial: 'Empresa XPTO',
+    emailResponsavel: 'gomes_a@subway.com',
+    dataCadastro: '2019-03-31T00:00:00',
+    cnpj: '82748758000177',
+    timeZone: 'E. South America Standard Time',
+    id: 1
+  },
+  {
+    grupo: 'grupo1',
+    razaoSocial: 'Empresa XPTO',
+    emailResponsavel: 'gomes_a@subway.com',
+    dataCadastro: '2019-03-31T00:00:00',
+    cnpj: '82748758000177',
+    timeZone: 'E. South America Standard Time',
+    id: 1
+  },
+  {
+    grupo: 'grupo1',
+    razaoSocial: 'Empresa XPTO',
+    emailResponsavel: 'gomes_a@subway.com',
+    dataCadastro: '2019-03-31T00:00:00',
+    cnpj: '82748758000177',
+    timeZone: 'E. South America Standard Time',
+    id: 1
+  },
+  {
+    grupo: 'grupo1',
+    razaoSocial: 'Empresa XPTO',
+    emailResponsavel: 'gomes_a@subway.com',
+    dataCadastro: '2019-03-31T00:00:00',
+    cnpj: '82748758000177',
+    timeZone: 'E. South America Standard Time',
+    id: 1
+  },
+  {
+    grupo: 'grupo1',
+    razaoSocial: 'Empresa XPTO',
+    emailResponsavel: 'gomes_a@subway.com',
+    dataCadastro: '2019-03-31T00:00:00',
+    cnpj: '82748758000177',
+    timeZone: 'E. South America Standard Time',
+    id: 1
+  },
+  {
+    grupo: 'grupo1',
+    razaoSocial: 'Empresa XPTO',
+    emailResponsavel: 'gomes_a@subway.com',
+    dataCadastro: '2019-03-31T00:00:00',
+    cnpj: '82748758000177',
+    timeZone: 'E. South America Standard Time',
+    id: 1
+  },
+  {
+    grupo: 'grupo1',
+    razaoSocial: 'Empresa XPTO',
+    emailResponsavel: 'gomes_a@subway.com',
+    dataCadastro: '2019-03-31T00:00:00',
+    cnpj: '82748758000177',
+    timeZone: 'E. South America Standard Time',
+    id: 1
+  },
+  {
+    grupo: 'grupo1',
+    razaoSocial: 'Empresa XPTO',
+    emailResponsavel: 'gomes_a@subway.com',
+    dataCadastro: '2019-03-31T00:00:00',
+    cnpj: '82748758000177',
+    timeZone: 'E. South America Standard Time',
+    id: 1
+  },
+  {
+    grupo: 'grupo1',
+    razaoSocial: 'Empresa XPTO',
+    emailResponsavel: 'gomes_a@subway.com',
+    dataCadastro: '2019-03-31T00:00:00',
+    cnpj: '82748758000177',
+    timeZone: 'E. South America Standard Time',
+    id: 1
+  },
+  {
+    grupo: 'grupo1',
+    razaoSocial: 'Empresa XPTO',
+    emailResponsavel: 'gomes_a@subway.com',
+    dataCadastro: '2019-03-31T00:00:00',
+    cnpj: '82748758000177',
+    timeZone: 'E. South America Standard Time',
+    id: 1
+  },
+  {
+    grupo: 'grupo2',
+    razaoSocial: 'Empresa XPTO 2',
+    emailResponsavel: 'floresta_w@subway.com',
+    dataCadastro: '2019-04-01T00:00:00',
+    cnpj: '00138391000105',
+    timeZone: 'E. South America Standard Time',
+    id: 2
+  }
+];
 
-import { MatPaginator, MatSort } from '@angular/material';
+const ELEMENT_DATA2 = [
+  {
+    grupo: 'grupo1',
+    razaoSocial: 'Empresa XPTO',
+    emailResponsavel: 'gomes_a@subway.com',
+    dataCadastro: '2019-03-31T00:00:00',
+    cnpj: '82748758000177',
+    timeZone: 'E. South America Standard Time',
+    id: 1
+  }
+];
+
+import {
+  MatPaginator,
+  MatSort,
+  MatDialogRef,
+  MatDialog
+} from '@angular/material';
 import { merge, Observable, of as observableOf } from 'rxjs';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 
@@ -65,7 +326,8 @@ export class CompanyComponent implements OnInit {
   // inputData = ELEMENT_DATA;
   topActions = TOPACTIONSBUTTON;
   dataTable;
-
+  dialogRef;
+  columnNameToDisplayOnDelete = ['cnpj', 'razaoSocial'];
   constructor(
     private _companyService: CompanyService,
     private dataTableService: DataTableService,
@@ -75,7 +337,6 @@ export class CompanyComponent implements OnInit {
   ngOnInit() {
     this.dataTableService.buttonRowEvent.subscribe(eventType => {
       if (eventType.event === 'confirmdelete') {
-        this.removeRow(eventType.index);
       }
 
       if (eventType.event === 'visualizar') {
@@ -98,21 +359,17 @@ export class CompanyComponent implements OnInit {
       console.log('Botão Pesquisar Filtro Clicado');
     });
 
-    this._companyService.get().subscribe(inputData => {
+
+    /* this._companyService.get().subscribe(inputData => {
       this.dataTableService.setInputData(inputData);
-    });
+    }); */
   }
 
-  removeRow(item) {
-    const idInputData = this.inputData.map(e => e.id);
-    // tslint:disable-next-line: triple-equals
-    if (idInputData.find((element, index, array) => element == item) == item) {
-      this.dataTableService.data.data.splice(
-        // tslint:disable-next-line: triple-equals
-        idInputData.findIndex((element, index, array) => element == item),
-        1
-      );
-      this.dataTableService.data.data = this.dataTableService.data.data;
-    }
+  ngAfterViewInit() {
+    // this.dataTableService.setInputData(ELEMENT_DATA);
+  }
+
+  getPaging(element) {
+    console.log('empresa: ', element)
   }
 }

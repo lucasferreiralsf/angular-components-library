@@ -46,7 +46,7 @@ export class PopoverComponent implements AfterViewInit {
 
   @Input() popoverTitle: string;
   @Input() popoverDescription: string;
-  @Input() elementId: string;
+  @Input() element;
   @ViewChild(CdkOverlayOrigin) private popoverOrigin: CdkOverlayOrigin;
   @ViewChild('popoverContentTemplate')
   private popoverContentTemplate: TemplatePortalDirective;
@@ -93,7 +93,7 @@ export class PopoverComponent implements AfterViewInit {
   }
 
   clickActionButton(event) {
-    this.popoverService.buttonClickEmit(event.toLowerCase(), this.elementId);
+    this.popoverService.buttonClickEmit(event.toLowerCase(), this.element);
     this.popoverService.closeDropdown();
   }
 

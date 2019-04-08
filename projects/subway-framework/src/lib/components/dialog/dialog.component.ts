@@ -1,5 +1,6 @@
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
+import { DialogService } from './dialog.service';
 
 @Component({
   selector: 'sb-dialog',
@@ -7,35 +8,21 @@ import { MatDialogRef } from '@angular/material';
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent implements OnInit {
-
   @Input() typeButton: string;
-
-  @Output() confirmClick = new EventEmitter<any>();
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
-    //@Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private dialogService: DialogService
   ) {}
 
   ngOnInit() {
-    //this.tabs = this.dialogService.getTabs();
+    this.dialogService.emitDialogRef(this.dialogRef);
   }
 
   onCancelClick() {
-    this.dialogRef.close();
+    this.dialogService.emitCancelClick();
   }
 
   onConfirmClick() {
-    this.confirmClick.emit();
+    this.dialogService.emitConfirmClick();
   }
-
-  /* addTab(selectAfterAdding: boolean) {
-    this.tabs.push('New');
-  }
-
-  removeTab(index: number) {
-    this.tabs.splice(index, 1);
-  } */
-  /* onNoClick(): void {
-    this.dialogRef.close();
-  } */
 }
