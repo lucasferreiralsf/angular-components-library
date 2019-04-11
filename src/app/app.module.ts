@@ -17,15 +17,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { CompanyComponent } from './company/company.component';
 import { CompanyViewEditComponent } from './company/company-view-edit/company-view-edit.component';
 import { SubwayComponentsLibraryModule } from 'projects/subway-framework/src/lib/subway-components-library.module';
+import { ToastrService } from 'projects/subway-framework/src/lib/toastr/toastr.service';
+import {
+  defaultToastConfig,
+  TOAST_CONFIG_TOKEN,
+  ToastConfig
+} from 'projects/subway-framework/src/lib/toastr/toastr-config';
+
+const config: ToastConfig = {
+  /* animationTimeOut: 1000, */
+  autoHide: false,
+  colors: { success: 'rgb(206, 0, 0)', error: 'blue' }
+};
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CompanyComponent,
-    CompanyViewEditComponent
-  ],
+  declarations: [AppComponent, CompanyComponent, CompanyViewEditComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -38,17 +46,20 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
     FlexLayoutModule,
     MaterialModule,
     PortalModule,
-    OverlayModule,
+    OverlayModule
   ],
   providers: [
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
     },
+    {
+      provide: TOAST_CONFIG_TOKEN,
+      useValue: { ...defaultToastConfig, ...config }
+    },
+    ToastrService
   ],
-  entryComponents: [
-    CompanyViewEditComponent
-  ],
+  entryComponents: [CompanyViewEditComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

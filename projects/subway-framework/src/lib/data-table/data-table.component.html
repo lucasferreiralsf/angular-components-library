@@ -79,5 +79,5 @@
     </p>
   </div>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]" [length]="length" pageSize="pageSize"  (page)="pageEvent = $event;getPaging(pageEvent);" class="mt-10"></mat-paginator>
+  <mat-paginator [pageSizeOptions]="pageSizeOptions" [length]="length" pageSize="pageSize"  (page)="pageEvent = $event;getPaging(pageEvent);" class="mt-10"></mat-paginator>
 </div>

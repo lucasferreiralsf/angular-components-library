@@ -1,0 +1,38 @@
+<div class="toast-container" [ngClass]="{'show-bottom': showFromBottom}">
+  <perfect-scrollbar
+    style="max-height: 93vh;"
+    [config]="{ suppressScrollX: true }"
+  >
+    <div fxLayout="column">
+      <div
+        *ngFor="let alert of alerts"
+        class="toast {{ cssClass(alert) }} mat-elevation-z8"
+        [ngStyle]="cssStyle(alert)"
+        fxLayout="column"
+        fxLayoutAlign="space-around center"
+        [@bounceInRightAnimation]="{
+          value: alert.status
+        }"
+        (@bounceInRightAnimation.done)="onFadeFinished($event, alert)"
+        (mouseenter)="onMouseOver(alert)"
+        (mouseleave)="onMouseLeave(alert)"
+      >
+        <div class="div-button-close" fxLayout fxLayoutAlign="flex-end center">
+          <button
+            mat-icon-button
+            class="button-close"
+            fxLayout
+            fxLayoutAlign="center center"
+            (click)="setClose(alert)"
+          >
+            <mat-icon class="icon-close">close</mat-icon>
+          </button>
+        </div>
+        <div fxLayout fxLayoutAlign="flex-start center" class="div-content">
+          <mat-icon class="content-icon">{{ iconType }}</mat-icon>
+          <div>{{ alert.message }}</div>
+        </div>
+      </div>
+    </div>
+  </perfect-scrollbar>
+</div>

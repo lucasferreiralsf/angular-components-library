@@ -24,6 +24,7 @@ export class ViewContainerComponent implements OnInit {
   @Input() inputData: DataTableInputDataInterface[] = [];
   @Input() topActionButtons: DataTableTopActionButtonInterface[] = [];
   @Input() columnNameToDisplayOnDelete;
+  @Input() snackBarAutoHideTime;
   @Input() pageSize;
   @Input() length;
   @Input() pageSizeOptions;

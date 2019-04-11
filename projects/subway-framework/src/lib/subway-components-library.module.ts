@@ -26,6 +26,7 @@ import {
   PERFECT_SCROLLBAR_CONFIG,
   PerfectScrollbarConfigInterface
 } from 'ngx-perfect-scrollbar';
+import { ToastrComponent } from './toastr/toastr.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
 
@@ -45,7 +46,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
     MatTabComponent,
     HeaderComponent,
     HeaderDirective,
-    SideNavComponent
+    SideNavComponent,
+    ToastrComponent
   ],
   imports: [
     CommonModule,
@@ -66,13 +68,15 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
     DialogComponent,
     HeaderComponent,
     HeaderDirective,
-    SideNavComponent
+    SideNavComponent,
+    ToastrComponent
   ],
   providers: [
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
     }
-  ]
+  ],
+  entryComponents: [ToastrComponent]
 })
 export class SubwayComponentsLibraryModule {}

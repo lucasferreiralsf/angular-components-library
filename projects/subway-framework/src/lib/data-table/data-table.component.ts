@@ -10,7 +10,13 @@ import {
   Output
 } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
-import { MatTableDataSource, MatPaginator, MatSnackBar, MatSnackBarConfig, PageEvent } from '@angular/material';
+import {
+  MatTableDataSource,
+  MatPaginator,
+  MatSnackBar,
+  MatSnackBarConfig,
+  PageEvent
+} from '@angular/material';
 import { DataTableService } from './data-table.service';
 import { map } from 'rxjs/operators';
 import { PopoverService } from './popover/popover.service';
@@ -88,7 +94,7 @@ export class DataTableComponent implements OnInit {
   columnsNameApi: string[] = [];
   noData;
   buttonDismissClicked = false;
-
+  private indexElementRemoved: number;
 
   topButtonStyle: {} = {
     height: '32px',
@@ -103,9 +109,6 @@ export class DataTableComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log('pageSizeOptions: ', this.pageSizeOptions);
-    console.log('pageSize: ', this.pageSize);
-    console.log('length: ', this.length);
     this.data = this.dataTableService.setDataSource(this.inputData);
     this.columnsNameApi = this.columnNames.map(e => e.columnNameApi);
     this.displayColumns();
@@ -163,18 +166,25 @@ export class DataTableComponent implements OnInit {
       // console.log('confirmdelete');
 
       const configSnackbar = new MatSnackBarConfig();
-      configSnackbar.duration = this.snackBarAutoHideTime ? this.snackBarAutoHideTime : 4000;
-      this.snackBar.open(`O item: ${this.getNameToDisplayOnDelete(element)} foi excluído.`, 'Desfazer', configSnackbar);
+      configSnackbar.duration = this.snackBarAutoHideTime
+        ? this.snackBarAutoHideTime
+        : 4000;
+      this.snackBar.open(
+        `O item: ${this.getNameToDisplayOnDelete(element)} foi excluído.`,
+        'Desfazer',
+        configSnackbar
+      );
+      this.removeRow(element.id);
       this.snackBar._openedSnackBarRef.afterDismissed().subscribe(() => {
-        if(this.buttonDismissClicked === false) {
+        if (this.buttonDismissClicked === false) {
           this.dataTableService.removeRowEmit(element);
         } else {
           this.buttonDismissClicked = false;
         }
-
       });
       this.snackBar._openedSnackBarRef.onAction().subscribe(() => {
         this.buttonDismissClicked = true;
+        this.rollbackRow(element);
         this.snackBar.dismiss();
       });
     } else {
@@ -184,15 +194,19 @@ export class DataTableComponent implements OnInit {
 
   removeRow(item) {
     const idInputData = this.inputData.map(e => e.id);
+    this.indexElementRemoved = idInputData.findIndex(
+      (element, index, array) => element === item
+    );
     // tslint:disable-next-line: triple-equals
     if (idInputData.find((element, index, array) => element == item) == item) {
-      this.dataTableService.data.data.splice(
-        // tslint:disable-next-line: triple-equals
-        idInputData.findIndex((element, index, array) => element == item),
-        1
-      );
+      this.dataTableService.data.data.splice(this.indexElementRemoved, 1);
       this.dataTableService.data.data = this.dataTableService.data.data;
     }
+  }
+
+  rollbackRow(item) {
+    this.dataTableService.data.data.splice(this.indexElementRemoved, 0, item);
+    this.dataTableService.data.data = this.dataTableService.data.data;
   }
 
   addActionsToData() {
