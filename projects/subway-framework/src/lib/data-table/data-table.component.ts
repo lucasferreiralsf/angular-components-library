@@ -7,7 +7,8 @@ import {
   EventEmitter,
   AfterContentInit,
   AfterViewInit,
-  Output
+  Output,
+  ChangeDetectorRef
 } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import {
@@ -105,7 +106,8 @@ export class DataTableComponent implements OnInit {
     private dataTableService: DataTableService,
     private popoverService: PopoverService,
     private renderer: Renderer2,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private cdRef: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -114,6 +116,7 @@ export class DataTableComponent implements OnInit {
     this.displayColumns();
     this.dataTableService.inputDataEvent.subscribe(inputData => {
       this.load(inputData);
+      this.cdRef.detectChanges();
     });
   }
 

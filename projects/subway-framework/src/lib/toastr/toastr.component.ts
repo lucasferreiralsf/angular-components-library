@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ChangeDetectorRef } from '@angular/core';
 import { AnimationEvent } from '@angular/animations';
 import {
   Alert,
@@ -25,7 +25,8 @@ export class ToastrComponent implements OnInit {
 
   constructor(
     private toastrService: ToastrService,
-    @Inject(TOAST_CONFIG_TOKEN) private toastConfig: ToastConfig
+    @Inject(TOAST_CONFIG_TOKEN) private toastConfig: ToastConfig,
+    private cdRef: ChangeDetectorRef
   ) {
     this.animationTimeOut = this.toastConfig.animationTimeOut
       ? this.toastConfig.animationTimeOut
@@ -47,11 +48,17 @@ export class ToastrComponent implements OnInit {
       if (alert.autoHide === true) {
         this.setTimeOut(alert);
       }
+      this.cdRef.detectChanges();
     });
+  }
+
+  ngAfterContentInit() {
+
   }
 
   removeAlert(alert: Alert) {
     this.alerts = this.alerts.filter(x => x !== alert);
+    this.cdRef.detectChanges();
   }
 
   cssClass(alert: Alert) {
@@ -81,15 +88,17 @@ export class ToastrComponent implements OnInit {
       return;
     }
     const colors = this.toastConfig.colors;
-    switch (alert.type) {
-      case AlertType.Success:
-        return colors.success ? { background: colors.success } : '';
-      case AlertType.Error:
-        return colors.error ? { background: colors.error } : '';
-      case AlertType.Info:
-        return colors.info ? { background: colors.info } : '';
-      case AlertType.Warning:
-        return colors.warning ? { background: colors.warning } : '';
+    if (colors) {
+      switch (alert.type) {
+        case AlertType.Success:
+          return colors.success ? { background: colors.success } : '';
+        case AlertType.Error:
+          return colors.error ? { background: colors.error } : '';
+        case AlertType.Info:
+          return colors.info ? { background: colors.info } : '';
+        case AlertType.Warning:
+          return colors.warning ? { background: colors.warning } : '';
+      }
     }
   }
 

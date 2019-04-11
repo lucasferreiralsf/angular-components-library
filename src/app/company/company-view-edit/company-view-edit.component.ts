@@ -12,7 +12,7 @@ export class CompanyViewEditComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
-    private dialogService: DialogService
+    private dialogService: DialogService,
   ) {}
 
   ngOnInit() {
@@ -28,6 +28,12 @@ export class CompanyViewEditComponent implements OnInit {
     this.dialogService.cancelClick.subscribe(() => {
       this.dialogRef.close();
     });
+  }
+
+  closeDialog() {
+    this.dialogRef = this.dialogService.getDialogRef();
+    this.dialogRef.close();
+    this.dialogRef.afterClosed().subscribe(() => {console.log('AFTER CLOSED')})
   }
 
 }

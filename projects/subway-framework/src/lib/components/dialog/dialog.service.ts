@@ -9,16 +9,20 @@ export class DialogService implements OnInit {
   dialogRefEmitter = new EventEmitter();
   confirmClick = new EventEmitter<any>();
   cancelClick = new EventEmitter<any>();
-
+  dialogRef: MatDialogRef<any>;
   constructor(public dialog: MatDialog) {}
 
   ngOnInit() {}
 
   openDialog(dialogComponent, data): void {
-    this.dialog.open(dialogComponent, {
+    this.dialogRef = this.dialog.open(dialogComponent, {
       width: this.widthDialog,
       data
     });
+  }
+
+  getDialogRef() {
+    return this.dialogRef;
   }
 
   emitDialogRef(dialogRef: MatDialogRef<any>) {

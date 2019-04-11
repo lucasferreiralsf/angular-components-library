@@ -26,8 +26,8 @@ import {
 
 const config: ToastConfig = {
   /* animationTimeOut: 1000, */
-  autoHide: false,
-  colors: { success: 'rgb(206, 0, 0)', error: 'blue' }
+  autoHide: true,
+  /* colors: { success: 'rgb(206, 0, 0)', error: 'blue' } */
 };
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
