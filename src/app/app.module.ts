@@ -31,10 +31,10 @@ const config: ToastConfig = {
   autoHide: true
   /* colors: { success: 'rgb(206, 0, 0)', error: 'blue' } */
 };
+registerLocaleData(localept, 'pt');
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
 
-registerLocaleData(localept, 'pt');
 @NgModule({
   declarations: [AppComponent, CompanyComponent, CompanyViewEditComponent],
   imports: [

@@ -11,7 +11,9 @@
     [length]="length"
     [pageSize]="pageSize"
     (getPagingEmit)="getPaging($event)"
-    [statusType]="statusType"
+    [statusColors]="statusColors"
+    [trueFalseColors]="trueFalseColors"
+    [yesNoColors]="yesNoColors"
   >
     <ng-content select=".filters" class="sb-data-table-content"></ng-content>
   </sb-data-table>

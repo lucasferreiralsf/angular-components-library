@@ -45,9 +45,9 @@
             <div *ngSwitchCase="columnNameTypes.cnpj">{{ element[column.name] | cpfCnpj }}</div>
             <div *ngSwitchCase="columnNameTypes.cpf">{{ element[column.name] | cpfCnpj }}</div>
             <div *ngSwitchCase="columnNameTypes.cpf_cnpj">{{ element[column.name] | cpfCnpj }}</div>
-            <div *ngSwitchCase="columnNameTypes.yes_no" class="badge" [ngStyle]="cssStyle(element[column.name])">{{ element[column.name] }}</div>
-            <div *ngSwitchCase="columnNameTypes.true_false" class="badge" [ngStyle]="cssStyle(element[column.name])">{{ element[column.name] }}</div>
-            <div *ngSwitchCase="columnNameTypes.status" class="badge" [ngStyle]="cssStyle(element[column.name])">{{ element[column.name] }}</div>
+            <div *ngSwitchCase="columnNameTypes.yes_no" class="badge" [ngStyle]="cssStyle(element[column.name], column.type)">{{ element[column.name] }}</div>
+            <div *ngSwitchCase="columnNameTypes.true_false" class="badge" [ngStyle]="cssStyle(element[column.name], column.type)">{{ element[column.name] }}</div>
+            <div *ngSwitchCase="columnNameTypes.status" class="badge" [ngStyle]="cssStyle(element[column.name], column.type)">{{ element[column.name] }}</div>
             <div *ngSwitchCase="columnNameTypes.date">{{ element[column.name] | date:'shortDate'}}</div>
             <div *ngSwitchDefault>{{ element[column.name] }}</div>
           </div>

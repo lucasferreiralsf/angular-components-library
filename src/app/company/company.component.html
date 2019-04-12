@@ -14,11 +14,9 @@
     length="100"
     pageSize="10"
     [tableSelectColumn]="false"
-    [statusType]="{
-      grupo1: { background: 'red', color: 'white' },
-      grupo2: { background: 'blue', color: 'white' },
-      grupo3: { background: 'yellow', color: 'white' }
-    }"
+    [statusColors]="statusColors"
+    [trueFalseColors]="trueFalseColors"
+    [yesNoColors]="yesNoColors"
   >
     <sb-mat-form-field
       formName="Teste"

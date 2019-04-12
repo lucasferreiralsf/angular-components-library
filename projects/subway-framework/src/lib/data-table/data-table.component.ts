@@ -98,7 +98,9 @@ export class DataTableComponent implements OnInit {
   @Input() pageSize;
   @Input() length;
   @Input() pageSizeOptions;
-  @Input() statusType;
+  @Input() statusColors;
+  @Input() trueFalseColors;
+  @Input() yesNoColors;
 
   @Output() getPagingEmit = new EventEmitter();
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -184,7 +186,6 @@ export class DataTableComponent implements OnInit {
 
   buttonRowClick(event: string, element) {
     if (event === 'confirmdelete') {
-
       const configSnackbar = new MatSnackBarConfig();
       configSnackbar.duration = this.snackBarAutoHideTime
         ? this.snackBarAutoHideTime
@@ -212,13 +213,37 @@ export class DataTableComponent implements OnInit {
     }
   }
 
-  cssStyle(element) {
-    if (!element) {
-      return;
-    }
-    const status = Object.keys(this.statusType);
-    if (status.includes(element)) {
-      return { background: this.statusType[element].background, color: this.statusType[element].color };
+  cssStyle(element, columnType) {
+    switch (columnType) {
+      case ColumnNameTypes.status:
+        const status = Object.keys(this.statusColors);
+        if (status.includes(element.toString())) {
+          return {
+            background: this.statusColors[element].background,
+            color: this.statusColors[element].color
+          };
+        }
+        break;
+      case ColumnNameTypes.true_false:
+        const trueFalse = Object.keys(this.trueFalseColors);
+        if (trueFalse.includes(element.toString())) {
+          return {
+            background: this.trueFalseColors[element].background,
+            color: this.trueFalseColors[element].color
+          };
+        }
+        break;
+      case ColumnNameTypes.yes_no:
+        const yesNo = Object.keys(this.yesNoColors);
+        if (yesNo.includes(element.toString())) {
+          return {
+            background: this.yesNoColors[element].background,
+            color: this.yesNoColors[element].color
+          };
+        }
+        break;
+      default:
+        return;
     }
   }
 
