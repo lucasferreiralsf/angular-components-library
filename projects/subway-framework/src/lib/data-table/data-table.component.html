@@ -1,6 +1,11 @@
 <div>
   <div fxLayout fxLayoutAlign="space-between center" class="mr-16 ml-16 mb-5">
-    <div #topButtonAction fxLayout="row wrap" fxLayoutAlign="flex-start center" fxLayoutGap="10px grid">
+    <div
+      #topButtonAction
+      fxLayout="row wrap"
+      fxLayoutAlign="flex-start center"
+      fxLayoutGap="10px grid"
+    >
       <sb-button
         *ngFor="let buttonElement of topActionButtons"
         [materialTypeButton]="buttonElement.buttonType"
@@ -10,14 +15,25 @@
         (buttonClick)="topButtonClick(buttonElement.eventSlug)"
       ></sb-button>
     </div>
-    <sb-filter-table (limpar)="filterLimparButtonClick()" (pesquisa)="filterPesquisarButtonClick()">
+    <sb-filter-table
+      (limpar)="filterLimparButtonClick()"
+      (pesquisa)="filterPesquisarButtonClick()"
+    >
       <ng-content select=".sb-data-table-content"></ng-content>
     </sb-filter-table>
   </div>
-  <table mat-table [dataSource]="data" style="width: 100%;" class="table-striped table-hover">
+  <table
+    mat-table
+    [dataSource]="data"
+    style="width: 100%;"
+    class="table-striped table-hover"
+  >
     <!-- Checkbox Column -->
 
-    <ng-container [matColumnDef]="column.name" *ngFor="let column of displayedColumns">
+    <ng-container
+      [matColumnDef]="column.name"
+      *ngFor="let column of displayedColumns"
+    >
       <div *ngIf="column.name == 'select'">
         <th mat-header-cell *matHeaderCellDef class="padding-thtd">
           <mat-checkbox
@@ -37,18 +53,53 @@
         </td>
       </div>
       <div *ngIf="column.name !== 'select' && column.name !== 'actions'">
-        <th mat-header-cell *matHeaderCellDef class="padding-thtd">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          class="padding-thtd"
+          [class.text-center]="
+            column.type === columnNameTypes.status ||
+            column.type === columnNameTypes.yes_no ||
+            column.type === columnNameTypes.true_false
+          "
+        >
           {{ verifyNameColumn(column.name) }}
         </th>
         <td mat-cell *matCellDef="let element" class="padding-thtd">
           <div [ngSwitch]="column.type">
-            <div *ngSwitchCase="columnNameTypes.cnpj">{{ element[column.name] | cpfCnpj }}</div>
-            <div *ngSwitchCase="columnNameTypes.cpf">{{ element[column.name] | cpfCnpj }}</div>
-            <div *ngSwitchCase="columnNameTypes.cpf_cnpj">{{ element[column.name] | cpfCnpj }}</div>
-            <div *ngSwitchCase="columnNameTypes.yes_no" class="badge" [ngStyle]="cssStyle(element[column.name], column.type)">{{ element[column.name] }}</div>
-            <div *ngSwitchCase="columnNameTypes.true_false" class="badge" [ngStyle]="cssStyle(element[column.name], column.type)">{{ element[column.name] }}</div>
-            <div *ngSwitchCase="columnNameTypes.status" class="badge" [ngStyle]="cssStyle(element[column.name], column.type)">{{ element[column.name] }}</div>
-            <div *ngSwitchCase="columnNameTypes.date">{{ element[column.name] | date:'shortDate'}}</div>
+            <div *ngSwitchCase="columnNameTypes.cnpj">
+              {{ element[column.name] | cpfCnpj }}
+            </div>
+            <div *ngSwitchCase="columnNameTypes.cpf">
+              {{ element[column.name] | cpfCnpj }}
+            </div>
+            <div *ngSwitchCase="columnNameTypes.cpf_cnpj">
+              {{ element[column.name] | cpfCnpj }}
+            </div>
+            <div
+              *ngSwitchCase="columnNameTypes.yes_no"
+              class="badge"
+              [ngStyle]="cssStyle(element[column.name], column.type)"
+            >
+              {{ element[column.name] }}
+            </div>
+            <div
+              *ngSwitchCase="columnNameTypes.true_false"
+              class="badge"
+              [ngStyle]="cssStyle(element[column.name], column.type)"
+            >
+              {{ element[column.name] }}
+            </div>
+            <div
+              *ngSwitchCase="columnNameTypes.status"
+              class="badge"
+              [ngStyle]="cssStyle(element[column.name], column.type)"
+            >
+              {{ element[column.name] }}
+            </div>
+            <div *ngSwitchCase="columnNameTypes.date">
+              {{ element[column.name] | date: 'shortDate' }}
+            </div>
             <div *ngSwitchDefault>{{ element[column.name] }}</div>
           </div>
         </td>
@@ -61,7 +112,9 @@
               <button
                 mat-icon-button
                 *ngIf="!buttonElement.value.isDelete"
-                (click)="buttonRowClick(buttonElement.value.actionName, element)"
+                (click)="
+                  buttonRowClick(buttonElement.value.actionName, element)
+                "
                 matTooltip="{{ buttonElement.value.actionDescription }}"
               >
                 <mat-icon>{{ buttonElement.value.actionIcon }}</mat-icon>
@@ -71,7 +124,9 @@
                 matTooltip="{{ buttonElement.value.actionDescription }}"
                 [element]="element"
                 popoverTitle="{{ buttonElement.value.isDeleteTitle }}"
-                popoverDescription="{{ buttonElement.value.isDeleteDescription }}"
+                popoverDescription="{{
+                  buttonElement.value.isDeleteDescription
+                }}"
               ></sb-popover>
             </div>
           </div>
@@ -80,15 +135,32 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-    <tr mat-row *matRowDef="let row; columns: columnsToDisplay" (click)="selection.toggle(row)"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: columnsToDisplay"
+      (click)="selection.toggle(row)"
+    ></tr>
   </table>
 
-  <div @flipInOut *ngIf="data.data.length == 0" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="5px" class="m-30">
+  <div
+    @flipInOut
+    *ngIf="data.data.length == 0"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="5px"
+    class="m-30"
+  >
     <img src="../../../assets/img/nodata.svg" />
     <p class=" mat-caption">
       Sem Registros
     </p>
   </div>
 
-  <mat-paginator [pageSizeOptions]="pageSizeOptions" [length]="length" pageSize="pageSize"  (page)="pageEvent = $event;getPaging(pageEvent);" class="mt-10"></mat-paginator>
+  <mat-paginator
+    [pageSizeOptions]="pageSizeOptions"
+    [length]="length"
+    pageSize="pageSize"
+    (page)="pageEvent = $event; getPaging(pageEvent)"
+    class="mt-10"
+  ></mat-paginator>
 </div>

@@ -4,8 +4,7 @@ import { DialogService } from 'projects/subway-framework/src/lib/components/dial
 import { CompanyViewEditComponent } from './company-view-edit/company-view-edit.component';
 import { CompanyService } from './company.service';
 import { ToastrService } from 'projects/subway-framework/src/lib/toastr/toastr.service';
-import { DataTableColumnNamesInterface, ColumnNameTypes } from 'projects/subway-framework/src/lib/data-table/data-table.component';
-import { CpfCnpjPipe } from 'projects/subway-framework/src/lib/pipes/cpf-cnpj.pipe';
+import { ColumnNameTypes } from 'projects/subway-framework/src/lib/data-table/data-table.component';
 
 const ELEMENT_DATA = [
   {
@@ -29,7 +28,7 @@ const ELEMENT_DATA = [
     status: 2,
     active: false,
     timeZone: 'E. South America Standard Time',
-    teste: 'nao',
+    teste: 'não',
     id: 1
   },
   {
