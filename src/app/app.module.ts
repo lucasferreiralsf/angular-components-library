@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
@@ -23,15 +23,18 @@ import {
   TOAST_CONFIG_TOKEN,
   ToastConfig
 } from 'projects/subway-framework/src/lib/toastr/toastr-config';
+import { registerLocaleData } from '@angular/common';
+import localept from '@angular/common/locales/pt';
 
 const config: ToastConfig = {
   /* animationTimeOut: 1000, */
-  autoHide: true,
+  autoHide: true
   /* colors: { success: 'rgb(206, 0, 0)', error: 'blue' } */
 };
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
 
+registerLocaleData(localept, 'pt');
 @NgModule({
   declarations: [AppComponent, CompanyComponent, CompanyViewEditComponent],
   imports: [
@@ -57,7 +60,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
       provide: TOAST_CONFIG_TOKEN,
       useValue: { ...defaultToastConfig, ...config }
     },
-    ToastrService
+    ToastrService,
+    { provide: LOCALE_ID, useValue: 'pt' }
   ],
   entryComponents: [CompanyViewEditComponent],
   bootstrap: [AppComponent]

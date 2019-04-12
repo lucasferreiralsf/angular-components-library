@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { ViewContainerComponent } from './view-container/view-container.component';
 import { FilterTableComponent } from './data-table/filter-table/filter-table.component';
 import { MatFormFieldComponent } from './components/sb-mat-form-field/sb-mat-form-field.component';
@@ -27,6 +27,9 @@ import {
   PerfectScrollbarConfigInterface
 } from 'ngx-perfect-scrollbar';
 import { ToastrComponent } from './toastr/toastr.component';
+import { CnpjPipe } from './pipes/cnpj.pipe';
+import { CpfPipe } from './pipes/cpf.pipe';
+import { CpfCnpjPipe } from './pipes/cpf-cnpj.pipe';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
 
@@ -47,7 +50,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
     HeaderComponent,
     HeaderDirective,
     SideNavComponent,
-    ToastrComponent
+    ToastrComponent,
+    CnpjPipe,
+    CpfPipe,
+    CpfCnpjPipe
   ],
   imports: [
     CommonModule,
@@ -69,13 +75,16 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
     HeaderComponent,
     HeaderDirective,
     SideNavComponent,
-    ToastrComponent
+    ToastrComponent,
+    CnpjPipe,
+    CpfPipe,
+    CpfCnpjPipe
   ],
   providers: [
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-    }
+    },
   ],
   entryComponents: [ToastrComponent]
 })

@@ -4,6 +4,8 @@ import { DialogService } from 'projects/subway-framework/src/lib/components/dial
 import { CompanyViewEditComponent } from './company-view-edit/company-view-edit.component';
 import { CompanyService } from './company.service';
 import { ToastrService } from 'projects/subway-framework/src/lib/toastr/toastr.service';
+import { DataTableColumnNamesInterface, ColumnNameTypes } from 'projects/subway-framework/src/lib/data-table/data-table.component';
+import { CpfCnpjPipe } from 'projects/subway-framework/src/lib/pipes/cpf-cnpj.pipe';
 
 const ELEMENT_DATA = [
   {
@@ -52,7 +54,7 @@ const ELEMENT_DATA = [
     id: 1
   },
   {
-    grupo: 'grupo1',
+    grupo: 'grupo2',
     razaoSocial: 'Empresa XPTO',
     emailResponsavel: 'gomes_a@subway.com',
     dataCadastro: '2019-03-31T00:00:00',
@@ -61,7 +63,7 @@ const ELEMENT_DATA = [
     id: 1
   },
   {
-    grupo: 'grupo1',
+    grupo: 'grupo2',
     razaoSocial: 'Empresa XPTO',
     emailResponsavel: 'gomes_a@subway.com',
     dataCadastro: '2019-03-31T00:00:00',
@@ -70,7 +72,7 @@ const ELEMENT_DATA = [
     id: 1
   },
   {
-    grupo: 'grupo1',
+    grupo: 'grupo2',
     razaoSocial: 'Empresa XPTO',
     emailResponsavel: 'gomes_a@subway.com',
     dataCadastro: '2019-03-31T00:00:00',
@@ -79,7 +81,7 @@ const ELEMENT_DATA = [
     id: 1
   },
   {
-    grupo: 'grupo1',
+    grupo: 'grupo2',
     razaoSocial: 'Empresa XPTO',
     emailResponsavel: 'gomes_a@subway.com',
     dataCadastro: '2019-03-31T00:00:00',
@@ -88,7 +90,7 @@ const ELEMENT_DATA = [
     id: 1
   },
   {
-    grupo: 'grupo1',
+    grupo: 'grupo2',
     razaoSocial: 'Empresa XPTO',
     emailResponsavel: 'gomes_a@subway.com',
     dataCadastro: '2019-03-31T00:00:00',
@@ -282,13 +284,13 @@ const ELEMENT_DATA2 = [
 ];
 
 const namesColumn = [
-  { columnNameApi: 'id', displayName: 'Id' },
-  { columnNameApi: 'grupo', displayName: 'Grupo' },
-  { columnNameApi: 'cnpj', displayName: 'CNPJ' },
-  { columnNameApi: 'razaoSocial', displayName: 'Razão Social' },
-  { columnNameApi: 'dataCadastro', displayName: 'Data Cadastro' },
-  { columnNameApi: 'emailResponsavel', displayName: 'E-Mail Responsável' },
-  { columnNameApi: 'timeZone', displayName: 'Fuso Horário' }
+  { columnNameApi: 'id', displayName: 'Id', type: ColumnNameTypes.actions },
+  { columnNameApi: 'grupo', displayName: 'Grupo', type: ColumnNameTypes.status },
+  { columnNameApi: 'cnpj', displayName: 'CNPJ', type: ColumnNameTypes.cpf_cnpj },
+  { columnNameApi: 'razaoSocial', displayName: 'Razão Social', type: ColumnNameTypes.actions },
+  { columnNameApi: 'dataCadastro', displayName: 'Data Cadastro', type: ColumnNameTypes.date },
+  { columnNameApi: 'emailResponsavel', displayName: 'E-Mail Responsável', type: ColumnNameTypes.actions },
+  { columnNameApi: 'timeZone', displayName: 'Fuso Horário', type: ColumnNameTypes.actions }
 ];
 
 const ACTIONS = [
@@ -406,7 +408,7 @@ export class CompanyComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.dataTableService.setInputData(ELEMENT_DATA2);
+    this.dataTableService.setInputData(ELEMENT_DATA);
   }
 
   getPaging(element) {

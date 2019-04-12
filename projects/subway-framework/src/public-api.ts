@@ -23,6 +23,7 @@ export * from './lib/header/header.component';
 export * from './lib/side-nav/side-nav.component';
 export * from './lib/data-table/data-table.component';
 export * from './lib/toastr/toastr.component';
+export * from './lib/toastr/toastr-config';
 
 /* DIRECTIVES */
 export * from './lib/header/header.directive';

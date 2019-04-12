@@ -5,8 +5,6 @@ import {
   ViewChild,
   Renderer2,
   EventEmitter,
-  AfterContentInit,
-  AfterViewInit,
   Output,
   ChangeDetectorRef
 } from '@angular/core';
@@ -23,10 +21,25 @@ import { map } from 'rxjs/operators';
 import { PopoverService } from './popover/popover.service';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { flipInX, flipOutX } from 'ng-animate';
+import { CpfCnpjPipe } from '../pipes/cpf-cnpj.pipe';
 
 export interface DataTableColumnNamesInterface {
   columnNameApi: string;
   displayName: string;
+  type: ColumnNameTypes;
+}
+
+export enum ColumnNameTypes {
+  'yes_no',
+  'true_false',
+  'status',
+  'cpf',
+  'cnpj',
+  'cpf_cnpj',
+  'date',
+  'select',
+  'actions',
+  'default'
 }
 
 export interface DataTableInputDataInterface {
@@ -70,7 +83,8 @@ export interface DataTableTopActionButtonInterface {
         })
       )
     ])
-  ]
+  ],
+  providers: [CpfCnpjPipe]
 })
 export class DataTableComponent implements OnInit {
   @Input() selectColumn = false;
@@ -84,18 +98,21 @@ export class DataTableComponent implements OnInit {
   @Input() pageSize;
   @Input() length;
   @Input() pageSizeOptions;
+  @Input() statusType;
 
   @Output() getPagingEmit = new EventEmitter();
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   data: MatTableDataSource<any>;
-  displayedColumns: string[] = [];
-  columnsToDisplay: string[] = [];
+  displayedColumns = [];
+  columnsToDisplay = [];
   selection = new SelectionModel(true, []);
-  columnsNameApi: string[] = [];
+  columnsNameApi: { name: string; type: ColumnNameTypes }[] = [];
   noData;
   buttonDismissClicked = false;
   private indexElementRemoved: number;
+
+  columnNameTypes = ColumnNameTypes;
 
   topButtonStyle: {} = {
     height: '32px',
@@ -105,15 +122,12 @@ export class DataTableComponent implements OnInit {
   constructor(
     private dataTableService: DataTableService,
     private popoverService: PopoverService,
-    private renderer: Renderer2,
     private snackBar: MatSnackBar,
     private cdRef: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
     this.data = this.dataTableService.setDataSource(this.inputData);
-    this.columnsNameApi = this.columnNames.map(e => e.columnNameApi);
-    this.displayColumns();
     this.dataTableService.inputDataEvent.subscribe(inputData => {
       this.load(inputData);
       this.cdRef.detectChanges();
@@ -126,12 +140,18 @@ export class DataTableComponent implements OnInit {
 
   load(inputData) {
     this.inputData = inputData;
-    this.columnsNameApi = this.columnNames.map(e => e.columnNameApi);
     this.data = this.dataTableService.setDataSource(this.inputData);
     this.noData = this.data.connect().pipe(map(data => data.length === 0));
     this.data.paginator = this.paginator;
-    this.addActionsToData();
+    Object.assign(
+      this.columnsNameApi,
+      this.columnNames.map(e =>
+        Object.assign({}, { name: e.columnNameApi, type: e.type })
+      )
+    );
+
     this.displayColumns();
+    this.addActionsToData();
     this.popoverService.buttonClickEvent.subscribe(event => {
       this.buttonRowClick(event.event, event.element);
     });
@@ -163,10 +183,7 @@ export class DataTableComponent implements OnInit {
   }
 
   buttonRowClick(event: string, element) {
-    // console.log('buttonRow event: ', event);
-    // console.log('buttonRow element: ', element);
     if (event === 'confirmdelete') {
-      // console.log('confirmdelete');
 
       const configSnackbar = new MatSnackBarConfig();
       configSnackbar.duration = this.snackBarAutoHideTime
@@ -192,6 +209,16 @@ export class DataTableComponent implements OnInit {
       });
     } else {
       this.dataTableService.buttonRowClick(event.toLowerCase(), element);
+    }
+  }
+
+  cssStyle(element) {
+    if (!element) {
+      return;
+    }
+    const status = Object.keys(this.statusType);
+    if (status.includes(element)) {
+      return { background: this.statusType[element].background, color: this.statusType[element].color };
     }
   }
 
@@ -232,7 +259,7 @@ export class DataTableComponent implements OnInit {
   }
 
   displayColumns() {
-    if (this.selectColumn) {
+    if (this.selectColumn === true) {
       this.addSelectToDisplayedColumns();
     }
 
@@ -242,28 +269,23 @@ export class DataTableComponent implements OnInit {
   }
 
   addSelectToDisplayedColumns() {
-    const select = ['select'];
+    let select = [{ name: 'select', type: ColumnNameTypes.select }];
 
     if (this.columnsNameApi && this.columnsNameApi.length !== 0) {
-      this.columnsNameApi = select.concat(this.columnsNameApi);
+      select = select.concat(this.columnsNameApi);
+      this.columnsNameApi = select;
       this.displayedColumns = this.columnsNameApi;
-      this.columnsToDisplay = this.displayedColumns.slice();
-    } else {
-      this.displayedColumns = select.concat(Object.keys(this.data[0]));
-      this.columnsToDisplay = this.displayedColumns.slice();
+      this.columnsToDisplay = this.displayedColumns.map(e => e.name).slice();
     }
   }
 
   addActionsToDisplayedColumns() {
-    const actions = ['actions'];
+    const actions = [{ name: 'actions', type: ColumnNameTypes.actions }];
 
     if (this.columnsNameApi && this.columnsNameApi.length !== 0) {
-      this.columnsNameApi.push(actions[0]);
+      this.columnsNameApi = this.columnsNameApi.concat(actions);
       this.displayedColumns = this.columnsNameApi;
-      this.columnsToDisplay = this.displayedColumns.slice();
-    } else {
-      this.displayedColumns = actions.concat(Object.keys(this.data[0]));
-      this.columnsToDisplay = this.displayedColumns.slice();
+      this.columnsToDisplay = this.displayedColumns.map(e => e.name).slice();
     }
   }
 

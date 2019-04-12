@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Inject, EventEmitter } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
@@ -13,6 +13,8 @@ export class ToastrService {
   private keepAfterRouteChange = false;
 
   private autoHide: boolean;
+
+  afterCloseEmitter = new EventEmitter<Alert>();
 
   constructor(private router: Router, @Inject(TOAST_CONFIG_TOKEN) private toastConfig: ToastConfig) {
     // clear alert messages on route change unless 'keepAfterRouteChange' flag is true
@@ -29,6 +31,10 @@ export class ToastrService {
     });
 
     this.autoHide = toastConfig.autoHide ? toastConfig.autoHide : false;
+  }
+
+  afterCloseEmit(alert: Alert) {
+    this.afterCloseEmitter.emit(alert);
   }
 
   getAlert(): Observable<any> {

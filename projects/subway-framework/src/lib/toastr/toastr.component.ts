@@ -52,12 +52,9 @@ export class ToastrComponent implements OnInit {
     });
   }
 
-  ngAfterContentInit() {
-
-  }
-
   removeAlert(alert: Alert) {
     this.alerts = this.alerts.filter(x => x !== alert);
+    this.toastrService.afterCloseEmit(alert);
     this.cdRef.detectChanges();
   }
 
