@@ -5,6 +5,14 @@ th.mat-header-cell:last-of-type {
   text-align: center;
 }
 
+.table-header {
+  font-weight: 600;
+}
+
+.table-cell {
+  font-size: 12px;
+}
+
 .badge {
   padding: 3px 15px;
   border-radius: 50px;
@@ -12,6 +20,9 @@ th.mat-header-cell:last-of-type {
   align-items: center;
   justify-content: center;
   text-align: center;
+  min-width: 40px;
+  font-size: 10px;
+  font-weight: 600;
 }
 
 .padding-thtd {

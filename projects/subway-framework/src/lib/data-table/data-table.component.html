@@ -26,7 +26,7 @@
     mat-table
     [dataSource]="data"
     style="width: 100%;"
-    class="table-striped table-hover"
+    class="table table-striped table-hover"
   >
     <!-- Checkbox Column -->
 
@@ -35,7 +35,7 @@
       *ngFor="let column of displayedColumns"
     >
       <div *ngIf="column.name == 'select'">
-        <th mat-header-cell *matHeaderCellDef class="padding-thtd">
+        <th mat-header-cell *matHeaderCellDef class="table-header padding-thtd">
           <mat-checkbox
             (change)="$event ? masterToggle() : null"
             [checked]="selection.hasValue() && isAllSelected()"
@@ -56,16 +56,16 @@
         <th
           mat-header-cell
           *matHeaderCellDef
-          class="padding-thtd"
+          class="table-header padding-thtd"
           [class.text-center]="
             column.type === columnNameTypes.status ||
             column.type === columnNameTypes.yes_no ||
             column.type === columnNameTypes.true_false
           "
         >
-          {{ verifyNameColumn(column.name) }}
+          {{ verifyNameColumn(column.name, 'header') }}
         </th>
-        <td mat-cell *matCellDef="let element" class="padding-thtd">
+        <td mat-cell *matCellDef="let element" class="table-cell padding-thtd">
           <div [ngSwitch]="column.type">
             <div *ngSwitchCase="columnNameTypes.cnpj">
               {{ element[column.name] | cpfCnpj }}
@@ -81,21 +81,21 @@
               class="badge"
               [ngStyle]="cssStyle(element[column.name], column.type)"
             >
-              {{ element[column.name] }}
+              {{ verifyNameColumn(element[column.name], 'row', column.type) }}
             </div>
             <div
               *ngSwitchCase="columnNameTypes.true_false"
               class="badge"
               [ngStyle]="cssStyle(element[column.name], column.type)"
             >
-              {{ element[column.name] }}
+              {{ verifyNameColumn(element[column.name], 'row', column.type) }}
             </div>
             <div
               *ngSwitchCase="columnNameTypes.status"
               class="badge"
               [ngStyle]="cssStyle(element[column.name], column.type)"
             >
-              {{ element[column.name] }}
+              {{ verifyNameColumn(element[column.name], 'row', column.type) }}
             </div>
             <div *ngSwitchCase="columnNameTypes.date">
               {{ element[column.name] | date: 'shortDate' }}
@@ -105,8 +105,8 @@
         </td>
       </div>
       <div *ngIf="column.name == 'actions'">
-        <th mat-header-cell *matHeaderCellDef class="padding-thtd">Ações</th>
-        <td mat-cell *matCellDef="let element" class="padding-thtd">
+        <th mat-header-cell *matHeaderCellDef class="table-header padding-thtd">Ações</th>
+        <td mat-cell *matCellDef="let element" class="table-cell padding-thtd">
           <div fxLayout fxLayoutAlign="center center">
             <div *ngFor="let buttonElement of (element.actions | keyvalue)">
               <button

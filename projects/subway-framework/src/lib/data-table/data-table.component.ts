@@ -27,6 +27,7 @@ export interface DataTableColumnNamesInterface {
   columnNameApi: string;
   displayName: string;
   type: ColumnNameTypes;
+  enumDisplayName?: any[];
 }
 
 export enum ColumnNameTypes {
@@ -175,7 +176,7 @@ export class DataTableComponent implements OnInit {
     const filtered = Object.keys(element)
       .filter(key => this.columnNameToDisplayOnDelete.includes(key))
       .reduce((obj, key) => {
-        const displayName = this.verifyNameColumn(key);
+        const displayName = this.verifyNameColumn(key, 'header');
         obj[key] = displayName + ': ' + element[key];
         return obj;
       }, {});
@@ -314,18 +315,41 @@ export class DataTableComponent implements OnInit {
     }
   }
 
-  verifyNameColumn(columnNameApi) {
-    const columnNameApiArray: string[] = this.columnNames.map(
-      e => e.columnNameApi
-    );
-    const indexcolumnNameApi: number = columnNameApiArray.indexOf(
-      columnNameApi
-    );
+  verifyNameColumn(element, type, columnType?) {
+    if (type === 'header') {
+      const columnNameApiArray: string[] = this.columnNames.map(
+        e => e.columnNameApi
+      );
+      const indexcolumnNameApi: number = columnNameApiArray.indexOf(element);
 
-    if (indexcolumnNameApi >= 0) {
-      return this.columnNames[indexcolumnNameApi].displayName;
-    } else {
-      return columnNameApi;
+      if (indexcolumnNameApi >= 0) {
+        return this.columnNames[indexcolumnNameApi].displayName;
+      } else {
+        return element;
+      }
+    }
+
+    if (type === 'row') {
+      switch (columnType) {
+        case ColumnNameTypes.status:
+          const statusIndex = this.columnNames
+            .map(e => e.type)
+            .indexOf(ColumnNameTypes.status);
+          return this.columnNames[statusIndex].enumDisplayName[element];
+        case ColumnNameTypes.true_false:
+          const trueFalseIndex = this.columnNames
+            .map(e => e.type)
+            .indexOf(ColumnNameTypes.true_false);
+          return this.columnNames[trueFalseIndex].enumDisplayName[element];
+        case ColumnNameTypes.yes_no:
+          const yesNoIndex = this.columnNames
+            .map(e => e.type)
+            .indexOf(ColumnNameTypes.yes_no);
+          return this.columnNames[yesNoIndex].enumDisplayName[element];
+
+        default:
+          return element;
+      }
     }
   }
 

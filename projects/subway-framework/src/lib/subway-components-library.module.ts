@@ -67,6 +67,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
     OverlayModule
   ],
   exports: [
+    BrowserAnimationsModule,
     ViewContainerComponent,
     MatFormFieldComponent,
     ButtonComponent,

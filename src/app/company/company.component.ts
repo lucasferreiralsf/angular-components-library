@@ -4,7 +4,10 @@ import { DialogService } from 'projects/subway-framework/src/lib/components/dial
 import { CompanyViewEditComponent } from './company-view-edit/company-view-edit.component';
 import { CompanyService } from './company.service';
 import { ToastrService } from 'projects/subway-framework/src/lib/toastr/toastr.service';
-import { ColumnNameTypes } from 'projects/subway-framework/src/lib/data-table/data-table.component';
+import {
+  ColumnNameTypes,
+  DataTableColumnNamesInterface
+} from 'projects/subway-framework/src/lib/data-table/data-table.component';
 
 const ELEMENT_DATA = [
   {
@@ -28,7 +31,7 @@ const ELEMENT_DATA = [
     status: 2,
     active: false,
     timeZone: 'E. South America Standard Time',
-    teste: 'não',
+    teste: 'nao',
     id: 1
   },
   {
@@ -54,21 +57,59 @@ const ELEMENT_DATA = [
     timeZone: 'E. South America Standard Time',
     teste: 'sim',
     id: 1
-  },
-
+  }
 ];
 
 const namesColumn = [
   { columnNameApi: 'id', displayName: 'Id', type: ColumnNameTypes.actions },
-  { columnNameApi: 'grupo', displayName: 'Grupo', type: ColumnNameTypes.default },
-  { columnNameApi: 'cnpj', displayName: 'CNPJ', type: ColumnNameTypes.cpf_cnpj },
-  { columnNameApi: 'razaoSocial', displayName: 'Razão Social', type: ColumnNameTypes.actions },
-  { columnNameApi: 'dataCadastro', displayName: 'Data Cadastro', type: ColumnNameTypes.date },
-  { columnNameApi: 'emailResponsavel', displayName: 'E-Mail Responsável', type: ColumnNameTypes.actions },
-  { columnNameApi: 'status', displayName: 'Status', type: ColumnNameTypes.status },
-  { columnNameApi: 'active', displayName: 'Ativo', type: ColumnNameTypes.true_false },
-  { columnNameApi: 'teste', displayName: 'Teste Column', type: ColumnNameTypes.yes_no },
-  { columnNameApi: 'timeZone', displayName: 'Fuso Horário', type: ColumnNameTypes.actions }
+  {
+    columnNameApi: 'grupo',
+    displayName: 'Grupo',
+    type: ColumnNameTypes.default
+  },
+  {
+    columnNameApi: 'cnpj',
+    displayName: 'CNPJ',
+    type: ColumnNameTypes.cpf_cnpj
+  },
+  {
+    columnNameApi: 'razaoSocial',
+    displayName: 'Razão Social',
+    type: ColumnNameTypes.actions
+  },
+  {
+    columnNameApi: 'dataCadastro',
+    displayName: 'Data Cadastro',
+    type: ColumnNameTypes.date
+  },
+  {
+    columnNameApi: 'emailResponsavel',
+    displayName: 'E-Mail Responsável',
+    type: ColumnNameTypes.actions
+  },
+  {
+    columnNameApi: 'status',
+    displayName: 'Status',
+    type: ColumnNameTypes.status,
+    enumDisplayName: { 1: 'Status 1', 2: 'Status 2', 3: 'Status 3', 4: 'Status 4' }
+  },
+  {
+    columnNameApi: 'active',
+    displayName: 'Ativo',
+    type: ColumnNameTypes.true_false,
+    enumDisplayName: { true: 'Sim', false: 'Não' }
+  },
+  {
+    columnNameApi: 'teste',
+    displayName: 'Teste Column',
+    type: ColumnNameTypes.yes_no,
+    enumDisplayName: { sim: 'sim', nao: 'não', no: 'não no', yes: 'sim yes' }
+  },
+  {
+    columnNameApi: 'timeZone',
+    displayName: 'Fuso Horário',
+    type: ColumnNameTypes.actions
+  }
 ];
 
 const ACTIONS = [
@@ -122,7 +163,7 @@ export class CompanyComponent implements OnInit {
     1: { background: 'red', color: 'white' },
     2: { background: 'blue', color: 'white' },
     3: { background: 'yellow', color: 'white' },
-    4: { background: '#eaeaea', color: 'black' },
+    4: { background: '#eaeaea', color: 'black' }
   };
 
   trueFalseColors = {
@@ -134,9 +175,8 @@ export class CompanyComponent implements OnInit {
     yes: { background: 'red', color: 'white' },
     no: { background: 'blue', color: 'white' },
     sim: { background: 'yellow', color: 'white' },
-    nao: { background: '#eaeaea', color: 'black' },
+    nao: { background: '#eaeaea', color: 'black' }
   };
-
 
   private count = 1;
 
@@ -187,6 +227,8 @@ export class CompanyComponent implements OnInit {
         });
       }
     });
+
+    this.dataTableService.afterRemoveRow.subscribe(() => console.log('After Remove Event'));
 
     this.dataTableService.topButtonEvent.subscribe(eventSlug => {
       console.log('TopButtonAction: ', eventSlug);
