@@ -107,9 +107,6 @@ export class DataTableComponent implements OnInit {
   @Input() pageSize;
   @Input() length;
   @Input() pageSizeOptions;
-  @Input() statusColors;
-  @Input() trueFalseColors;
-  @Input() yesNoColors;
 
   @Output() getPagingEmit = new EventEmitter();
   @ViewChild(MatPaginator) paginator: MatPaginator;
