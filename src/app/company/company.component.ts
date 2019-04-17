@@ -19,7 +19,7 @@ const ELEMENT_DATA = [
     status: 1,
     active: true,
     timeZone: 'E. South America Standard Time',
-    teste: 'no',
+    teste: 'false',
     id: 1
   },
   {
@@ -31,8 +31,8 @@ const ELEMENT_DATA = [
     status: 2,
     active: false,
     timeZone: 'E. South America Standard Time',
-    teste: 'nao',
-    id: 1
+    teste: 'false',
+    id: 2
   },
   {
     grupo: 'grupo3',
@@ -43,8 +43,8 @@ const ELEMENT_DATA = [
     status: 3,
     active: true,
     timeZone: 'E. South America Standard Time',
-    teste: 'yes',
-    id: 1
+    teste: 'true',
+    id: 3
   },
   {
     grupo: 'grupo4',
@@ -55,12 +55,12 @@ const ELEMENT_DATA = [
     status: 4,
     active: false,
     timeZone: 'E. South America Standard Time',
-    teste: 'sim',
-    id: 1
+    teste: 'true',
+    id: 4
   }
 ];
 
-const namesColumn = [
+const namesColumn: DataTableColumnNamesInterface[] = [
   { columnNameApi: 'id', displayName: 'Id', type: ColumnNameTypes.actions },
   {
     columnNameApi: 'grupo',
@@ -91,19 +91,86 @@ const namesColumn = [
     columnNameApi: 'status',
     displayName: 'Status',
     type: ColumnNameTypes.status,
-    enumDisplayName: { 1: 'Status 1', 2: 'Status 2', 3: 'Status 3', 4: 'Status 4' }
+    enumDisplayName: [
+      {
+        elementName: 1,
+        displayName: 'Status 1',
+        colors: {
+          background: 'red',
+          color: 'white'
+        }
+      },
+      {
+        elementName: 2,
+        displayName: 'Status 2',
+        colors: {
+          background: 'blue',
+          color: 'white'
+        }
+      },
+      {
+        elementName: 3,
+        displayName: 'Status 3',
+        colors: {
+          background: 'blue',
+          color: 'white'
+        }
+      },
+      {
+        elementName: 4,
+        displayName: 'Status 4',
+        colors: {
+          background: 'blue',
+          color: 'white'
+        }
+      }
+    ]
   },
   {
     columnNameApi: 'active',
     displayName: 'Ativo',
     type: ColumnNameTypes.true_false,
-    enumDisplayName: { true: 'Sim', false: 'Não' }
+    enumDisplayName: [
+      {
+        elementName: 'true',
+        displayName: 'Sim',
+        colors: {
+          background: 'green',
+          color: 'white'
+        }
+      },
+      {
+        elementName: 'false',
+        displayName: 'Não',
+        colors: {
+          background: 'brown',
+          color: 'white'
+        }
+      }
+    ]
   },
   {
     columnNameApi: 'teste',
     displayName: 'Teste Column',
-    type: ColumnNameTypes.yes_no,
-    enumDisplayName: { sim: 'sim', nao: 'não', no: 'não no', yes: 'sim yes' }
+    type: ColumnNameTypes.true_false,
+    enumDisplayName: [
+      {
+        elementName: 'true',
+        displayName: 'Ativo',
+        colors: {
+          background: 'pink',
+          color: 'white'
+        }
+      },
+      {
+        elementName: 'false',
+        displayName: 'Inativo',
+        colors: {
+          background: 'black',
+          color: 'white'
+        }
+      }
+    ]
   },
   {
     columnNameApi: 'timeZone',
@@ -228,7 +295,9 @@ export class CompanyComponent implements OnInit {
       }
     });
 
-    this.dataTableService.afterRemoveRow.subscribe(() => console.log('After Remove Event'));
+    this.dataTableService.afterRemoveRow.subscribe(() =>
+      console.log('After Remove Event')
+    );
 
     this.dataTableService.topButtonEvent.subscribe(eventSlug => {
       console.log('TopButtonAction: ', eventSlug);

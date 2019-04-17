@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   isHideToggle = !this.isExpanded;
   expandHeight = '42px';
   collapseHeight = '42px';
+  mostrarMenus = true;
 
   constructor(private overlayContainer: OverlayContainer, private sidenavService: SidenavService) {}
 

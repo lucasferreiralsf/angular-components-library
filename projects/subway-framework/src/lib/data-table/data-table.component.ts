@@ -6,7 +6,8 @@ import {
   Renderer2,
   EventEmitter,
   Output,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import {
@@ -27,7 +28,13 @@ export interface DataTableColumnNamesInterface {
   columnNameApi: string;
   displayName: string;
   type: ColumnNameTypes;
-  enumDisplayName?: any[];
+  enumDisplayName?: EnumDisplayName[];
+}
+
+export interface EnumDisplayName {
+  elementName: any;
+  displayName: string;
+  colors: { background: string; color: string };
 }
 
 export enum ColumnNameTypes {
@@ -85,7 +92,8 @@ export interface DataTableTopActionButtonInterface {
       )
     ])
   ],
-  providers: [CpfCnpjPipe]
+  providers: [CpfCnpjPipe],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DataTableComponent implements OnInit {
   @Input() selectColumn = false;
@@ -133,7 +141,6 @@ export class DataTableComponent implements OnInit {
     this.data = this.dataTableService.setDataSource(this.inputData);
     this.dataTableService.inputDataEvent.subscribe(inputData => {
       this.load(inputData);
-      this.cdRef.detectChanges();
     });
   }
 
@@ -214,35 +221,53 @@ export class DataTableComponent implements OnInit {
     }
   }
 
-  cssStyle(element, columnType) {
-    switch (columnType) {
+  cssStyle(element, column) {
+    switch (column.type) {
       case ColumnNameTypes.status:
-        const status = Object.keys(this.statusColors);
-        if (status.includes(element.toString())) {
-          return {
-            background: this.statusColors[element].background,
-            color: this.statusColors[element].color
-          };
-        }
-        break;
+        const statusColumnIndex = this.columnNames
+          .map(e => e.columnNameApi)
+          .indexOf(column.name);
+        const statusEnumIndex = this.columnNames[
+          statusColumnIndex
+        ].enumDisplayName
+          .map(e => e.elementName.toString())
+          .indexOf(element.toString());
+        const statusColors = this.columnNames[statusColumnIndex]
+          .enumDisplayName[statusEnumIndex].colors;
+        return {
+          background: statusColors.background,
+          color: statusColors.color
+        };
       case ColumnNameTypes.true_false:
-        const trueFalse = Object.keys(this.trueFalseColors);
-        if (trueFalse.includes(element.toString())) {
-          return {
-            background: this.trueFalseColors[element].background,
-            color: this.trueFalseColors[element].color
-          };
-        }
-        break;
+        const trueFalseColumnIndex = this.columnNames
+          .map(e => e.columnNameApi)
+          .indexOf(column.name);
+        const trueFalseEnumIndex = this.columnNames[
+          trueFalseColumnIndex
+        ].enumDisplayName
+          .map(e => e.elementName.toString())
+          .indexOf(element.toString());
+        const trueFalsecolors = this.columnNames[trueFalseColumnIndex]
+          .enumDisplayName[trueFalseEnumIndex].colors;
+        return {
+          background: trueFalsecolors.background,
+          color: trueFalsecolors.color
+        };
       case ColumnNameTypes.yes_no:
-        const yesNo = Object.keys(this.yesNoColors);
-        if (yesNo.includes(element.toString())) {
-          return {
-            background: this.yesNoColors[element].background,
-            color: this.yesNoColors[element].color
-          };
-        }
-        break;
+        const yesNoColumnIndex = this.columnNames
+          .map(e => e.columnNameApi)
+          .indexOf(column.name);
+        const yesNoEnumIndex = this.columnNames[
+          yesNoColumnIndex
+        ].enumDisplayName
+          .map(e => e.elementName.toString())
+          .indexOf(element.toString());
+        const yesNocolors = this.columnNames[yesNoColumnIndex]
+          .enumDisplayName[yesNoEnumIndex].colors;
+        return {
+          background: yesNocolors.background,
+          color: yesNocolors.color
+        };
       default:
         return;
     }
@@ -315,7 +340,7 @@ export class DataTableComponent implements OnInit {
     }
   }
 
-  verifyNameColumn(element, type, columnType?) {
+  verifyNameColumn(element, type, column?) {
     if (type === 'header') {
       const columnNameApiArray: string[] = this.columnNames.map(
         e => e.columnNameApi
@@ -330,22 +355,43 @@ export class DataTableComponent implements OnInit {
     }
 
     if (type === 'row') {
-      switch (columnType) {
+      switch (column.type) {
         case ColumnNameTypes.status:
-          const statusIndex = this.columnNames
-            .map(e => e.type)
-            .indexOf(ColumnNameTypes.status);
-          return this.columnNames[statusIndex].enumDisplayName[element];
+          const statusColumnIndex = this.columnNames
+            .map(e => e.columnNameApi)
+            .indexOf(column.name);
+          const statusEnumIndex = this.columnNames[
+            statusColumnIndex
+          ].enumDisplayName
+            .map(e => e.elementName.toString())
+            .indexOf(element.toString());
+          return this.columnNames[statusColumnIndex].enumDisplayName[
+            statusEnumIndex
+          ].displayName;
         case ColumnNameTypes.true_false:
-          const trueFalseIndex = this.columnNames
-            .map(e => e.type)
-            .indexOf(ColumnNameTypes.true_false);
-          return this.columnNames[trueFalseIndex].enumDisplayName[element];
+          const trueFalseColumnIndex = this.columnNames
+            .map(e => e.columnNameApi)
+            .indexOf(column.name);
+          const trueFalseEnumIndex = this.columnNames[
+            trueFalseColumnIndex
+          ].enumDisplayName
+            .map(e => e.elementName.toString())
+            .indexOf(element.toString());
+          return this.columnNames[trueFalseColumnIndex].enumDisplayName[
+            trueFalseEnumIndex
+          ].displayName;
         case ColumnNameTypes.yes_no:
-          const yesNoIndex = this.columnNames
-            .map(e => e.type)
-            .indexOf(ColumnNameTypes.yes_no);
-          return this.columnNames[yesNoIndex].enumDisplayName[element];
+          const yesNoColumnIndex = this.columnNames
+            .map(e => e.columnNameApi)
+            .indexOf(column.name);
+          const yesNoEnumIndex = this.columnNames[
+            yesNoColumnIndex
+          ].enumDisplayName
+            .map(e => e.elementName.toString())
+            .indexOf(element.toString());
+          return this.columnNames[yesNoColumnIndex].enumDisplayName[
+            yesNoEnumIndex
+          ].displayName;
 
         default:
           return element;

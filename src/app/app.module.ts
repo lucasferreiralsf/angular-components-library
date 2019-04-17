@@ -25,6 +25,7 @@ import {
 } from 'projects/subway-framework/src/lib/toastr/toastr-config';
 import { registerLocaleData } from '@angular/common';
 import localept from '@angular/common/locales/pt';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const config: ToastConfig = {
   /* animationTimeOut: 1000, */
@@ -36,9 +37,10 @@ registerLocaleData(localept, 'pt');
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
 
 @NgModule({
-  declarations: [AppComponent, CompanyComponent, CompanyViewEditComponent],
+  declarations: [AppComponent, CompanyComponent, CompanyViewEditComponent, DashboardComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     SubwayComponentsLibraryModule,
     AppRoutingModule,

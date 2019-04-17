@@ -79,23 +79,23 @@
             <div
               *ngSwitchCase="columnNameTypes.yes_no"
               class="badge"
-              [ngStyle]="cssStyle(element[column.name], column.type)"
+              [ngStyle]="cssStyle(element[column.name], column)"
             >
-              {{ verifyNameColumn(element[column.name], 'row', column.type) }}
+              {{ verifyNameColumn(element[column.name], 'row', column) }}
             </div>
             <div
               *ngSwitchCase="columnNameTypes.true_false"
               class="badge"
-              [ngStyle]="cssStyle(element[column.name], column.type)"
+              [ngStyle]="cssStyle(element[column.name], column)"
             >
-              {{ verifyNameColumn(element[column.name], 'row', column.type) }}
+              {{ verifyNameColumn(element[column.name], 'row', column) }}
             </div>
             <div
               *ngSwitchCase="columnNameTypes.status"
               class="badge"
-              [ngStyle]="cssStyle(element[column.name], column.type)"
+              [ngStyle]="cssStyle(element[column.name], column)"
             >
-              {{ verifyNameColumn(element[column.name], 'row', column.type) }}
+              {{ verifyNameColumn(element[column.name], 'row', column) }}
             </div>
             <div *ngSwitchCase="columnNameTypes.date">
               {{ element[column.name] | date: 'shortDate' }}

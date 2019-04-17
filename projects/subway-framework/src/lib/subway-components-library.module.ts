@@ -17,9 +17,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { PortalModule } from '@angular/cdk/portal';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { CommonModule } from '@angular/common';
 import { SideNavComponent } from './side-nav/side-nav.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderDirective } from './header/header.directive';
 import {
   PerfectScrollbarModule,
@@ -56,8 +54,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
     CpfCnpjPipe
   ],
   imports: [
-    CommonModule,
-    BrowserAnimationsModule,
     ReactiveFormsModule,
     PerfectScrollbarModule,
     FormsModule,
@@ -67,7 +63,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
     OverlayModule
   ],
   exports: [
-    BrowserAnimationsModule,
     ViewContainerComponent,
     MatFormFieldComponent,
     ButtonComponent,
