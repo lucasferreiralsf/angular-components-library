@@ -1,0 +1,75 @@
+<div [ngStyle]="{'margin-top': showBadge ? '-26px' : '-2px' }">
+  <span *ngIf="showBadge" class="sb-badge"
+    [ngStyle]="cssStyle()">{{badgeValor.length > 4 ? '+9999' : badgeValor}}</span>
+  <button [@newNotifications]="badgeValor" cdk-overlay-origin mat-icon-button type="button" id="action-dropdown-button"
+    cdk-overlay-origin (click)="openPopover()" class="button-icon-popover">
+    <mat-icon>notifications</mat-icon>
+  </button>
+</div>
+
+<ng-template cdk-portal #popoverContentTemplate="cdkPortal">
+  <div @showToBottom fxLayout="column" fxLayoutAlign="space-between"
+    class="div-container-popover mat-elevation-z4 arrowBoxTop">
+    <mat-tab-group class="notification-tab-group">
+      <mat-tab label="Não Visualizado">
+        <div style="overflow: hidden">
+          <perfect-scrollbar style="max-height: 72vh" *ngIf="showListNotification(1, 1)">
+            <mat-list style="padding-top: 0;">
+              <div *ngFor="let notification of notifications">
+                <mat-list-item *ngIf="!notification.isVisualized" class="notification-item"
+                  (click)="onMatListClick(notification)">
+                  <div mat-list-icon class="{{ cssClass(notification) }}">
+                    <mat-icon>{{ iconNotification }}</mat-icon>
+                  </div>
+                  <h4 mat-line style="font-weight: 600;">{{notification.title}}</h4>
+                  <p style="margin: 0px 0 2px 0;" mat-line> {{notification.description}} </p>
+                  <p style="font-size: 12px;" mat-line> {{notification.date | date}} </p>
+                  <button *ngIf="notification.content" mat-icon-button>
+                    <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
+                  </button>
+                  <mat-divider></mat-divider>
+                </mat-list-item>
+              </div>
+            </mat-list>
+          </perfect-scrollbar>
+          <div fxLayout="column" fxLayoutAlign="center center" *ngIf="showListNotification(1, 2)"
+            class="notifications-off-div">
+            <mat-icon class="notifications-off-icon">notifications_off</mat-icon>
+            <p>Sem notificações</p>
+          </div>
+          <div *ngIf="hasNotificationCheckAllButton && showListNotification(1, 1)" fxLayout fxLayoutAlign="flex-end" class="marcar-todos-div">
+            <a mat-button (click)="onMarkCheckedClick()">Marcar todos como visualizado</a>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Visualizado">
+        <div style="overflow: hidden">
+          <perfect-scrollbar style="max-height: 72vh" *ngIf="showListNotification(2, 1)">
+            <mat-list style="padding-top: 0;">
+              <div *ngFor="let notification of notifications">
+                <mat-list-item *ngIf="notification.isVisualized" class="notification-item"
+                  (click)="onMatListClick(notification)">
+                  <div mat-list-icon class="{{ cssClass(notification) }}">
+                    <mat-icon>{{ iconNotification }}</mat-icon>
+                  </div>
+                  <h4 mat-line style="font-weight: 600;">{{notification.title}}</h4>
+                  <p style="margin: 0px 0 2px 0;" mat-line> {{notification.description}} </p>
+                  <p style="font-size: 12px;" mat-line> {{notification.date | date}} </p>
+                  <button *ngIf="notification.content" mat-icon-button>
+                    <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
+                  </button>
+                  <mat-divider></mat-divider>
+                </mat-list-item>
+              </div>
+            </mat-list>
+          </perfect-scrollbar>
+          <div fxLayout="column" fxLayoutAlign="center center" *ngIf="showListNotification(2, 2)"
+            class="notifications-off-div">
+            <mat-icon class="notifications-off-icon">notifications_off</mat-icon>
+            <p>Sem notificações</p>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</ng-template>

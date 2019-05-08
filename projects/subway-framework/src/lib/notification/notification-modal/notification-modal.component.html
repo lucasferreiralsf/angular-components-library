@@ -1,0 +1,22 @@
+<div fxLayout="column" class="notification-content">
+  <div class="notification-title">
+    <div fxLayout fxLayoutAlign="flex-end" style="margin: 3px 3px 0 0;">
+      <button mat-icon-button (click)="closeDialog()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <div fxLayout fxLayoutAlign="center" fxLayoutGap="10px" style="padding: 0 15px 15px;">
+      <div mat-list-icon fxLayoutAlign="center center" class="{{ iconDivClass }}">
+        <mat-icon>{{ iconContentNotification['icon'] }}</mat-icon>
+      </div>
+      <div fxLayout="column" style="width: 100%">
+        <h4 style="margin: 0"> {{ data.title }} </h4>
+        <p style="font-size: 12px; margin: 4px;"> {{ data.description }} </p>
+      </div>
+    </div>
+  </div>
+  <div [style.border-top]="iconContentNotification.color"></div>
+  <perfect-scrollbar style="max-height: 80vh; min-height: 12vh;" *ngIf="data.content">
+    <div style="padding: 10px;" [innerHTML]="data.content | safe: 'html'"></div>
+  </perfect-scrollbar>
+</div>

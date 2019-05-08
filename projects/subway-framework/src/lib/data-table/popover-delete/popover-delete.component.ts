@@ -16,12 +16,12 @@ import {
 import { TemplatePortalDirective } from '@angular/cdk/portal';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { fadeInUp, fadeOut } from 'ng-animate';
-import { PopoverService } from './popover.service';
+import { PopoverDeleteService } from './popover-delete.service';
 
 @Component({
-  selector: 'sb-popover',
-  templateUrl: './popover.component.html',
-  styleUrls: ['./popover.component.scss'],
+  selector: 'sb-popover-delete',
+  templateUrl: './popover-delete.component.html',
+  styleUrls: ['./popover-delete.component.scss'],
   animations: [
     trigger('flipInOut', [
       transition(
@@ -39,7 +39,7 @@ import { PopoverService } from './popover.service';
     ])
   ]
 })
-export class PopoverComponent implements AfterViewInit {
+export class PopoverDeleteComponent implements AfterViewInit {
   private strategy: any;
   private config: OverlayConfig;
   private overlayRef: OverlayRef;
@@ -63,7 +63,7 @@ export class PopoverComponent implements AfterViewInit {
   constructor(
     private overlay: Overlay,
     public viewContainerRef: ViewContainerRef,
-    private popoverService: PopoverService
+    private popoverService: PopoverDeleteService
   ) {}
 
   ngAfterViewInit(): void {
@@ -86,7 +86,7 @@ export class PopoverComponent implements AfterViewInit {
       this.overlayRef.detach();
     });
 
-    this.popoverService.emitirCloseEvent.subscribe(() => {
+    this.popoverService.emitirCloseEmitter.subscribe(() => {
       this.overlayRef.detach();
     });
     this.overlayRef.attach(this.popoverContentTemplate);

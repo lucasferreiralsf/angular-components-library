@@ -19,7 +19,7 @@ import {
 } from '@angular/material';
 import { DataTableService } from './data-table.service';
 import { map } from 'rxjs/operators';
-import { PopoverService } from './popover/popover.service';
+import { PopoverDeleteService } from './popover-delete/popover-delete.service';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { flipInX, flipOutX } from 'ng-animate';
 import { CpfCnpjPipe } from '../pipes/cpf-cnpj.pipe';
@@ -129,14 +129,14 @@ export class DataTableComponent implements OnInit {
 
   constructor(
     private dataTableService: DataTableService,
-    private popoverService: PopoverService,
+    private popoverService: PopoverDeleteService,
     private snackBar: MatSnackBar,
     private cdRef: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
     this.data = this.dataTableService.setDataSource(this.inputData);
-    this.dataTableService.inputDataEvent.subscribe(inputData => {
+    this.dataTableService.inputDataEmitter.subscribe(inputData => {
       this.load(inputData);
     });
   }
@@ -159,7 +159,7 @@ export class DataTableComponent implements OnInit {
 
     this.displayColumns();
     this.addActionsToData();
-    this.popoverService.buttonClickEvent.subscribe(event => {
+    this.popoverService.buttonClickEmitter.subscribe(event => {
       this.buttonRowClick(event.event, event.element);
     });
   }

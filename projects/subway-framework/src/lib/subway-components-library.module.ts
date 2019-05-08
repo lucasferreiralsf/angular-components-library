@@ -6,7 +6,7 @@ import { FilterTableActionsComponent } from './data-table/filter-table/filter-ta
 import { DataTableComponent } from './data-table/data-table.component';
 import { DataTableActionsComponent } from './data-table/data-table-actions/data-table-actions.component';
 import { DataTableRowActionsComponent } from './data-table/data-table-row-actions/data-table-row-actions.component';
-import { PopoverComponent } from './data-table/popover/popover.component';
+import { PopoverDeleteComponent } from './data-table/popover-delete/popover-delete.component';
 import { ButtonComponent } from './components/button/button.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { ViewEditContainerComponent } from './view-edit-container/view-edit-container.component';
@@ -28,6 +28,12 @@ import { ToastrComponent } from './toastr/toastr.component';
 import { CnpjPipe } from './pipes/cnpj.pipe';
 import { CpfPipe } from './pipes/cpf.pipe';
 import { CpfCnpjPipe } from './pipes/cpf-cnpj.pipe';
+import { PopoverComponent } from './components/popover/popover.component';
+import { NotificationComponent } from './notification/notification.component';
+import { PopoverDirective } from './components/popover/popover.directive';
+import { NotificationDirective } from './notification/notification.directive';
+import { NotificationModalComponent } from './notification/notification-modal/notification-modal.component';
+import { SafePipe } from './pipes/sanitization.pipe';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
 
@@ -40,7 +46,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
     DataTableComponent,
     DataTableActionsComponent,
     DataTableRowActionsComponent,
-    PopoverComponent,
+    PopoverDeleteComponent,
     ButtonComponent,
     DialogComponent,
     ViewEditContainerComponent,
@@ -51,7 +57,13 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
     ToastrComponent,
     CnpjPipe,
     CpfPipe,
-    CpfCnpjPipe
+    CpfCnpjPipe,
+    PopoverComponent,
+    NotificationComponent,
+    NotificationDirective,
+    PopoverDirective,
+    NotificationModalComponent,
+    SafePipe
   ],
   imports: [
     ReactiveFormsModule,
@@ -74,7 +86,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
     ToastrComponent,
     CnpjPipe,
     CpfPipe,
-    CpfCnpjPipe
+    CpfCnpjPipe,
+    PopoverComponent,
+    NotificationComponent,
+    NotificationDirective,
+    SafePipe
   ],
   providers: [
     {
@@ -82,6 +98,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
     },
   ],
-  entryComponents: [ToastrComponent]
+  entryComponents: [ToastrComponent, NotificationModalComponent]
 })
 export class SubwayComponentsLibraryModule {}

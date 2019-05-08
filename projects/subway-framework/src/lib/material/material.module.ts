@@ -1,7 +1,7 @@
 
 
 // Angular Material Components
-import { MatCheckboxModule } from '@angular/material';
+import { MatCheckboxModule, MatBadgeModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -65,5 +65,6 @@ export const MATERIAL_MODULES = [
   MatTableModule,
   MatSortModule,
   MatPaginatorModule,
-  MatRippleModule
+  MatRippleModule,
+  MatBadgeModule
 ];

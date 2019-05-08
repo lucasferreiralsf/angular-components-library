@@ -4,10 +4,13 @@
     logoImgSrc="assets/img/logo-minimal-subway-branco@2x.png"
     appName="Teste"
     sbHasSideNav
+    sbHasNotification
+    [showCheckAllButton]="true"
   >
-    <button mat-button [matMenuTriggerFor]="changeColor">
+    <!-- <sb-notification badgeBorderColor="#008938" style="margin-right: 160px" ></sb-notification> -->
+    <!-- <button mat-button [matMenuTriggerFor]="changeColor">
       Alterar Cor
-    </button>
+    </button> -->
     <mat-menu #changeColor="matMenu">
       <div style="width: 150px;">
         <mat-grid-list cols="2">

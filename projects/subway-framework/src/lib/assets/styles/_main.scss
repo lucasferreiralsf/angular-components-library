@@ -24,3 +24,8 @@ mat-nav-list .mat-nav-list-individual .mat-list-item-content {
   margin: 0 0 0px 8px;
   color: white;
 }
+
+
+.notification-tab-group > .mat-tab-body-wrapper > .mat-tab-body > .mat-tab-body-content {
+  overflow: hidden !important;
+}

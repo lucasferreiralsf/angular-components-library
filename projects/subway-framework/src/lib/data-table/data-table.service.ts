@@ -7,15 +7,15 @@ import { DataTableInputDataInterface } from './data-table.component';
 })
 export class DataTableService implements OnInit {
   inputData: DataTableInputDataInterface;
-  buttonRowEvent = new EventEmitter();
-  topButtonEvent = new EventEmitter();
-  inputDataEvent = new EventEmitter();
+  buttonRowEmitter = new EventEmitter();
+  topButtonEmitter = new EventEmitter();
+  inputDataEmitter = new EventEmitter();
   afterRemoveRow = new EventEmitter();
-  filterLimparEvent = new EventEmitter();
-  filterPesquisarEvent = new EventEmitter();
-  pageSizeOptionsEvent = new EventEmitter();
-  pageSizeEvent = new EventEmitter();
-  lengthEvent = new EventEmitter();
+  filterLimparEmitter = new EventEmitter();
+  filterPesquisarEmitter = new EventEmitter();
+  pageSizeOptionsEmitter = new EventEmitter();
+  pageSizeEmitter = new EventEmitter();
+  lengthEmitter = new EventEmitter();
   data;
 
   // tslint:disable-next-line: variable-name
@@ -24,7 +24,7 @@ export class DataTableService implements OnInit {
   ngOnInit() {}
 
   setPageSizeOptions() {
-    
+
   }
 
   getData() {
@@ -41,12 +41,12 @@ export class DataTableService implements OnInit {
   }
 
   setInputData(element) {
-    this.inputDataEvent.emit(element);
+    this.inputDataEmitter.emit(element);
     this.inputData = element;
   }
 
   buttonRowClick(event: string, index) {
-    this.buttonRowEvent.emit({ event, index });
+    this.buttonRowEmitter.emit({ event, index });
   }
 
   removeRowEmit(element) {
@@ -54,14 +54,14 @@ export class DataTableService implements OnInit {
   }
 
   topButtonClick(eventSlug: string) {
-    this.topButtonEvent.emit(eventSlug);
+    this.topButtonEmitter.emit(eventSlug);
   }
 
   filterLimparButtonClick() {
-    this.filterLimparEvent.emit();
+    this.filterLimparEmitter.emit();
   }
 
   filterPesquisarButtonClick() {
-    this.filterPesquisarEvent.emit();
+    this.filterPesquisarEmitter.emit();
   }
 }

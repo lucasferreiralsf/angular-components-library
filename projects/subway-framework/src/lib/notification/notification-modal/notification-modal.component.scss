@@ -1,0 +1,25 @@
+.notification-success {
+  color: #009e0d;
+}
+
+.notification-info {
+  color: #006bb3;
+}
+
+.notification-warning {
+  color: #ffca05;
+}
+
+.notification-error {
+  color: #ce0000;
+}
+
+.notification-content {
+  margin: -24px;
+}
+
+.notification-title {
+  width: 100%;
+  min-width: 70vh;
+  background: rgba(226, 226, 226, 0.14);
+}

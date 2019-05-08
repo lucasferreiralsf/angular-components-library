@@ -282,7 +282,7 @@ export class CompanyComponent implements OnInit {
     this.count += 1;
   }
   ngOnInit() {
-    this.dataTableService.buttonRowEvent.subscribe(eventType => {
+    this.dataTableService.buttonRowEmitter.subscribe(eventType => {
       if (eventType.event === 'confirmdelete') {
         console.log('confirmdelete: ', eventType);
       }
@@ -299,15 +299,15 @@ export class CompanyComponent implements OnInit {
       console.log('After Remove Event')
     );
 
-    this.dataTableService.topButtonEvent.subscribe(eventSlug => {
+    this.dataTableService.topButtonEmitter.subscribe(eventSlug => {
       console.log('TopButtonAction: ', eventSlug);
     });
 
-    this.dataTableService.filterLimparEvent.subscribe(() => {
+    this.dataTableService.filterLimparEmitter.subscribe(() => {
       console.log('Botão Limpar Filtro Clicado');
     });
 
-    this.dataTableService.filterPesquisarEvent.subscribe(() => {
+    this.dataTableService.filterPesquisarEmitter.subscribe(() => {
       console.log('Botão Pesquisar Filtro Clicado');
     });
 

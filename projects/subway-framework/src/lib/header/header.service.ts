@@ -5,13 +5,13 @@ import { Injectable, EventEmitter } from '@angular/core';
 })
 export class HeaderService {
 
-  showMenuClickEvent = new EventEmitter();
+  showMenuClickEmitter = new EventEmitter();
 
   hasSideNav: boolean;
   constructor() { }
 
   showMenuClick() {
-    this.showMenuClickEvent.emit();
+    this.showMenuClickEmitter.emit();
   }
 
   showMenuButton(e: boolean) {

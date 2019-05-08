@@ -36,7 +36,7 @@ export class SideNavComponent implements OnInit {
   constructor(private headerService: HeaderService, private sidenavService: SidenavService) {}
 
   ngOnInit() {
-    this.headerService.showMenuClickEvent.subscribe(() => {
+    this.headerService.showMenuClickEmitter.subscribe(() => {
       if (this.isExpanded === true) {
         this.sidenavService.expandEmit(false);
         this.isExpanded = false;

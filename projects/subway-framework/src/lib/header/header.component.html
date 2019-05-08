@@ -15,6 +15,7 @@
         </button>
       </div>
       <div>
+        <sb-notification *ngIf="showNotificationButton" badgeBorderColor="#008938"></sb-notification>
         <ng-content></ng-content>
       </div>
     </mat-toolbar-row>
