@@ -100,7 +100,6 @@ export class DataTableComponent implements OnInit {
   }
 
   onPageChange(paging) {
-    console.log(paging);
     this.onPageChangeEmitter.emit(paging);
   }
 
