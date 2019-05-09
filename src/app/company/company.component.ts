@@ -7,10 +7,16 @@ import { ToastrService } from 'projects/subway-framework/src/lib/toastr/toastr.s
 import {
   ColumnNameTypes,
   DataTableColumnNamesInterface
-} from 'projects/subway-framework/src/lib/data-table/data-table.component';
+} from 'projects/subway-framework/src/lib/data-table/data-table-config';
 
-const ELEMENT_DATA = [
-  {
+
+
+const ELEMENT_DATA = {
+  currentPage: 1,
+  pageSize: 10,
+  rowCount: 4,
+  total: 4,
+  results: [{
     grupo: 'grupo1',
     razaoSocial: 'Empresa XPTO',
     emailResponsavel: 'gomes_a@subway.com',
@@ -57,8 +63,8 @@ const ELEMENT_DATA = [
     timeZone: 'E. South America Standard Time',
     teste: 'true',
     id: 4
-  }
-];
+  }]
+};
 
 const namesColumn: DataTableColumnNamesInterface[] = [
   { columnNameApi: 'id', displayName: 'Id', type: ColumnNameTypes.actions },
@@ -245,7 +251,9 @@ export class CompanyComponent implements OnInit {
     nao: { background: '#eaeaea', color: 'black' }
   };
 
-  private count = 1;
+  contentLength;
+
+  private count = 4;
 
   constructor(
     private _companyService: CompanyService,
@@ -318,6 +326,30 @@ export class CompanyComponent implements OnInit {
 
   ngAfterViewInit() {
     this.dataTableService.setInputData(ELEMENT_DATA);
+  }
+
+  addItem() {
+
+    console.log('element 1: ', ELEMENT_DATA);
+    ELEMENT_DATA.results.push({
+      grupo: 'TESTE',
+      razaoSocial: 'Empresa XPTO',
+      emailResponsavel: 'gomes_a@subway.com',
+      dataCadastro: '2019-03-31T00:00:00',
+      cnpj: '82748758000177',
+      status: 1,
+      active: true,
+      timeZone: 'E. South America Standard Time',
+      teste: 'false',
+      id: ELEMENT_DATA.results.length + 1
+    });
+
+    ELEMENT_DATA.rowCount += 1;
+
+    this.dataTableService.setInputData(ELEMENT_DATA);
+    // ELEMENTDATA.total_count += 1;
+    // console.log('element 2: ', ELEMENTDATA);
+    // console.log('data 2: ', this.data);
   }
 
   getPaging(element) {

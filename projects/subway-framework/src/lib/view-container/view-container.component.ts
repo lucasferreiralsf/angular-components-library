@@ -10,7 +10,7 @@ import {
   DataTableActionsInterface,
   DataTableColumnNamesInterface,
   DataTableTopActionButtonInterface
-} from '../data-table/data-table.component';
+} from '../data-table/data-table-config';
 
 @Component({
   selector: 'sb-view-container',
@@ -25,17 +25,15 @@ export class ViewContainerComponent implements OnInit {
   @Input() topActionButtons: DataTableTopActionButtonInterface[] = [];
   @Input() columnNameToDisplayOnDelete;
   @Input() snackBarAutoHideTime;
-  @Input() pageSize;
-  @Input() length;
   @Input() pageSizeOptions;
 
-  @Output() getPagingEmit = new EventEmitter();
+  @Output() onPageChangeEmitter = new EventEmitter();
 
   constructor() {}
 
   ngOnInit() {}
 
-  getPaging(element) {
-    this.getPagingEmit.emit(element);
+  onPageChange(pageOptions) {
+    this.onPageChangeEmitter.emit(pageOptions);
   }
 }

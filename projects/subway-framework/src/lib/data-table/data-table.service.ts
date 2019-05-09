@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
-import { DataTableInputDataInterface } from './data-table.component';
+import { DataTableInputDataInterface } from './data-table-config';
 
 @Injectable({
   providedIn: 'root'

@@ -107,7 +107,7 @@ export class AppComponent implements OnInit {
 
     this.notificationService.notificationClickEmitter.subscribe((notification: Notification) => {
       if (notification.isVisualized == false) {
-        this.setNotificationChecked(notification);
+        this.notificationService.checkOneNotification(notification);
       }
     });
 

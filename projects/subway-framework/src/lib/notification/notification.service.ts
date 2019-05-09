@@ -43,6 +43,14 @@ export class NotificationService {
     this.setNotificationQtd(this.getNotificationQtd(this.notifications));
   }
 
+  checkOneNotification(notification: Notification) {
+    const notificationsIds = this.notifications.map(e => e.id);
+    const indexNotification = notificationsIds.indexOf(notification.id);
+    notification.isVisualized = true;
+    this.notifications.splice(indexNotification, 1, notification);
+    this.setNotificationQtd(this.getNotificationQtd(this.notifications));
+  }
+
   onNotificationClick(notification: Notification) {
     this.notificationClickEmitter.emit(notification);
   }

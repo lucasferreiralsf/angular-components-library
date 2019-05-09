@@ -3,16 +3,16 @@
   <button (click)="showToast('info')">info</button>
   <button (click)="showToast('warning')">warning</button>
   <button (click)="showToast('clear')">clear</button>
+  <button (click)="addItem()">Add</button>
   <sb-view-container
     [columnNames]="columnNames"
     [actions]="actions"
     snackBarAutoHideTime="3000"
     [topActionButtons]="topActions"
     [columnNameToDisplayOnDelete]="columnNameToDisplayOnDelete"
-    (getPagingEmit)="getPaging($event)"
-    [pageSizeOptions]="[5, 10, 25, 100]"
-    length="100"
-    pageSize="10"
+    (onPageChangeEmitter)="getPaging($event)"
+    [pageSizeOptions]="[5, 10, 27, 100]"
+
     [tableSelectColumn]="false"
   >
     <sb-mat-form-field

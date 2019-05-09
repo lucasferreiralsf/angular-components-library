@@ -15,7 +15,8 @@ import {
   MatPaginator,
   MatSnackBar,
   MatSnackBarConfig,
-  PageEvent
+  PageEvent,
+  MatTable
 } from '@angular/material';
 import { DataTableService } from './data-table.service';
 import { map } from 'rxjs/operators';
@@ -23,54 +24,7 @@ import { PopoverDeleteService } from './popover-delete/popover-delete.service';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { flipInX, flipOutX } from 'ng-animate';
 import { CpfCnpjPipe } from '../pipes/cpf-cnpj.pipe';
-
-export interface DataTableColumnNamesInterface {
-  columnNameApi: string;
-  displayName: string;
-  type: ColumnNameTypes;
-  enumDisplayName?: EnumDisplayName[];
-}
-
-export interface EnumDisplayName {
-  elementName: any;
-  displayName: string;
-  colors: { background: string; color: string };
-}
-
-export enum ColumnNameTypes {
-  'yes_no',
-  'true_false',
-  'status',
-  'cpf',
-  'cnpj',
-  'cpf_cnpj',
-  'date',
-  'select',
-  'actions',
-  'default'
-}
-
-export interface DataTableInputDataInterface {
-  id: number;
-  actions: DataTableActionsInterface;
-}
-
-export interface DataTableActionsInterface {
-  actionName: string;
-  actionDescription: string;
-  actionIcon: string;
-  actionFunction: any;
-  isDelete?: boolean;
-  isDeleteTitle?: string;
-  isDeleteDescription?: string;
-}
-
-export interface DataTableTopActionButtonInterface {
-  actionName: string;
-  eventSlug: string;
-  buttonType: string;
-  buttonColor?: string;
-}
+import { DataTableColumnNamesInterface, DataTableActionsInterface, DataType, DataTableTopActionButtonInterface, ColumnNameTypes } from './data-table-config';
 
 @Component({
   selector: 'sb-data-table',
@@ -99,17 +53,17 @@ export class DataTableComponent implements OnInit {
   @Input() selectColumn = false;
   @Input() columnNames: DataTableColumnNamesInterface[] = [];
   @Input() actions: DataTableActionsInterface[] = [];
-  @Input() inputData: DataTableInputDataInterface[] = [];
+  @Input() inputData: DataType = { results: []};
   @Input() topActionButtons: DataTableTopActionButtonInterface[] = [];
   @Input() columnNameToDisplayOnDelete: string[];
   @Input() snackBarAutoHideTime: number;
-  @Input() pageEvent: PageEvent;
-  @Input() pageSize;
-  @Input() length;
+  pageSize;
+  length;
   @Input() pageSizeOptions;
 
-  @Output() getPagingEmit = new EventEmitter();
+  @Output() onPageChangeEmitter = new EventEmitter();
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatTable) tableDataSource: MatTable<any>;
 
   data: MatTableDataSource<any>;
   displayedColumns = [];
@@ -139,29 +93,45 @@ export class DataTableComponent implements OnInit {
     this.dataTableService.inputDataEmitter.subscribe(inputData => {
       this.load(inputData);
     });
-  }
 
-  getPaging(paging) {
-    this.getPagingEmit.emit(paging);
-  }
-
-  load(inputData) {
-    this.inputData = inputData;
-    this.data = this.dataTableService.setDataSource(this.inputData);
-    this.noData = this.data.connect().pipe(map(data => data.length === 0));
-    this.data.paginator = this.paginator;
-    Object.assign(
-      this.columnsNameApi,
-      this.columnNames.map(e =>
-        Object.assign({}, { name: e.columnNameApi, type: e.type })
-      )
-    );
-
-    this.displayColumns();
-    this.addActionsToData();
     this.popoverService.buttonClickEmitter.subscribe(event => {
       this.buttonRowClick(event.event, event.element);
     });
+  }
+
+  onPageChange(paging) {
+    console.log(paging);
+    this.onPageChangeEmitter.emit(paging);
+  }
+
+  load(inputData: DataType) {
+
+    if( this.columnsToDisplay.length == 0) {
+      Object.assign(
+        this.columnsNameApi,
+        this.columnNames.map(e =>
+          Object.assign({}, { name: e.columnNameApi, type: e.type })
+        )
+      );
+
+      this.displayColumns();
+    }
+    this.setData(inputData);
+    this.addActionsToData();
+
+  }
+
+  setData(data: DataType) {
+    this.inputData = data;
+    this.data = this.dataTableService.setDataSource(this.inputData.results);
+    this.length = this.inputData.rowCount;
+    this.pageSize = this.inputData.pageSize;
+    this.noData = this.data.connect().pipe(map(data => data.length === 0));
+
+    if(this.data.data.length > 0) {
+      this.tableDataSource.renderRows();
+    }
+    // this.data.paginator = this.paginator;
   }
 
   filterLimparButtonClick() {
@@ -271,7 +241,7 @@ export class DataTableComponent implements OnInit {
   }
 
   removeRow(item) {
-    const idInputData = this.inputData.map(e => e.id);
+    const idInputData = this.inputData.results.map(e => e.id);
     this.indexElementRemoved = idInputData.findIndex(
       (element, index, array) => element === item
     );
@@ -279,12 +249,15 @@ export class DataTableComponent implements OnInit {
     if (idInputData.find((element, index, array) => element == item) == item) {
       this.dataTableService.data.data.splice(this.indexElementRemoved, 1);
       this.dataTableService.data.data = this.dataTableService.data.data;
+      this.length = this.length - 1;
+
     }
   }
 
   rollbackRow(item) {
     this.dataTableService.data.data.splice(this.indexElementRemoved, 0, item);
     this.dataTableService.data.data = this.dataTableService.data.data;
+    this.length = this.length + 1;
   }
 
   addActionsToData() {
@@ -311,7 +284,7 @@ export class DataTableComponent implements OnInit {
       this.addSelectToDisplayedColumns();
     }
 
-    if (this.actions.length >= 0) {
+    if (this.actions.length > 0) {
       this.addActionsToDisplayedColumns();
     }
   }

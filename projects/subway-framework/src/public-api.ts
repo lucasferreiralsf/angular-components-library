@@ -25,6 +25,7 @@ export * from './lib/view-edit-container/view-edit-container.component';
 export * from './lib/header/header.component';
 export * from './lib/side-nav/side-nav.component';
 export * from './lib/data-table/data-table.component';
+export * from './lib/data-table/data-table-config';
 export * from './lib/toastr/toastr.component';
 export * from './lib/toastr/toastr-config';
 export * from './lib/notification/notification.component';
