@@ -3,7 +3,6 @@ import {
   OnInit,
   Input,
   ViewChild,
-  Renderer2,
   EventEmitter,
   Output,
   ChangeDetectorRef,
@@ -15,7 +14,6 @@ import {
   MatPaginator,
   MatSnackBar,
   MatSnackBarConfig,
-  PageEvent,
   MatTable
 } from '@angular/material';
 import { DataTableService } from './data-table.service';
@@ -90,6 +88,20 @@ export class DataTableComponent implements OnInit {
 
   ngOnInit() {
     this.data = this.dataTableService.setDataSource(this.inputData);
+
+    if( this.columnsToDisplay.length == 0) {
+      Object.assign(
+        this.columnsNameApi,
+        this.columnNames.map(e =>
+          Object.assign({}, { name: e.columnNameApi, type: e.type })
+          )
+      );
+
+      this.displayColumns();
+      this.displayedColumns = this.columnsNameApi;
+      this.columnsToDisplay = this.displayedColumns.map(e => e.name).slice();
+    };
+
     this.dataTableService.inputDataEmitter.subscribe(inputData => {
       this.load(inputData);
     });
@@ -104,20 +116,9 @@ export class DataTableComponent implements OnInit {
   }
 
   load(inputData: DataType) {
-
-    if( this.columnsToDisplay.length == 0) {
-      Object.assign(
-        this.columnsNameApi,
-        this.columnNames.map(e =>
-          Object.assign({}, { name: e.columnNameApi, type: e.type })
-        )
-      );
-
-      this.displayColumns();
-    }
     this.setData(inputData);
-    this.addActionsToData();
-
+    if(this.actions.length > 0) this.addActionsToData();
+    this.cdRef.detectChanges();
   }
 
   setData(data: DataType) {
@@ -130,6 +131,18 @@ export class DataTableComponent implements OnInit {
     this.length = this.inputData.rowCount;
     this.pageSize = this.inputData.pageSize;
     this.noData = this.data.connect().pipe(map(data => data.length === 0));
+  }
+
+  displayColumns() {
+    if (this.selectColumn === true) {
+      const select = [{ name: 'select', type: ColumnNameTypes.select }];
+      this.columnsNameApi = select.concat(this.columnsNameApi);
+    }
+
+    if (this.actions.length > 0) {
+      const actions = [{ name: 'actions', type: ColumnNameTypes.actions }];
+      this.columnsNameApi = this.columnsNameApi.concat(actions);
+    }
   }
 
   filterLimparButtonClick() {
@@ -277,36 +290,7 @@ export class DataTableComponent implements OnInit {
       : this.data.data.forEach(row => this.selection.select(row));
   }
 
-  displayColumns() {
-    if (this.selectColumn === true) {
-      this.addSelectToDisplayedColumns();
-    }
 
-    if (this.actions.length > 0) {
-      this.addActionsToDisplayedColumns();
-    }
-  }
-
-  addSelectToDisplayedColumns() {
-    let select = [{ name: 'select', type: ColumnNameTypes.select }];
-
-    if (this.columnsNameApi && this.columnsNameApi.length !== 0) {
-      select = select.concat(this.columnsNameApi);
-      this.columnsNameApi = select;
-      this.displayedColumns = this.columnsNameApi;
-      this.columnsToDisplay = this.displayedColumns.map(e => e.name).slice();
-    }
-  }
-
-  addActionsToDisplayedColumns() {
-    const actions = [{ name: 'actions', type: ColumnNameTypes.actions }];
-
-    if (this.columnsNameApi && this.columnsNameApi.length !== 0) {
-      this.columnsNameApi = this.columnsNameApi.concat(actions);
-      this.displayedColumns = this.columnsNameApi;
-      this.columnsToDisplay = this.displayedColumns.map(e => e.name).slice();
-    }
-  }
 
   verifyNameColumn(element, type, column?) {
     if (type === 'header') {
