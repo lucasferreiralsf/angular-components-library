@@ -123,15 +123,14 @@ export class DataTableComponent implements OnInit {
 
   setData(data: DataType) {
     this.inputData = data;
-    this.data = this.dataTableService.setDataSource(this.inputData.results);
+    if(this.data) {
+      this.data.data = data.results;
+    } else {
+      this.data = this.dataTableService.setDataSource(data.results);
+    }
     this.length = this.inputData.rowCount;
     this.pageSize = this.inputData.pageSize;
     this.noData = this.data.connect().pipe(map(data => data.length === 0));
-
-    if(this.data.data.length > 0) {
-      this.tableDataSource.renderRows();
-    }
-    // this.data.paginator = this.paginator;
   }
 
   filterLimparButtonClick() {
