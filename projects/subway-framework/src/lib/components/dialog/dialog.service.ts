@@ -1,11 +1,12 @@
 import { Injectable, OnInit, EventEmitter } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DialogService implements OnInit {
   widthDialog: string;
+  minWidthDialog: string;
   dialogRefEmitter = new EventEmitter();
   confirmClick = new EventEmitter<any>();
   cancelClick = new EventEmitter<any>();
@@ -14,10 +15,10 @@ export class DialogService implements OnInit {
 
   ngOnInit() {}
 
-  openDialog(dialogComponent, data): void {
+  openDialog(dialogComponent, data, config?: MatDialogConfig): void {
     this.dialogRef = this.dialog.open(dialogComponent, {
-      width: this.widthDialog,
-      data
+      data,
+      ...config
     });
   }
 
