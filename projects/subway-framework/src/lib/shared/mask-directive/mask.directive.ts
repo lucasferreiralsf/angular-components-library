@@ -21,7 +21,6 @@ export class SbaMaskDirective implements ControlValueAccessor {
 
   ngOnInit() {
     this.control = this.injector.get(NgControl);
-    //console.log('ngControl: ', this.control);
   }
   writeValue(value: any): void {
     if (value) {
@@ -54,9 +53,12 @@ export class SbaMaskDirective implements ControlValueAccessor {
       this.onChange(valor);
       return;
     }
-
-    const pad = this.sbaMask.replace(/\D/g, '').replace(/9/g, '_');
-    if (valor.length <= pad.length) {
+    if(this.sbaMask != null && this.sbaMask.length > 0){
+      const pad = this.sbaMask.replace(/\D/g, '').replace(/9/g, '_');
+      if (valor.length <= pad.length) {
+        this.onChange(valor);
+      }
+    }else{
       this.onChange(valor);
     }
 
@@ -65,7 +67,7 @@ export class SbaMaskDirective implements ControlValueAccessor {
 
   @HostListener('blur', ['$event'])
   onBlur($event: any) {
-    if ($event.target.value.length === this.sbaMask.length) {
+    if ($event.target.value != null && this.sbaMask != null && $event.target.value.length === this.sbaMask.length) {
       this.control.control.updateValueAndValidity({
         onlySelf: true,
         emitEvent: false
@@ -87,25 +89,26 @@ export class SbaMaskDirective implements ControlValueAccessor {
    * @return string
    */
   aplicarMascara(valor: string): string {
-    valor = valor.replace(/\D/g, '');
-    const pad = this.sbaMask.replace(/\D/g, '').replace(/9/g, '_');
-    const valorMask = valor + pad.substring(0, pad.length - valor.length);
-    let valorMaskPos = 0;
+    if(this.sbaMask != null && this.sbaMask.length > 0){
+      valor = valor.replace(/\D/g, '');
+      const pad = this.sbaMask.replace(/\D/g, '').replace(/9/g, '_');
+      const valorMask = valor + pad.substring(0, pad.length - valor.length);
+      let valorMaskPos = 0;
 
-    valor = '';
-    for (let i = 0; i < this.sbaMask.length; i++) {
-      // tslint:disable-next-line: radix
-      if (isNaN(parseInt(this.sbaMask.charAt(i)))) {
-        valor += this.sbaMask.charAt(i);
-      } else {
-        valor += valorMask[valorMaskPos++];
+      valor = '';
+      for (let i = 0; i < this.sbaMask.length; i++) {
+        // tslint:disable-next-line: radix
+        if (isNaN(parseInt(this.sbaMask.charAt(i)))) {
+          valor += this.sbaMask.charAt(i);
+        } else {
+          valor += valorMask[valorMaskPos++];
+        }
+      }
+
+      if (valor.indexOf('_') > -1) {
+        valor = valor.substr(0, valor.indexOf('_'));
       }
     }
-
-    if (valor.indexOf('_') > -1) {
-      valor = valor.substr(0, valor.indexOf('_'));
-    }
-
     return valor;
   }
 }

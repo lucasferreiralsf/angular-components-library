@@ -6,15 +6,15 @@ import { CnpjPipe } from './cnpj.pipe';
   name: 'cpfCnpj'
 })
 export class CpfCnpjPipe implements PipeTransform {
-  private kzCpfPipe: CpfPipe;
-  private kzCnpjPipe: CnpjPipe;
+  private CpfPipe: CpfPipe;
+  private CnpjPipe: CnpjPipe;
 
   /**
    * Construtor da classe.
    */
   constructor() {
-    this.kzCpfPipe = new CpfPipe();
-    this.kzCnpjPipe = new CnpjPipe();
+    this.CpfPipe = new CpfPipe();
+    this.CnpjPipe = new CnpjPipe();
   }
 
   /**
@@ -33,9 +33,9 @@ export class CpfCnpjPipe implements PipeTransform {
     const cpfCnpjValor = cpfCnpj.replace(/\D/g, '');
 
     if (cpfCnpjValor.length === 11) {
-      cpfCnpj = this.kzCpfPipe.transform(cpfCnpjValor);
+      cpfCnpj = this.CpfPipe.transform(cpfCnpjValor);
     } else if (cpfCnpjValor.length === 14) {
-      cpfCnpj = this.kzCnpjPipe.transform(cpfCnpjValor);
+      cpfCnpj = this.CnpjPipe.transform(cpfCnpjValor);
     }
 
     return cpfCnpj;

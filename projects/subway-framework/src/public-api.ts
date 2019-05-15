@@ -38,3 +38,6 @@ export * from './lib/shared/cpf-cnpj-mask/cpf-cnpj.directive';
 export * from './lib/shared/mask-directive/mask.directive';
 export * from './lib/shared/phone-br/phone-br.directive';
 
+/* PIPES */
+export * from './lib/pipes/index';
+
