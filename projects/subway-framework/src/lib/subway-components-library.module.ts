@@ -38,6 +38,7 @@ import { TelefonePipe } from './pipes/telefone.pipe';
 import { CepPipe } from './pipes/cep.pipe';
 import { CpfCnpjDirective } from './shared/cpf-cnpj-mask/cpf-cnpj.directive';
 import { SbaMaskDirective } from './shared/mask-directive/mask.directive';
+import { PhoneBrDirective } from './shared/phone-br/phone-br.directive';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
 
@@ -71,7 +72,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
     TelefonePipe,
     CepPipe,
     CpfCnpjDirective,
-    SbaMaskDirective
+    SbaMaskDirective,
+    PhoneBrDirective
   ],
   imports: [
     ReactiveFormsModule,
@@ -102,7 +104,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
     TelefonePipe,
     CepPipe,
     CpfCnpjDirective,
-    SbaMaskDirective
+    SbaMaskDirective,
+    PhoneBrDirective
   ],
   providers: [
     {
