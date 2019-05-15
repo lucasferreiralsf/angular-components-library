@@ -34,6 +34,10 @@ import { PopoverDirective } from './components/popover/popover.directive';
 import { NotificationDirective } from './notification/notification.directive';
 import { NotificationModalComponent } from './notification/notification-modal/notification-modal.component';
 import { SafePipe } from './pipes/sanitization.pipe';
+import { TelefonePipe } from './pipes/telefone.pipe';
+import { CepPipe } from './pipes/cep.pipe';
+import { CpfCnpjDirective } from './shared/cpf-cnpj-mask/cpf-cnpj.directive';
+import { SbaMaskDirective } from './shared/mask-directive/mask.directive';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
 
@@ -63,7 +67,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
     NotificationDirective,
     PopoverDirective,
     NotificationModalComponent,
-    SafePipe
+    SafePipe,
+    TelefonePipe,
+    CepPipe,
+    CpfCnpjDirective,
+    SbaMaskDirective
   ],
   imports: [
     ReactiveFormsModule,
@@ -90,7 +98,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
     PopoverComponent,
     NotificationComponent,
     NotificationDirective,
-    SafePipe
+    SafePipe,
+    TelefonePipe,
+    CepPipe,
+    CpfCnpjDirective,
+    SbaMaskDirective
   ],
   providers: [
     {
