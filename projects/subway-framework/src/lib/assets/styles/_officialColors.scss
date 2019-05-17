@@ -117,19 +117,20 @@ $mat-subway-red: (
 $mat-subway: (
   primary: map-get($mat-subway-green, 500),
   primary-hover: map-get($mat-subway-green, 800),
-  yellow: map-get($mat-subway-yellow, 600),
+  yellow: #ffca05,
   yellow-hover: map-get($mat-subway-yellow, 800),
   light-gray: #C2C2C2,
   gray-100: #F5F5F5,
   gray-300: #E6E6E6,
   gray-600: #757575,
   dark-gray: #373737,
-  red: map-get($mat-subway-red, 500),
+  red: #ce0000,
   red-hover: map-get($mat-subway-red, 900),
   purple:  #650089,
-  blue: #0066FF,
+  blue: #006bb3,
   white: #FFFFFF,
   black: #161616,
+  green: #009e0d
 );
 
 $color-status: (
@@ -138,7 +139,7 @@ $color-status: (
   inativo: map-get($mat-subway, gray-600),
   cancelado: map-get($mat-subway, dark-gray),
   denegado: map-get($mat-subway, purple),
-  contingencia: map-get($mat-subway, blue),
+  contingencia: map-get($mat-subway, #006bb3),
   erro: map-get($mat-subway, red),
   pendente: map-get($mat-subway,yellow),
   emitida_nao_eletronica: map-get($mat-subway, primary),
@@ -149,7 +150,10 @@ $color-status: (
   nao_confirmado: map-get($mat-subway,yellow),
   confirmado: map-get($mat-subway, primary),
   notExistsNF: map-get($mat-subway, red),
-
+  error: map-get($mat-subway, red),
+  info: map-get($mat-subway, blue),
+  success: map-get($mat-subway, green),
+  warning: map-get($mat-subway, yellow),
 );
 
 @function sb-mat-light-theme-foreground($color) {

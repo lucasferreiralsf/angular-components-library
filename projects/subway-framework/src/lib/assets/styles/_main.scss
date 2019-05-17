@@ -29,3 +29,40 @@ mat-nav-list .mat-nav-list-individual .mat-list-item-content {
 .notification-tab-group > .mat-tab-body-wrapper > .mat-tab-body > .mat-tab-body-content {
   overflow: hidden !important;
 }
+
+
+/* TOASTR COLORS */
+.background-success {
+  background: map-get($color-status, success);
+}
+
+.background-info {
+  background: map-get($color-status, info);
+}
+
+.background-warning {
+  background: map-get($color-status, warning);
+}
+
+.background-error {
+  background: map-get($color-status, error);
+}
+
+.color-success {
+  color: map-get($color-status, success);
+}
+
+.color-info {
+  color: map-get($color-status, info);
+}
+
+.color-warning {
+  color: map-get($color-status, warning);
+}
+
+.color-error {
+  color: map-get($color-status, error);
+}
+
+
+/* END TOASTR COLORS */

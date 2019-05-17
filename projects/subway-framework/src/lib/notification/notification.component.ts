@@ -170,16 +170,16 @@ export class NotificationComponent implements OnInit {
     switch (notification.type) {
       case AlertType.Success:
         this.iconNotification = 'check_circle';
-        return 'notification-success';
+        return 'color-success';
       case AlertType.Error:
         this.iconNotification = 'error';
-        return 'notification-error';
+        return 'color-error';
       case AlertType.Info:
         this.iconNotification = 'info';
-        return 'notification-info';
+        return 'color-info';
       case AlertType.Warning:
         this.iconNotification = 'warning';
-        return 'notification-warning';
+        return 'color-warning';
     }
   }
 

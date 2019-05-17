@@ -67,16 +67,16 @@ export class ToastrComponent implements OnInit {
     switch (alert.type) {
       case AlertType.Success:
         this.iconType = 'check_circle';
-        return 'toast-success';
+        return 'background-success';
       case AlertType.Error:
         this.iconType = 'error';
-        return 'toast-error';
+        return 'background-error';
       case AlertType.Info:
         this.iconType = 'info';
-        return 'toast-info';
+        return 'background-info';
       case AlertType.Warning:
         this.iconType = 'warning';
-        return 'toast-warning';
+        return 'background-warning';
     }
   }
 

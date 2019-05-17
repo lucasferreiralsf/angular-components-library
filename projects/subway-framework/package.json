@@ -1,7 +1,7 @@
 {
   "name": "@subway/angular-frontend-library",
   "author": "Lucas Ferreira",
-  "version": "1.0.31",
+  "version": "1.0.33",
   "description": "This is a set of custom angular components to easy the development of any Subway frontend project.",
   "keywords" :["Angular","Library", "Subway"],
   "license" : "SEE LICENSE IN LICENSE",
