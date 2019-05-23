@@ -102,7 +102,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
     CepPipe,
     CpfCnpjDirective,
     SbaMaskDirective,
-    PhoneBrDirective
+    PhoneBrDirective,
+    NotificationModalComponent
   ],
   providers: [
     {
