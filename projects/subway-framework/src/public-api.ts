@@ -29,10 +29,10 @@ export * from './lib/data-table/data-table-config';
 export * from './lib/toastr/toastr.component';
 export * from './lib/toastr/toastr-config';
 export * from './lib/notification/notification.component';
+export * from './lib/notification/notification-modal/notification-modal.component';
 export * from './lib/notification/notification-config';
 
 /* DIRECTIVES */
-export * from './lib/header/header.directive';
 export * from './lib/notification/notification.directive';
 export * from './lib/shared/cpf-cnpj-mask/cpf-cnpj.directive';
 export * from './lib/shared/mask-directive/mask.directive';

@@ -18,7 +18,6 @@ import { PortalModule } from '@angular/cdk/portal';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SideNavComponent } from './side-nav/side-nav.component';
-import { HeaderDirective } from './header/header.directive';
 import {
   PerfectScrollbarModule,
   PERFECT_SCROLLBAR_CONFIG,
@@ -57,7 +56,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
     ViewEditContainerComponent,
     MatTabComponent,
     HeaderComponent,
-    HeaderDirective,
     SideNavComponent,
     ToastrComponent,
     CnpjPipe,
@@ -91,7 +89,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
     ViewEditContainerComponent,
     DialogComponent,
     HeaderComponent,
-    HeaderDirective,
     SideNavComponent,
     ToastrComponent,
     CnpjPipe,
