@@ -118,12 +118,12 @@ export class AppComponent implements OnInit {
 
   }
 
-  setNotificationChecked(notification: Notification) {
+  /* setNotificationChecked(notification: Notification) {
     const notificationsIds = NOTIFICATIONSTESTE.map(e => e.id);
     const indexNotification = notificationsIds.indexOf(notification.id);
     notification.isVisualized = true;
     NOTIFICATIONSTESTE.splice(indexNotification, 1, notification);
-  }
+  } */
 
   changeColorTheme(colorTheme: string) {
     if (colorTheme === 'dark') {

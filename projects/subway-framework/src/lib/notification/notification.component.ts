@@ -70,7 +70,7 @@ export class NotificationComponent implements OnInit {
   viewNotificationContent: boolean;
   hasNotificationCheckAllButton: boolean;
   iconNotification: string;
-  notifications: Notification[];
+  notifications: Notification[] = [];
 
   @Input() isRenderSidenav: boolean;
   notificationContent: ElementRef;
