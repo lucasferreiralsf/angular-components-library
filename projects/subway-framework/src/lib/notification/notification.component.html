@@ -12,7 +12,7 @@
     class="div-container-popover mat-elevation-z4 arrowBoxTop">
     <mat-tab-group class="notification-tab-group">
       <mat-tab label="Não Visualizado">
-        <div style="overflow: hidden">
+        <div style="overflow: hidden; width: 100%;">
           <perfect-scrollbar style="max-height: 72vh" *ngIf="showListNotification(1, 1)">
             <mat-list style="padding-top: 0;">
               <div *ngFor="let notification of notifications">
@@ -43,7 +43,7 @@
         </div>
       </mat-tab>
       <mat-tab label="Visualizado">
-        <div style="overflow: hidden">
+        <div style="overflow: hidden; width: 100%;">
           <perfect-scrollbar style="max-height: 72vh" *ngIf="showListNotification(2, 1)">
             <mat-list style="padding-top: 0;">
               <div *ngFor="let notification of notifications">

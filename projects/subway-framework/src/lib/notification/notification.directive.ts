@@ -6,7 +6,7 @@ import { NotificationService } from './notification.service';
 })
 export class NotificationDirective implements OnInit {
 
-  @Input() showCheckAllButton: boolean;
+  @Input() showCheckAllButton: {backend?: boolean} | boolean;
 
   constructor(private notificationService: NotificationService) {
     notificationService.showNotificationButton(true);
@@ -14,7 +14,11 @@ export class NotificationDirective implements OnInit {
 
   ngOnInit() {
     if (this.showCheckAllButton) {
-      this.notificationService.showNotificationCheckAllButton(true);
+      if(Object.values(this.showCheckAllButton)) {
+        this.notificationService.showNotificationCheckAllButton(true, this.showCheckAllButton['backend']);
+      } else {
+        this.notificationService.showNotificationCheckAllButton(true);
+      }
     }
   }
 

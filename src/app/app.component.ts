@@ -1,9 +1,13 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { SidenavService } from 'projects/subway-framework/src/lib/side-nav/sidenav.service';
+/* import { SidenavService } from 'projects/subway-framework/src/lib/side-nav/sidenav.service';
 import { NotificationService } from 'projects/subway-framework/src/lib/notification/notification.service';
 import { AlertType } from 'projects/subway-framework/src/public-api';
-import { Notification } from 'projects/subway-framework/src/lib/notification/notification-config';
+import { Notification } from 'projects/subway-framework/src/lib/notification/notification-config'; */
+import {
+  SidenavService, NotificationService, AlertType,
+  Notification,
+} from 'dist/subway-framework';
 
 const NOTIFICATIONSTESTE: Notification[] = [
   {
@@ -75,7 +79,8 @@ const NOTIFICATIONSTESTE: Notification[] = [
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: []
 })
 export class AppComponent implements OnInit {
   title = 'subway-angular-framework';
@@ -105,16 +110,22 @@ export class AppComponent implements OnInit {
       this.isHideToggle = e;
     });
 
+    this.notificationService.showNotificationButton(true);
     this.notificationService.notificationClickEmitter.subscribe((notification: Notification) => {
       if (notification.isVisualized == false) {
-        this.notificationService.checkOneNotification(notification);
+        // this.notificationService.checkOneNotification(notification);
       }
+    });
+
+    this.notificationService.checkAllNotificationsEmitter.subscribe(() => {
+      console.log('checkAllClick');
     });
 
   }
 
   ngAfterViewInit() {
     this.notificationService.setNotifications(NOTIFICATIONSTESTE);
+    // this.notificationService.setNotificationQtd('20');
 
   }
 

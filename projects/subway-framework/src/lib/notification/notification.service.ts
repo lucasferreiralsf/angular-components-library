@@ -8,11 +8,14 @@ export class NotificationService {
   showNotificationsButtonEmitter = new EventEmitter<any>();
   hasNotificationButton: boolean;
   hasNotificationCheckAllButton: boolean;
+  isBackend: boolean;
   notifications: Notification[];
   notificationQtdEmitter = new EventEmitter<string>(true);
   addNotificationEmitter = new EventEmitter<Notification>(true);
   setNotificationsEmitter = new EventEmitter<Notification[]>(true);
   notificationClickEmitter = new EventEmitter<Notification>(true);
+  checkOneNotificationEmitter = new EventEmitter<Notification>(true);
+  checkAllNotificationsEmitter = new EventEmitter(true);
   closeNotificationsComponentEmitter = new EventEmitter(true);
 
   constructor() { }
@@ -38,17 +41,25 @@ export class NotificationService {
   }
 
   checkAllNotifications() {
-    this.notifications.forEach(e => e.isVisualized = true);
-    this.setNotifications(this.notifications);
-    this.setNotificationQtd(this.getNotificationQtd(this.notifications));
+    if (this.isBackend === false) {
+      this.notifications.forEach(e => e.isVisualized = true);
+      this.setNotifications(this.notifications);
+      this.setNotificationQtd(this.getNotificationQtd(this.notifications));
+    } else {
+      this.checkAllNotificationsEmitter.emit();
+    }
   }
 
-  checkOneNotification(notification: Notification) {
-    const notificationsIds = this.notifications.map(e => e.id);
-    const indexNotification = notificationsIds.indexOf(notification.id);
-    notification.isVisualized = true;
-    this.notifications.splice(indexNotification, 1, notification);
-    this.setNotificationQtd(this.getNotificationQtd(this.notifications));
+  checkOneNotification(notification: Notification, backend: boolean = true) {
+    if (backend === false) {
+      const notificationsIds = this.notifications.map(e => e.id);
+      const indexNotification = notificationsIds.indexOf(notification.id);
+      notification.isVisualized = true;
+      this.notifications.splice(indexNotification, 1, notification);
+      this.setNotificationQtd(this.getNotificationQtd(this.notifications));
+    } else {
+      this.checkOneNotificationEmitter.emit(notification);
+    }
   }
 
   onNotificationClick(notification: Notification) {
@@ -69,8 +80,9 @@ export class NotificationService {
     this.closeNotificationsComponentEmitter.emit();
   }
 
-  showNotificationCheckAllButton(e: boolean) {
-    this.hasNotificationCheckAllButton = e;
+  showNotificationCheckAllButton(show: boolean, backend = true) {
+    this.hasNotificationCheckAllButton = show;
+    this.isBackend = backend;
   }
 
 }

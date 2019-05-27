@@ -16,13 +16,18 @@ import {
 import { AppRoutingModule } from './app-routing.module';
 import { CompanyComponent } from './company/company.component';
 import { CompanyViewEditComponent } from './company/company-view-edit/company-view-edit.component';
-import { SubwayComponentsLibraryModule } from 'projects/subway-framework/src/lib/subway-components-library.module';
-import { ToastrService } from 'projects/subway-framework/src/lib/toastr/toastr.service';
 import {
+  SubwayComponentsLibraryModule, ToastrService, defaultToastConfig,
+  TOAST_CONFIG_TOKEN,
+  ToastConfig,
+  NotificationService
+} from 'dist/subway-framework';
+// import { ToastrService } from 'projects/subway-framework/src/lib/toastr/toastr.service';
+/* import {
   defaultToastConfig,
   TOAST_CONFIG_TOKEN,
   ToastConfig
-} from 'projects/subway-framework/src/lib/toastr/toastr-config';
+} from 'projects/subway-framework/src/lib/toastr/toastr-config'; */
 import { registerLocaleData } from '@angular/common';
 import localept from '@angular/common/locales/pt';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -67,4 +72,4 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {};
   entryComponents: [CompanyViewEditComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

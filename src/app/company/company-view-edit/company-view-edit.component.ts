@@ -1,7 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { DialogService } from 'projects/subway-framework/src/lib/components/dialog/dialog.service';
-
+// import { DialogService } from 'projects/subway-framework/src/lib/components/dialog/dialog.service';
+import {
+  DialogService
+} from 'dist/subway-framework';
 @Component({
   selector: 'app-company-view-edit',
   templateUrl: './company-view-edit.component.html',
@@ -13,7 +15,7 @@ export class CompanyViewEditComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
     private dialogService: DialogService,
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.dialogService.dialogRefEmitter.subscribe(dialogRef => {
@@ -33,7 +35,7 @@ export class CompanyViewEditComponent implements OnInit {
   closeDialog() {
     this.dialogRef = this.dialogService.getDialogRef();
     this.dialogRef.close();
-    this.dialogRef.afterClosed().subscribe(() => {console.log('AFTER CLOSED')})
+    this.dialogRef.afterClosed().subscribe(() => { console.log('AFTER CLOSED') })
   }
 
 }
