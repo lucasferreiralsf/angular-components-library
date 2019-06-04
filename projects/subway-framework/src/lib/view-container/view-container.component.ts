@@ -26,6 +26,8 @@ export class ViewContainerComponent implements OnInit {
   @Input() columnNameToDisplayOnDelete;
   @Input() snackBarAutoHideTime;
   @Input() pageSizeOptions;
+  @Input() pageSize;
+  @Input() length;
 
   @Output() onPageChangeEmitter = new EventEmitter();
 

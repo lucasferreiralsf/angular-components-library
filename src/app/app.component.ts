@@ -1,13 +1,13 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
-/* import { SidenavService } from 'projects/subway-framework/src/lib/side-nav/sidenav.service';
+import { SidenavService } from 'projects/subway-framework/src/lib/side-nav/sidenav.service';
 import { NotificationService } from 'projects/subway-framework/src/lib/notification/notification.service';
 import { AlertType } from 'projects/subway-framework/src/public-api';
-import { Notification } from 'projects/subway-framework/src/lib/notification/notification-config'; */
-import {
+import { Notification } from 'projects/subway-framework/src/lib/notification/notification-config';
+/* import {
   SidenavService, NotificationService, AlertType,
   Notification,
-} from 'dist/subway-framework';
+} from 'dist/subway-framework'; */
 
 const NOTIFICATIONSTESTE: Notification[] = [
   {

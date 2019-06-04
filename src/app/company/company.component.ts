@@ -1,16 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CompanyViewEditComponent } from './company-view-edit/company-view-edit.component';
 import { CompanyService } from './company.service';
-/* import { DataTableService } from 'projects/subway-framework/src/lib/data-table/data-table.service';
+import { DataTableService } from 'projects/subway-framework/src/lib/data-table/data-table.service';
 import { DialogService } from 'projects/subway-framework/src/lib/components/dialog/dialog.service';
 import { ToastrService } from 'projects/subway-framework/src/lib/toastr/toastr.service';
 import {
   ColumnNameTypes,
   DataTableColumnNamesInterface
-} from 'projects/subway-framework/src/lib/data-table/data-table-config'; */
-import {
+} from 'projects/subway-framework/src/lib/data-table/data-table-config';
+/* import {
   DialogService, DataTableService, ToastrService, ColumnNameTypes, DataTableColumnNamesInterface
-} from 'dist/subway-framework';
+} from 'dist/subway-framework'; */
 
 
 const ELEMENT_DATA = {

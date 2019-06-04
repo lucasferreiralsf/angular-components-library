@@ -23,8 +23,9 @@ export class DataTableService implements OnInit {
 
   ngOnInit() {}
 
-  setPageSizeOptions() {
-
+  setPageSizeAndLength(pageSize, length) {
+    this.pageSizeEmitter.emit(pageSize);
+    this.lengthEmitter.emit(length);
   }
 
   getData() {

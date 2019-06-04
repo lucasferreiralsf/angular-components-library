@@ -55,8 +55,8 @@ export class DataTableComponent implements OnInit {
   @Input() topActionButtons: DataTableTopActionButtonInterface[] = [];
   @Input() columnNameToDisplayOnDelete: string[];
   @Input() snackBarAutoHideTime: number;
-  pageSize;
-  length;
+  @Input() pageSize;
+  @Input() length;
   @Input() pageSizeOptions;
 
   @Output() onPageChangeEmitter = new EventEmitter();
@@ -104,6 +104,14 @@ export class DataTableComponent implements OnInit {
 
     this.dataTableService.inputDataEmitter.subscribe(inputData => {
       this.load(inputData);
+    });
+
+    this.dataTableService.lengthEmitter.subscribe(length => {
+      this.length = length;
+    });
+
+    this.dataTableService.pageSizeEmitter.subscribe(pageSize => {
+      this.pageSize = pageSize;
     });
 
     this.popoverService.buttonClickEmitter.subscribe(event => {

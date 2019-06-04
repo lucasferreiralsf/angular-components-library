@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-// import { DialogService } from 'projects/subway-framework/src/lib/components/dialog/dialog.service';
-import {
+import { DialogService } from 'projects/subway-framework/src/lib/components/dialog/dialog.service';
+/* import {
   DialogService
-} from 'dist/subway-framework';
+} from 'dist/subway-framework'; */
 @Component({
   selector: 'app-company-view-edit',
   templateUrl: './company-view-edit.component.html',
