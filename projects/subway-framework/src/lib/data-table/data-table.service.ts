@@ -13,9 +13,10 @@ export class DataTableService implements OnInit {
   afterRemoveRow = new EventEmitter();
   filterLimparEmitter = new EventEmitter();
   filterPesquisarEmitter = new EventEmitter();
-  pageSizeOptionsEmitter = new EventEmitter();
-  pageSizeEmitter = new EventEmitter();
-  lengthEmitter = new EventEmitter();
+  pageSizeOptionsEmitter = new EventEmitter(true);
+  pageSizeEmitter = new EventEmitter(true);
+  pageIndex = new EventEmitter(true);
+  lengthEmitter = new EventEmitter(true);
   data;
 
   // tslint:disable-next-line: variable-name
@@ -23,9 +24,10 @@ export class DataTableService implements OnInit {
 
   ngOnInit() {}
 
-  setPageSizeAndLength(pageSize, length) {
+  setPageOptions(pageSize, length, pageIndex = 0) {
     this.pageSizeEmitter.emit(pageSize);
     this.lengthEmitter.emit(length);
+    this.pageIndex.emit(pageIndex);
   }
 
   getData() {

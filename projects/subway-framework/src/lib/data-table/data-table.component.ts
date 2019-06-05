@@ -57,6 +57,7 @@ export class DataTableComponent implements OnInit {
   @Input() snackBarAutoHideTime: number;
   @Input() pageSize;
   @Input() length;
+  @Input() pageIndex;
   @Input() pageSizeOptions;
 
   @Output() onPageChangeEmitter = new EventEmitter();
@@ -112,6 +113,10 @@ export class DataTableComponent implements OnInit {
 
     this.dataTableService.pageSizeEmitter.subscribe(pageSize => {
       this.pageSize = pageSize;
+    });
+
+    this.dataTableService.pageIndex.subscribe(pageIndex => {
+      this.pageIndex = pageIndex;
     });
 
     this.popoverService.buttonClickEmitter.subscribe(event => {

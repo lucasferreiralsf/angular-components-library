@@ -28,6 +28,7 @@ export class ViewContainerComponent implements OnInit {
   @Input() pageSizeOptions;
   @Input() pageSize;
   @Input() length;
+  @Input() pageIndex;
 
   @Output() onPageChangeEmitter = new EventEmitter();
 

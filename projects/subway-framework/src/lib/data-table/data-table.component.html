@@ -99,5 +99,5 @@
   </div>
 
   <mat-paginator [pageSizeOptions]="pageSizeOptions" [length]="length" [pageSize]="pageSize"
-    (page)="onPageChange($event)" class="mt-10"></mat-paginator>
+    [pageIndex]="pageIndex" (page)="onPageChange($event)" class="mt-10"></mat-paginator>
 </div>
