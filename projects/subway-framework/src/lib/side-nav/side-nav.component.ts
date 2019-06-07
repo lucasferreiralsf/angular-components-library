@@ -1,10 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { HeaderService } from '../header/header.service';
 import { SidenavService } from './sidenav.service';
 
 @Component({
   selector: 'sb-side-nav',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './side-nav.component.html',
   styleUrls: ['./side-nav.component.scss'],
   animations: [
