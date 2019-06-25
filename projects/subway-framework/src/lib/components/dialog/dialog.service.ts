@@ -11,9 +11,12 @@ export class DialogService implements OnInit {
   confirmClick = new EventEmitter<any>();
   cancelClick = new EventEmitter<any>();
   dialogRef: MatDialogRef<any>;
-  constructor(public dialog: MatDialog) {}
+  showButtonsEmitter = new EventEmitter<{ cancel: boolean, confirm: boolean }>(true);
+  buttonsLabelsEmitter = new EventEmitter<{ cancel: string, confirm: string }>(true);
 
-  ngOnInit() {}
+  constructor(public dialog: MatDialog) { }
+
+  ngOnInit() { }
 
   openDialog(dialogComponent, data, config?: MatDialogConfig): void {
     this.dialogRef = this.dialog.open(dialogComponent, {
@@ -36,5 +39,13 @@ export class DialogService implements OnInit {
 
   emitCancelClick() {
     this.cancelClick.emit();
+  }
+
+  setShowButtons(cancel: boolean, confirm: boolean) {
+    this.showButtonsEmitter.emit({ cancel, confirm });
+  }
+
+  setButtonsLabels(cancel: string, confirm: string) {
+    this.buttonsLabelsEmitter.emit({ cancel, confirm });
   }
 }

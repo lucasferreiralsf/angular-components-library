@@ -302,6 +302,8 @@ export class CompanyComponent implements OnInit {
           name: 'animal teste nome',
           animal: 'animal teste'
         });
+        this.dialogService.dialogRef.componentInstance.cancelLabel = 'Fechar';
+        this.dialogService.dialogRef.componentInstance.showConfirmButton = false;
       }
     });
 

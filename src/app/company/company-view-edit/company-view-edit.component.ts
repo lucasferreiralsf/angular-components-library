@@ -11,6 +11,9 @@ import { DialogService } from 'projects/subway-framework/src/lib/components/dial
 })
 export class CompanyViewEditComponent implements OnInit {
   dialogRef: MatDialogRef<any>;
+  cancelLabel: string;
+  showCancelButton: boolean = true;
+  showConfirmButton: boolean = true;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
@@ -30,6 +33,11 @@ export class CompanyViewEditComponent implements OnInit {
     this.dialogService.cancelClick.subscribe(() => {
       this.dialogRef.close();
     });
+  }
+
+  ngAfterViewInit() {
+
+
   }
 
   closeDialog() {

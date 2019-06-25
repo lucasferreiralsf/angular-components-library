@@ -3,10 +3,12 @@
   <button mat-button (click)="closeDialog()">Fechar Modal</button>
 </ng-template>
 <ng-template #second>
-    Conteúdo da segunda aba!
+  Conteúdo da segunda aba!
 </ng-template>
 <ng-template #third>
-    Conteúdo da terceira aba!
+  Conteúdo da terceira aba!
 </ng-template>
-<sb-view-edit-container [templates]="[['primeiro', first], ['segundo', second], ['terceiro', third]]">
+<sb-view-edit-container [templates]="[['primeiro', first], ['segundo', second], ['terceiro', third]]"
+  [showCancelButton]="showCancelButton" [showConfirmButton]="showConfirmButton" [cancelLabel]="cancelLabel" confirmLabel="Confirmar"
+  >
 </sb-view-edit-container>

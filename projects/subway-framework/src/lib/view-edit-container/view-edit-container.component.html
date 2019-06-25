@@ -1,4 +1,5 @@
-<sb-dialog [typeButton]="typeButton ? typeButton : 'submit'">
+<sb-dialog [typeButton]="typeButton ? typeButton : 'submit'" [showCancelButton]="showCancelButton"
+  [showConfirmButton]="showConfirmButton" [cancelLabel]="cancelLabel" [confirmLabel]="confirmLabel">
   <mat-tab-group>
     <mat-tab #matTabTag *ngFor="let tab of templates; let index = index" [label]="tab[0]">
       <ng-container *ngTemplateOutlet="tab[1]"></ng-container>
@@ -7,5 +8,3 @@
 </sb-dialog>
 
 <!-- <ng-content></ng-content> -->
-
-
