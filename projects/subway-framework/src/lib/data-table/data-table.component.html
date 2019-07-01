@@ -70,13 +70,29 @@
         <td mat-cell *matCellDef="let element" class="table-cell padding-thtd">
           <div fxLayout fxLayoutAlign="center center">
             <div *ngFor="let buttonElement of (element.actions | keyvalue)">
-              <button mat-icon-button *ngIf="!buttonElement.value.isDelete" (click)="
+              <button mat-icon-button
+                *ngIf="!buttonElement.value.isDelete && !buttonElement.value.disabled && buttonElement.value.isVisible"
+                (click)="
                   buttonRowClick(buttonElement.value.actionName, element)
                 " matTooltip="{{ buttonElement.value.actionDescription }}">
                 <mat-icon>{{ buttonElement.value.actionIcon }}</mat-icon>
               </button>
-              <sb-popover-delete *ngIf="buttonElement.value.isDelete"
-                matTooltip="{{ buttonElement.value.actionDescription }}" [element]="element"
+              <div
+                *ngIf="!buttonElement.value.isDelete && buttonElement.value.disabled && buttonElement.value.isVisible"
+                matTooltip="{{ buttonElement.value.actionDescription }}">
+                <button mat-icon-button disabled>
+                  <mat-icon>{{ buttonElement.value.actionIcon }}</mat-icon>
+                </button>
+              </div>
+              <sb-popover-delete
+                *ngIf="buttonElement.value.isDelete && !buttonElement.value.disabled && buttonElement.value.isVisible"
+                matTooltip="{{ buttonElement.value.actionDescription }}" [element]="element" [disabled]="false"
+                popoverTitle="{{ buttonElement.value.isDeleteTitle }}" popoverDescription="{{
+                  buttonElement.value.isDeleteDescription
+                }}"></sb-popover-delete>
+              <sb-popover-delete
+                *ngIf="buttonElement.value.isDelete && buttonElement.value.disabled && buttonElement.value.isVisible"
+                matTooltip="{{ buttonElement.value.actionDescription }}" [element]="element" [disabled]="true"
                 popoverTitle="{{ buttonElement.value.isDeleteTitle }}" popoverDescription="{{
                   buttonElement.value.isDeleteDescription
                 }}"></sb-popover-delete>
@@ -98,6 +114,6 @@
     </p>
   </div>
 
-  <mat-paginator [pageSizeOptions]="pageSizeOptions" [length]="length" [pageSize]="pageSize"
-    [pageIndex]="pageIndex" (page)="onPageChange($event)" class="mt-10"></mat-paginator>
+  <mat-paginator [pageSizeOptions]="pageSizeOptions" [length]="length" [pageSize]="pageSize" [pageIndex]="pageIndex"
+    (page)="onPageChange($event)" class="mt-10"></mat-paginator>
 </div>

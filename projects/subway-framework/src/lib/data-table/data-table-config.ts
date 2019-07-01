@@ -1,17 +1,17 @@
-export interface DataTableColumnNamesInterface {
+export interface IDataTableColumnNamesInterface {
   columnNameApi: string;
   displayName: string;
-  type: ColumnNameTypes;
-  enumDisplayName?: EnumDisplayName[];
+  type: IColumnNameTypes;
+  enumDisplayName?: IEnumDisplayName[];
 }
 
-export interface EnumDisplayName {
+export interface IEnumDisplayName {
   elementName: any;
   displayName: string;
   colors: { background: string; color: string };
 }
 
-export enum ColumnNameTypes {
+export enum IColumnNameTypes {
   'yes_no',
   'true_false',
   'status',
@@ -24,29 +24,31 @@ export enum ColumnNameTypes {
   'default'
 }
 
-export interface DataType {
+export interface IDataType {
   currentPage?: number;
   pageSize?: number;
-  results: DataTableInputDataInterface[];
+  results: IDataTableInputDataInterface[];
   rowCount?: number;
   total?: number;
 }
-export interface DataTableInputDataInterface {
+export interface IDataTableInputDataInterface {
   id: number;
-  actions: DataTableActionsInterface;
+  actions: IDataTableActionsInterface;
 }
 
-export interface DataTableActionsInterface {
+export interface IDataTableActionsInterface {
   actionName: string;
   actionDescription: string;
   actionIcon: string;
   actionFunction: any;
+  disabled: boolean;
+  isVisible: boolean;
   isDelete?: boolean;
   isDeleteTitle?: string;
   isDeleteDescription?: string;
 }
 
-export interface DataTableTopActionButtonInterface {
+export interface IDataTableTopActionButtonInterface {
   actionName: string;
   eventSlug: string;
   buttonType: string;

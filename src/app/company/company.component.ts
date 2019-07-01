@@ -5,11 +5,12 @@ import { DataTableService } from 'projects/subway-framework/src/lib/data-table/d
 import { DialogService } from 'projects/subway-framework/src/lib/components/dialog/dialog.service';
 import { ToastrService } from 'projects/subway-framework/src/lib/toastr/toastr.service';
 import {
-  ColumnNameTypes,
-  DataTableColumnNamesInterface
+  IColumnNameTypes,
+  IDataTableColumnNamesInterface,
+  IDataTableActionsInterface
 } from 'projects/subway-framework/src/lib/data-table/data-table-config';
 /* import {
-  DialogService, DataTableService, ToastrService, ColumnNameTypes, DataTableColumnNamesInterface
+  DialogService, DataTableService, ToastrService, IColumnNameTypes, IDataTableColumnNamesInterface
 } from 'dist/subway-framework'; */
 
 
@@ -68,37 +69,37 @@ const ELEMENT_DATA = {
   }]
 };
 
-const namesColumn: DataTableColumnNamesInterface[] = [
-  { columnNameApi: 'id', displayName: 'Id', type: ColumnNameTypes.actions },
+const namesColumn: IDataTableColumnNamesInterface[] = [
+  { columnNameApi: 'id', displayName: 'Id', type: IColumnNameTypes.actions },
   {
     columnNameApi: 'grupo',
     displayName: 'Grupo',
-    type: ColumnNameTypes.default
+    type: IColumnNameTypes.default
   },
   {
     columnNameApi: 'cnpj',
     displayName: 'CNPJ',
-    type: ColumnNameTypes.cpf_cnpj
+    type: IColumnNameTypes.cpf_cnpj
   },
   {
     columnNameApi: 'razaoSocial',
     displayName: 'Razão Social',
-    type: ColumnNameTypes.actions
+    type: IColumnNameTypes.actions
   },
   {
     columnNameApi: 'dataCadastro',
     displayName: 'Data Cadastro',
-    type: ColumnNameTypes.date
+    type: IColumnNameTypes.date
   },
   {
     columnNameApi: 'emailResponsavel',
     displayName: 'E-Mail Responsável',
-    type: ColumnNameTypes.actions
+    type: IColumnNameTypes.actions
   },
   {
     columnNameApi: 'status',
     displayName: 'Status',
-    type: ColumnNameTypes.status,
+    type: IColumnNameTypes.status,
     enumDisplayName: [
       {
         elementName: 1,
@@ -137,7 +138,7 @@ const namesColumn: DataTableColumnNamesInterface[] = [
   {
     columnNameApi: 'active',
     displayName: 'Ativo',
-    type: ColumnNameTypes.true_false,
+    type: IColumnNameTypes.true_false,
     enumDisplayName: [
       {
         elementName: 'true',
@@ -160,7 +161,7 @@ const namesColumn: DataTableColumnNamesInterface[] = [
   {
     columnNameApi: 'teste',
     displayName: 'Teste Column',
-    type: ColumnNameTypes.true_false,
+    type: IColumnNameTypes.true_false,
     enumDisplayName: [
       {
         elementName: 'true',
@@ -183,22 +184,26 @@ const namesColumn: DataTableColumnNamesInterface[] = [
   {
     columnNameApi: 'timeZone',
     displayName: 'Fuso Horário',
-    type: ColumnNameTypes.actions
+    type: IColumnNameTypes.actions
   }
 ];
 
-const ACTIONS = [
+const ACTIONS: IDataTableActionsInterface[] = [
   {
     actionName: 'Visualizar',
     actionDescription: 'Visualizar Registro',
     actionIcon: 'search',
-    actionFunction: 'Click Function'
+    actionFunction: 'Click Function',
+    disabled: false,
+    isVisible: true
   },
   {
     actionName: 'Editar',
     actionDescription: 'Editar Registro',
     actionIcon: 'edit',
-    actionFunction: 'Click Function'
+    actionFunction: 'Click Function',
+    disabled: true,
+    isVisible: true
   },
   {
     actionName: 'Excluir',
@@ -207,13 +212,17 @@ const ACTIONS = [
     actionFunction: 'Click Function',
     isDelete: true,
     isDeleteTitle: 'Deletar Item',
-    isDeleteDescription: 'Tem certeza que deseja excluir o item?'
+    isDeleteDescription: 'Tem certeza que deseja excluir o item?',
+    disabled: true,
+    isVisible: true
   },
   {
     actionName: 'Download',
     actionDescription: 'Download Registro',
     actionIcon: 'cloud_download',
-    actionFunction: 'Click Function'
+    actionFunction: 'Click Function',
+    disabled: false,
+    isVisible: true
   }
 ];
 

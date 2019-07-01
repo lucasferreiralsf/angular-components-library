@@ -1,12 +1,12 @@
 import { Injectable, EventEmitter, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
-import { DataTableInputDataInterface } from './data-table-config';
+import { IDataTableInputDataInterface } from './data-table-config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataTableService implements OnInit {
-  inputData: DataTableInputDataInterface;
+  inputData: IDataTableInputDataInterface;
   buttonRowEmitter = new EventEmitter();
   topButtonEmitter = new EventEmitter();
   inputDataEmitter = new EventEmitter();

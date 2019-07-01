@@ -22,7 +22,7 @@ import { PopoverDeleteService } from './popover-delete/popover-delete.service';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { flipInX, flipOutX } from 'ng-animate';
 import { CpfCnpjPipe } from '../pipes/cpf-cnpj.pipe';
-import { DataTableColumnNamesInterface, DataTableActionsInterface, DataType, DataTableTopActionButtonInterface, ColumnNameTypes } from './data-table-config';
+import { IDataTableColumnNamesInterface, IDataTableActionsInterface, IDataType, IDataTableTopActionButtonInterface, IColumnNameTypes } from './data-table-config';
 
 @Component({
   selector: 'sb-data-table',
@@ -49,10 +49,10 @@ import { DataTableColumnNamesInterface, DataTableActionsInterface, DataType, Dat
 })
 export class DataTableComponent implements OnInit {
   @Input() selectColumn = false;
-  @Input() columnNames: DataTableColumnNamesInterface[] = [];
-  @Input() actions: DataTableActionsInterface[] = [];
-  @Input() inputData: DataType = { results: []};
-  @Input() topActionButtons: DataTableTopActionButtonInterface[] = [];
+  @Input() columnNames: IDataTableColumnNamesInterface[] = [];
+  @Input() actions: IDataTableActionsInterface[] = [];
+  @Input() inputData: IDataType = { results: []};
+  @Input() topActionButtons: IDataTableTopActionButtonInterface[] = [];
   @Input() columnNameToDisplayOnDelete: string[];
   @Input() snackBarAutoHideTime: number;
   @Input() pageSize;
@@ -68,12 +68,12 @@ export class DataTableComponent implements OnInit {
   displayedColumns = [];
   columnsToDisplay = [];
   selection = new SelectionModel(true, []);
-  columnsNameApi: { name: string; type: ColumnNameTypes }[] = [];
+  columnsNameApi: { name: string; type: IColumnNameTypes }[] = [];
   noData;
   buttonDismissClicked = false;
   private indexElementRemoved: number;
 
-  columnNameTypes = ColumnNameTypes;
+  columnNameTypes = IColumnNameTypes;
 
   topButtonStyle: {} = {
     height: '32px',
@@ -105,22 +105,27 @@ export class DataTableComponent implements OnInit {
 
     this.dataTableService.inputDataEmitter.subscribe(inputData => {
       this.load(inputData);
+      this.cdRef.detectChanges();
     });
 
     this.dataTableService.lengthEmitter.subscribe(length => {
       this.length = length;
+      this.cdRef.detectChanges();
     });
 
     this.dataTableService.pageSizeEmitter.subscribe(pageSize => {
       this.pageSize = pageSize;
+      this.cdRef.detectChanges();
     });
 
     this.dataTableService.pageIndex.subscribe(pageIndex => {
       this.pageIndex = pageIndex;
+      this.cdRef.detectChanges();
     });
 
     this.popoverService.buttonClickEmitter.subscribe(event => {
       this.buttonRowClick(event.event, event.element);
+      this.cdRef.detectChanges();
     });
   }
 
@@ -128,13 +133,13 @@ export class DataTableComponent implements OnInit {
     this.onPageChangeEmitter.emit(paging);
   }
 
-  load(inputData: DataType) {
+  load(inputData: IDataType) {
     this.setData(inputData);
     if(this.actions.length > 0) this.addActionsToData();
     this.cdRef.detectChanges();
   }
 
-  setData(data: DataType) {
+  setData(data: IDataType) {
     this.inputData = data;
     if(this.data) {
       this.data.data = data.results;
@@ -148,12 +153,12 @@ export class DataTableComponent implements OnInit {
 
   displayColumns() {
     if (this.selectColumn === true) {
-      const select = [{ name: 'select', type: ColumnNameTypes.select }];
+      const select = [{ name: 'select', type: IColumnNameTypes.select }];
       this.columnsNameApi = select.concat(this.columnsNameApi);
     }
 
     if (this.actions.length > 0) {
-      const actions = [{ name: 'actions', type: ColumnNameTypes.actions }];
+      const actions = [{ name: 'actions', type: IColumnNameTypes.actions }];
       this.columnsNameApi = this.columnsNameApi.concat(actions);
     }
   }
@@ -214,7 +219,7 @@ export class DataTableComponent implements OnInit {
 
   cssStyle(element, column) {
     switch (column.type) {
-      case ColumnNameTypes.status:
+      case IColumnNameTypes.status:
         const statusColumnIndex = this.columnNames
           .map(e => e.columnNameApi)
           .indexOf(column.name);
@@ -229,7 +234,7 @@ export class DataTableComponent implements OnInit {
           background: statusColors.background,
           color: statusColors.color
         };
-      case ColumnNameTypes.true_false:
+      case IColumnNameTypes.true_false:
         const trueFalseColumnIndex = this.columnNames
           .map(e => e.columnNameApi)
           .indexOf(column.name);
@@ -244,7 +249,7 @@ export class DataTableComponent implements OnInit {
           background: trueFalsecolors.background,
           color: trueFalsecolors.color
         };
-      case ColumnNameTypes.yes_no:
+      case IColumnNameTypes.yes_no:
         const yesNoColumnIndex = this.columnNames
           .map(e => e.columnNameApi)
           .indexOf(column.name);
@@ -321,7 +326,7 @@ export class DataTableComponent implements OnInit {
 
     if (type === 'row') {
       switch (column.type) {
-        case ColumnNameTypes.status:
+        case IColumnNameTypes.status:
           const statusColumnIndex = this.columnNames
             .map(e => e.columnNameApi)
             .indexOf(column.name);
@@ -333,7 +338,7 @@ export class DataTableComponent implements OnInit {
           return this.columnNames[statusColumnIndex].enumDisplayName[
             statusEnumIndex
           ].displayName;
-        case ColumnNameTypes.true_false:
+        case IColumnNameTypes.true_false:
           const trueFalseColumnIndex = this.columnNames
             .map(e => e.columnNameApi)
             .indexOf(column.name);
@@ -345,7 +350,7 @@ export class DataTableComponent implements OnInit {
           return this.columnNames[trueFalseColumnIndex].enumDisplayName[
             trueFalseEnumIndex
           ].displayName;
-        case ColumnNameTypes.yes_no:
+        case IColumnNameTypes.yes_no:
           const yesNoColumnIndex = this.columnNames
             .map(e => e.columnNameApi)
             .indexOf(column.name);

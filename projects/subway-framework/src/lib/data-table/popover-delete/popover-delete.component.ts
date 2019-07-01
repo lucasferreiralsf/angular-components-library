@@ -47,6 +47,7 @@ export class PopoverDeleteComponent implements AfterViewInit {
   @Input() popoverTitle: string;
   @Input() popoverDescription: string;
   @Input() element;
+  @Input() disabled: boolean;
   @ViewChild(CdkOverlayOrigin) private popoverOrigin: CdkOverlayOrigin;
   @ViewChild('popoverContentTemplate')
   private popoverContentTemplate: TemplatePortalDirective;
@@ -67,18 +68,20 @@ export class PopoverDeleteComponent implements AfterViewInit {
   ) {}
 
   ngAfterViewInit(): void {
-    this.strategy = this.overlay
-      .position()
-      .flexibleConnectedTo(this.popoverOrigin.elementRef)
-      .withPositions(this.positions)
-      .withTransformOriginOn('#action-dropdown-button');
+    if(!this.disabled) {
+      this.strategy = this.overlay
+        .position()
+        .flexibleConnectedTo(this.popoverOrigin.elementRef)
+        .withPositions(this.positions)
+        .withTransformOriginOn('#action-dropdown-button');
 
-    this.config = new OverlayConfig({
-      positionStrategy: this.strategy,
-      hasBackdrop: true,
-      backdropClass: 'cdk-overlay-transparent-backdrop'
-    });
-    this.overlayRef = this.overlay.create(this.config);
+      this.config = new OverlayConfig({
+        positionStrategy: this.strategy,
+        hasBackdrop: true,
+        backdropClass: 'cdk-overlay-transparent-backdrop'
+      });
+      this.overlayRef = this.overlay.create(this.config);
+    }
   }
 
   openPopover() {

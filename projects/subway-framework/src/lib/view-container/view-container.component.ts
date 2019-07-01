@@ -6,10 +6,10 @@ import {
   EventEmitter
 } from '@angular/core';
 import {
-  DataTableInputDataInterface,
-  DataTableActionsInterface,
-  DataTableColumnNamesInterface,
-  DataTableTopActionButtonInterface
+  IDataTableInputDataInterface,
+  IDataTableActionsInterface,
+  IDataTableColumnNamesInterface,
+  IDataTableTopActionButtonInterface
 } from '../data-table/data-table-config';
 
 @Component({
@@ -19,10 +19,10 @@ import {
 })
 export class ViewContainerComponent implements OnInit {
   @Input() tableSelectColumn: boolean;
-  @Input() columnNames: DataTableColumnNamesInterface[] = [];
-  @Input() actions: DataTableActionsInterface[] = [];
-  @Input() inputData: DataTableInputDataInterface[] = [];
-  @Input() topActionButtons: DataTableTopActionButtonInterface[] = [];
+  @Input() columnNames: IDataTableColumnNamesInterface[] = [];
+  @Input() actions: IDataTableActionsInterface[] = [];
+  @Input() inputData: IDataTableInputDataInterface[] = [];
+  @Input() topActionButtons: IDataTableTopActionButtonInterface[] = [];
   @Input() columnNameToDisplayOnDelete;
   @Input() snackBarAutoHideTime;
   @Input() pageSizeOptions;
