@@ -381,4 +381,12 @@ export class DataTableComponent implements OnInit {
       this.columnsToDisplay.pop();
     }
   }
+
+  resolveActionId(buttonElement: IDataTableActionsInterface) {
+    if (buttonElement.id) {
+      return buttonElement.id
+    } else {
+      return buttonElement.actionName.toLowerCase();
+    }
+  }
 }

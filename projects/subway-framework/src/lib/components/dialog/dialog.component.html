@@ -2,6 +2,9 @@
   <ng-content></ng-content>
 </div>
 <div mat-dialog-actions fxLayout fxLayoutAlign="flex-end center" fxLayoutGap="5px">
-  <sb-button *ngIf="showCancelButton" [actionName]="cancelLabel" typeButton="button" materialTypeButton="mat-stroked-button" (buttonClick)="onCancelClick()"></sb-button>
-  <sb-button *ngIf="showConfirmButton" [actionName]="confirmLabel" [typeButton]="typeButton" materialTypeButton="mat-flat-button" color="primary" (buttonClick)="onConfirmClick()"></sb-button>
+  <sb-button *ngIf="showCancelButton" [actionName]="cancelLabel" typeButton="button"
+    materialTypeButton="mat-stroked-button" (buttonClick)="onCancelClick()" id="dialog-cancel-button"></sb-button>
+  <sb-button *ngIf="showConfirmButton" [actionName]="confirmLabel" [typeButton]="typeButton"
+    materialTypeButton="mat-flat-button" color="primary" (buttonClick)="onConfirmClick()" id="dialog-confirm-button">
+  </sb-button>
 </div>

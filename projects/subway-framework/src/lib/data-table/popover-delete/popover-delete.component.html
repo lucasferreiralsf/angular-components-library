@@ -1,8 +1,8 @@
-<button *ngIf="!disabled" mat-icon-button type="button" id="action-dropdown-button" cdk-overlay-origin
+<button *ngIf="!disabled" mat-icon-button type="button" [id]="id" cdk-overlay-origin
   (click)="openPopover()">
   <mat-icon>delete</mat-icon>
 </button>
-<button *ngIf="disabled" mat-icon-button type="button" id="action-dropdown-button" disabled>
+<button *ngIf="disabled" mat-icon-button type="button" [id]="id" disabled>
   <mat-icon>delete</mat-icon>
 </button>
 <ng-template cdk-portal #popoverContentTemplate="cdkPortal">
@@ -15,10 +15,10 @@
       <div class="mat-caption">{{ popoverDescription }}</div>
     </div>
     <div fxLayout fxLayoutAlign="flex-end" fxLayoutGap="5px">
-      <button mat-flat-button class="button-popover" (click)="clickActionButton('canceldelete')">
+      <button mat-flat-button id="delete-cancel-button" class="button-popover" (click)="clickActionButton('canceldelete')">
         Cancelar
       </button>
-      <button mat-flat-button color="primary" class="button-popover" (click)="clickActionButton('confirmdelete')">
+      <button mat-flat-button id="delete-confirm-button" color="primary" class="button-popover" (click)="clickActionButton('confirmdelete')">
         Confirmar
       </button>
     </div>

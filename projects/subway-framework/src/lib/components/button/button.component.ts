@@ -9,7 +9,8 @@ export class ButtonComponent implements OnInit {
   @Input() color?: string;
   @Input() actionName: string;
   @Input() typeButton: string;
-  @Input() materialTypeButton: string;
+  @Input() id: string;
+  @Input() materialTypeButton: 'mat-button' | 'mat-raised-button' | 'mat-icon-button' | 'mat-fab' | 'mat-mini-fab' | 'mat-stroked-button' | 'mat-flat-button';
   @Input() fullWidth?: boolean;
   @Input() customStyles?: {};
 

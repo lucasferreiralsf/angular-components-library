@@ -7,7 +7,8 @@ import { ToastrService } from 'projects/subway-framework/src/lib/toastr/toastr.s
 import {
   IColumnNameTypes,
   IDataTableColumnNamesInterface,
-  IDataTableActionsInterface
+  IDataTableActionsInterface,
+  IDataTableTopActionButtonInterface
 } from 'projects/subway-framework/src/lib/data-table/data-table-config';
 /* import {
   DialogService, DataTableService, ToastrService, IColumnNameTypes, IDataTableColumnNamesInterface
@@ -203,7 +204,8 @@ const ACTIONS: IDataTableActionsInterface[] = [
     actionIcon: 'edit',
     actionFunction: 'Click Function',
     disabled: true,
-    isVisible: true
+    isVisible: true,
+    id: 'id-editar'
   },
   {
     actionName: 'Excluir',
@@ -222,11 +224,25 @@ const ACTIONS: IDataTableActionsInterface[] = [
     actionIcon: 'cloud_download',
     actionFunction: 'Click Function',
     disabled: false,
-    isVisible: true
+    isVisible: true,
+    id: 'id-download'
   }
 ];
 
-const TOPACTIONSBUTTON = [];
+const TOPACTIONSBUTTON: IDataTableTopActionButtonInterface[] = [
+  {
+    actionName: 'Incluir novo registro',
+    buttonType: 'mat-flat-button',
+    eventSlug: 'novo-registro'
+  },
+  {
+    actionName: 'Editar registro',
+    buttonType: 'mat-raised-button',
+    eventSlug: 'novo-registro',
+    id: 'top-id-editar-registro',
+    buttonColor: 'accent'
+  }
+];
 
 @Component({
   selector: 'app-company',

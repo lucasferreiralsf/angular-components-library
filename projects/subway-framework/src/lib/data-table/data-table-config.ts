@@ -40,17 +40,19 @@ export interface IDataTableActionsInterface {
   actionName: string;
   actionDescription: string;
   actionIcon: string;
-  actionFunction: any;
+  actionFunction?: any;
   disabled: boolean;
   isVisible: boolean;
   isDelete?: boolean;
   isDeleteTitle?: string;
   isDeleteDescription?: string;
+  id?: string;
 }
 
 export interface IDataTableTopActionButtonInterface {
   actionName: string;
   eventSlug: string;
-  buttonType: string;
-  buttonColor?: string;
+  buttonType: 'mat-button' | 'mat-raised-button' | 'mat-icon-button' | 'mat-fab' | 'mat-mini-fab' | 'mat-stroked-button' | 'mat-flat-button';
+  buttonColor?: 'primary' | 'accent' | 'warn';
+  id?: string;
 }

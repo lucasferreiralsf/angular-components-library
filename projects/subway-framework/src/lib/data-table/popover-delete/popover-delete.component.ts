@@ -46,6 +46,7 @@ export class PopoverDeleteComponent implements AfterViewInit {
 
   @Input() popoverTitle: string;
   @Input() popoverDescription: string;
+  @Input() id: string;
   @Input() element;
   @Input() disabled: boolean;
   @ViewChild(CdkOverlayOrigin) private popoverOrigin: CdkOverlayOrigin;
