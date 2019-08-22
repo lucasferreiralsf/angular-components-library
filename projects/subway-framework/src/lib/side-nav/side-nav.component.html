@@ -8,6 +8,7 @@
     (mouseenter)="mouseenter()"
     (mouseleave)="mouseleave()"
     *ngIf="isRenderSidenav"
+    [disableClose]="disableClose"
   >
     <perfect-scrollbar>
       <ng-content select=".sb-sidenav-menus"></ng-content>

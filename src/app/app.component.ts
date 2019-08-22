@@ -26,7 +26,8 @@ const NOTIFICATIONSTESTE: Notification[] = [
     id: 2,
     date: new Date('2/20/16'),
     title: 'Teste 1',
-    description: '4444 4444 4444 4444 4444 4444 4444 4444 4444 4444 4444 4444 4444 4444 4444 ',
+    description:
+      '4444 4444 4444 4444 4444 4444 4444 4444 4444 4444 4444 4444 4444 4444 4444 ',
     isVisualized: false,
     type: AlertType.Error,
     content: 'Teste string sem html'
@@ -74,7 +75,7 @@ const NOTIFICATIONSTESTE: Notification[] = [
     description: 'Description teste 1',
     isVisualized: false,
     type: AlertType.Info
-  },
+  }
 ];
 @Component({
   selector: 'app-root',
@@ -93,9 +94,11 @@ export class AppComponent implements OnInit {
   collapseHeight = '42px';
   mostrarMenus = true;
 
-  constructor(private overlayContainer: OverlayContainer,
+  constructor(
+    private overlayContainer: OverlayContainer,
     private sidenavService: SidenavService,
-    private notificationService: NotificationService) { }
+    private notificationService: NotificationService
+  ) {}
 
   ngOnInit() {
     this.sidenavService.expandEmitter.subscribe(e => {
@@ -111,22 +114,22 @@ export class AppComponent implements OnInit {
     });
 
     this.notificationService.showNotificationButton(true);
-    this.notificationService.notificationClickEmitter.subscribe((notification: Notification) => {
-      if (notification.isVisualized == false) {
-        // this.notificationService.checkOneNotification(notification);
+    this.notificationService.notificationClickEmitter.subscribe(
+      (notification: Notification) => {
+        if (notification.isVisualized == false) {
+          // this.notificationService.checkOneNotification(notification);
+        }
       }
-    });
+    );
 
     this.notificationService.checkAllNotificationsEmitter.subscribe(() => {
       console.log('checkAllClick');
     });
-
   }
 
   ngAfterViewInit() {
     this.notificationService.setNotifications(NOTIFICATIONSTESTE);
     // this.notificationService.setNotificationQtd('20');
-
   }
 
   /* setNotificationChecked(notification: Notification) {
@@ -153,5 +156,4 @@ export class AppComponent implements OnInit {
       }, 300);
     }
   }
-
 }

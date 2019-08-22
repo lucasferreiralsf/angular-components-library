@@ -37,6 +37,7 @@ export * from './lib/notification/notification.directive';
 export * from './lib/shared/cpf-cnpj-mask/cpf-cnpj.directive';
 export * from './lib/shared/mask-directive/mask.directive';
 export * from './lib/shared/phone-br/phone-br.directive';
+export * from './lib/header/header.directive';
 
 /* PIPES */
 export * from './lib/pipes/index';

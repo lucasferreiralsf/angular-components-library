@@ -12,6 +12,7 @@ export class SidenavService {
   expandEmitter = new EventEmitter<boolean>();
   showEmitter = new EventEmitter<boolean>();
   hideToggleEmitter = new EventEmitter<boolean>();
+  disableCloseSideNav: boolean = true;
 
   constructor() { }
 
@@ -29,6 +30,10 @@ export class SidenavService {
 
   hideToggleEmit(e: boolean) {
     this.hideToggleEmitter.emit(e);
+  }
+
+  disableClose(e: boolean) {
+    this.disableCloseSideNav = e;
   }
 
 }

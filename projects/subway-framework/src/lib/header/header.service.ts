@@ -7,7 +7,7 @@ export class HeaderService {
 
   showMenuClickEmitter = new EventEmitter();
 
-  hasSideNav: boolean;
+  showMenu: boolean = false;
   constructor() { }
 
   showMenuClick() {
@@ -15,6 +15,6 @@ export class HeaderService {
   }
 
   showMenuButton(e: boolean) {
-    this.hasSideNav = e;
+    this.showMenu = e;
   }
 }
