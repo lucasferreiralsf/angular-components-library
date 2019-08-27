@@ -1,15 +1,15 @@
 {
-  "name": "@subway/angular-frontend-library",
+  "name": "@lucasferreira/angular-components-library",
   "author": "Lucas Ferreira",
-  "version": "1.0.48",
+  "version": "1.0.0",
   "description": "This is a set of custom angular components to easy the development of any Subway frontend project.",
-  "keywords" :["Angular","Library", "Subway"],
+  "keywords" :["Angular","Library", "Subway", "Frontend"],
   "license" : "SEE LICENSE IN LICENSE",
   "repository": {
     "type" : "git",
-    "url" : "https://subwaytechnology.visualstudio.com/SubwayBrazilFiscal/_git/SubwayAngularFramework"
+    "url" : "https://github.com/lucasferreiralsf/angular-components-library"
   },
-  "homepage" :"https://medium.com/@palmer_todd/the-angular-library-series-publishing-ce24bb673275",
+  "homepage" :"https://github.com/lucasferreiralsf/angular-components-library",
   "peerDependencies": {
     "@angular/animations": "^7.2.11",
     "@angular/cdk": "^7.3.6",

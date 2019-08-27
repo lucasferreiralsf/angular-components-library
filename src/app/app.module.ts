@@ -20,14 +20,14 @@ import { CompanyViewEditComponent } from './company/company-view-edit/company-vi
   SubwayComponentsLibraryModule, ToastrService, defaultToastConfig,
   TOAST_CONFIG_TOKEN,
   ToastConfig,
-} from 'dist/subway-framework'; */
-import { ToastrService } from 'projects/subway-framework/src/lib/toastr/toastr.service';
+} from 'dist/angular-components-library'; */
+import { ToastrService } from 'projects/angular-components-library/src/lib/toastr/toastr.service';
 import {
   defaultToastConfig,
   TOAST_CONFIG_TOKEN,
   ToastConfig
-} from 'projects/subway-framework/src/lib/toastr/toastr-config';
-import { SubwayComponentsLibraryModule } from 'projects/subway-framework/src/public-api';
+} from 'projects/angular-components-library/src/lib/toastr/toastr-config';
+import { SubwayComponentsLibraryModule } from 'projects/angular-components-library/src/public-api';
 
 import { registerLocaleData } from '@angular/common';
 import localept from '@angular/common/locales/pt';

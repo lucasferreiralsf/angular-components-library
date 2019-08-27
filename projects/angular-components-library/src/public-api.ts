@@ -1,6 +1,6 @@
 
 /*
-* Public API Surface of subway-framework
+* Public API Surface of angular-components-library
 */
 
 /* MODULES */

@@ -19,11 +19,11 @@
       "dom"
     ],
     "paths": {
-      "subway-framework": [
-        "dist/subway-framework"
+      "angular-components-library": [
+        "dist/angular-components-library"
       ],
-      "subway-framework/*": [
-        "dist/subway-framework/*"
+      "angular-components-library/*": [
+        "dist/angular-components-library/*"
       ]
     }
   }

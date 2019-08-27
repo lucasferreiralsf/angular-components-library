@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "subway-angular-framework": {
+    "lucasferreira-angular-library": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/subway-angular-framework",
+            "outputPath": "dist/lucasferreira-angular-library",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "subway-angular-framework:build"
+            "browserTarget": "lucasferreira-angular-library:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "subway-angular-framework:build:production"
+              "browserTarget": "lucasferreira-angular-library:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "subway-angular-framework:build"
+            "browserTarget": "lucasferreira-angular-library:build"
           }
         },
         "test": {
@@ -107,7 +107,7 @@
         }
       }
     },
-    "subway-angular-framework-e2e": {
+    "lucasferreira-angular-library-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -116,11 +116,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "subway-angular-framework:serve"
+            "devServerTarget": "lucasferreira-angular-library:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "subway-angular-framework:serve:production"
+              "devServerTarget": "lucasferreira-angular-library:serve:production"
             }
           }
         },
@@ -135,9 +135,9 @@
         }
       }
     },
-    "subway-framework": {
-      "root": "projects/subway-framework",
-      "sourceRoot": "projects/subway-framework/src",
+    "angular-components-library": {
+      "root": "projects/angular-components-library",
+      "sourceRoot": "projects/angular-components-library/src",
       "projectType": "library",
       "prefix": "sb",
       "schematics": {
@@ -149,19 +149,19 @@
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/subway-framework/tsconfig.lib.json",
-            "project": "projects/subway-framework/ng-package.json"
+            "tsConfig": "projects/angular-components-library/tsconfig.lib.json",
+            "project": "projects/angular-components-library/ng-package.json"
 
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/subway-framework/src/test.ts",
-            "tsConfig": "projects/subway-framework/tsconfig.spec.json",
-            "karmaConfig": "projects/subway-framework/karma.conf.js",
+            "main": "projects/angular-components-library/src/test.ts",
+            "tsConfig": "projects/angular-components-library/tsconfig.spec.json",
+            "karmaConfig": "projects/angular-components-library/karma.conf.js",
             "styles": [
-              "projects/subway-framework/src/styles.scss"
+              "projects/angular-components-library/src/styles.scss"
             ]
           }
         },
@@ -169,8 +169,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/subway-framework/tsconfig.lib.json",
-              "projects/subway-framework/tsconfig.spec.json"
+              "projects/angular-components-library/tsconfig.lib.json",
+              "projects/angular-components-library/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -180,5 +180,5 @@
       }
     }
   },
-  "defaultProject": "subway-angular-framework"
+  "defaultProject": "lucasferreira-angular-library"
 }

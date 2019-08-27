@@ -1,5 +1,5 @@
 {
-  "name": "subway-angular-framework",
+  "name": "angular-components-library",
   "version": "0.0.0",
   "scripts": {
     "clean": "rimraf \"./dist/*\"",
@@ -9,8 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build.lib": "npm run clean && ng build subway-framework && npm run copy-styles",
-    "copy-styles": "cpx \"./projects/subway-framework/src/lib/assets/styles/**/*.scss\" \"./dist/subway-framework/assets/styles/\""
+    "build.lib": "npm run clean && ng build angular-components-library && npm run copy-styles",
+    "copy-styles": "cpx \"./projects/angular-components-library/src/lib/assets/styles/**/*.scss\" \"./dist/angular-components-library/assets/styles/\""
   },
   "private": true,
   "dependencies": {
